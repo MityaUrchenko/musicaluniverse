@@ -1,62 +1,53 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<?
 $aMenuLinks = Array(
 	Array(
-		"Новости",
-		"/news/",
+		"Новости", 
+		"/news/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Статьи",
-		"/articles/",
+		"Статьи", 
+		"/articles/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Спецпроекты",
-		"/special/",
-		Array(), 
-		Array(), 
-		"" 
-	),	
-	Array(
-		"Люди",
-		"/personalities/",
+		"Спецпроекты", 
+		"/special/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Места",
-		"/places/",
-		Array(),
-		Array(),
-		""
+		"Люди", 
+		"/personalities/", 
+		Array(), 
+		Array(), 
+		"" 
 	),
 	Array(
-		"Произведения",
-		"/composition/",
-		Array(),
-		Array(),
-		""
+		"Места", 
+		"/places/", 
+		Array(), 
+		Array(), 
+		"" 
 	),
 	Array(
-		"Мероприятия",
-		"/events/",
-		Array(),
-		Array(),
-		""
+		"Произведения", 
+		"/compositions/", 
+		Array(), 
+		Array(), 
+		"" 
 	),
-	/*
 	Array(
-		"Мой кабинет",
-		"personal/",
-		Array(),
-		Array(),
-		"\$USER->IsAuthorized()"
-	),
-	*/
+		"Мероприятия", 
+		"/events/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
 );
 ?>

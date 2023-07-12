@@ -78,7 +78,7 @@ $this->setFrameMode(true);
                         <?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PREVIEW_TEXT"]):?>
                             <p class="card-text"><?echo $arItem["PREVIEW_TEXT"];?></p>
                         <?endif;?>
-
+                        
                         <div class="date-published mt-auto"><?=$arItem["ACTIVE_FROM"]?:$arItem["DATE_CREATE"]?></div>
                     </div>
                 </div>

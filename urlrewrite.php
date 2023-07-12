@@ -8,7 +8,7 @@ $arUrlRewrite=array (
     'PATH' => '/personal/order/index.php',
     'SORT' => 100,
   ),
-  14 => 
+  24 => 
   array (
     'CONDITION' => '#^/personalities/#',
     'RULE' => '',
@@ -24,7 +24,7 @@ $arUrlRewrite=array (
     'PATH' => '/personal/index.php',
     'SORT' => 100,
   ),
-  12 => 
+  22 => 
   array (
     'CONDITION' => '#^/articles/#',
     'RULE' => '',
@@ -40,7 +40,7 @@ $arUrlRewrite=array (
     'PATH' => '/special/index.php',
     'SORT' => 100,
   ),
-  9 => 
+  20 => 
   array (
     'CONDITION' => '#^/events/#',
     'RULE' => '',
@@ -48,7 +48,7 @@ $arUrlRewrite=array (
     'PATH' => '/events/index.php',
     'SORT' => 100,
   ),
-  10 => 
+  23 => 
   array (
     'CONDITION' => '#^/news/#',
     'RULE' => '',

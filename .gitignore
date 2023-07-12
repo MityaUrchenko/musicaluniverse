@@ -4,7 +4,7 @@
 .DS_Store
 Thumbs.db
 bitrix/js/ipol.sdek/list.json
-/bitrix/
+#/bitrix/
 
 # dev backups
 *bak20*
@@ -70,11 +70,8 @@ assets/.dist
 sitemap.xml
 sitemaps/*
 *.log
+*.txt
+*.json
 
 .vscode
 /.vscode/
-
-/frontend/.idea/
-/frontend/.git/
-/frontend/node_modules
-
