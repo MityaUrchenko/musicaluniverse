@@ -86,18 +86,18 @@ $this->setFrameMode(true);
           margin: 20,
           autoWidth: false,
           responsive:{
-            767:{
-              autoWidth: true,
+            1280:{
+              items: 1.3
+            },/*
+            1440:{
+              items: 1.45
             },
-            // 1440:{
-            //   items: 2
-            // },
-            // 1600:{
-            //   items: 2
-            // },
-            // 1920:{
-            //   items: 3
-            // }
+            1600:{
+              items: 1.4
+            },
+            1920:{
+              items: 1.64
+            }*/
           }
         });
       });
