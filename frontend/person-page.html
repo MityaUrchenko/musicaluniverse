@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Страница персоны</title>
+    <meta name="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="page__wrapper">
+    <header class="mu-header">
+        <div class="mu-container">
+            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img src="assets/img/logo.png"></a>
+                <div class="mu-header__inner">
+                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span
+                            class="mu-header__personal-status">суперадмин</span>
+                        <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                        <div class="mu-header-menu js-header-menu">
+                            <div class="mu-header-menu__personal js-header-menu-personal"><span
+                                    class="mu-header-menu__personal-name">Имя пользователя</span><span
+                                    class="mu-header-menu__personal-status">суперадмин</span>
+                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                            </div>
+                            <ul class="mu-header-menu__list">
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="users">
+                                        <use xlink:href="#users"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Пользователи</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="calendar">
+                                        <use xlink:href="#calendar"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Тикеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="content">
+                                        <use xlink:href="#content"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Контент</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="base">
+                                        <use xlink:href="#base"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Базы данных</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="card">
+                                        <use xlink:href="#card"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Билеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="statistic">
+                                        <use xlink:href="#statistic"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Статистика</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="promo">
+                                        <use xlink:href="#promo"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Промо</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="person">
+                                        <use xlink:href="#person"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Личные данные</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mu-header__controls">
+                        <div class="mu-header__controls-item">
+                            <button class="mu-header__theme-toggle">
+                                <svg class="night">
+                                    <use xlink:href="#night"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mu-header__controls-item">
+                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>
+                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
+                                <div class="mu-select__toggle-wrap">
+                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
+                                </div>
+                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                    data-id="role-1" for="role-1"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-1"
+                                        name="role" data-text="Rus"><span
+                                        class="mu-select__item-text">Rus</span></label><label class="mu-select__item"
+                                                                                              data-type="item"
+                                                                                              data-id="role-2"
+                                                                                              for="role-2"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-2"
+                                        name="role" data-text="Eng"><span
+                                        class="mu-select__item-text">Eng</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="page__main mu-person-page">
+        <div class="mu-container">
+            <div class="mu-person-page__inner">
+                <div class="mu-person-page__gallery">
+                    <div class="mu-person-page__gallery-slide"><img src="assets/img/gallery/photo_1.png"></div>
+                    <div class="mu-person-page__gallery-slide"><img src="assets/img/gallery/photo_2.png"></div>
+                    <div class="mu-person-page__gallery-slide"><img src="assets/img/gallery/photo_3.png"></div>
+                    <div class="mu-person-page__gallery-slide"><img src="assets/img/gallery/photo_4.png"></div>
+                </div>
+                <div class="mu-person-page__main person-page-card">
+                    <button class="mu-save-mark">
+                        <svg class="mark">
+                            <use xlink:href="#mark"></use>
+                        </svg>
+                    </button>
+                    <div class="person-page-card__name">Ру́тгер У́лсен Ха́уэр
+                        <svg class="success person-page-card__name-icon">
+                            <use xlink:href="#success"></use>
+                        </svg>
+                    </div>
+                    <div class="person-page-card__post">Актер, Продюсер, Режиссер, Сценарист</div>
+                    <div class="person-page-card__controls"><a class="btn btn--filled btn--round btn--icon"
+                                                               href="#"><span>Купить</span>
+                        <svg class="ticket">
+                            <use xlink:href="#ticket"></use>
+                        </svg>
+                    </a><a class="btn btn--round" href="#"><span>Контактные данные и резюме</span></a></div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Годы жизни</div>
+                        <div class="person-page-card__row-value">1944-2019</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Страна рождения</div>
+                        <div class="person-page-card__row-value">Нидерланды</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Город рождения</div>
+                        <div class="person-page-card__row-value">Брёкелен</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Страна проживания
+                        </div>
+                        <div class="person-page-card__row-value">Нидерланды</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Город проживания
+                        </div>
+                        <div class="person-page-card__row-value">Бетстерзваг, Опстерланд, Фрисландия</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Рост</div>
+                        <div class="person-page-card__row-value">1.85 м</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Образование</div>
+                        <div class="person-page-card__row-value"><a href="#">Театральный институт в Базеле, Актёрская
+                            школа в Амстердаме</a></div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Годы активности</div>
+                        <div class="person-page-card__row-value">1969-2019</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Карьера / Сфера
+                            деятельности / Профессия
+                        </div>
+                        <div class="person-page-card__row-value">Актер, Продюсер, Режиссер, Сценарист</div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Биография / О
+                            персоне
+                        </div>
+                        <div class="person-page-card__row-value">Родился 23 января 1944 года в актёрской семье. Его
+                            отец, Аренд, преподавал актёрское мастерство в местном театральном колледже, мать, Тёнке,
+                            там же вела занятия по курсу драматургии. Уже в пять лет Рутгер появился на театральной
+                            сцене, а дебют в театре состоялся 8 июня 1955 года в трагедии Софокла «Аякс». Рутгера
+                            назвали в честь наставника его отца на театральной сцене.<br>В 15 лет он сбежал из дома,
+                            нанялся на торговое судно своего деда и почти на год ушёл в плавание. Это дало ему
+                            возможность посмотреть мир. В 1962 году поступил в театральный институт в Базеле
+                            (Швейцария). Спустя два года Хауэр нанялся солдатом в армию. Два года были отданы десантным
+                            войскам, но вскоре он прибегнул к помощи приятеля-врача, симулируя психическую
+                            неуравновешенность, чтобы избежать дальнейшей службы. Пробыв некоторое время в больнице для
+                            душевнобольных, Хауэр, убедив врачей в своей непригодности к военной службе, вернулся в
+                            институт. Затем обучался в актёрской школе в Амстердаме, после чего он получил место в
+                            Королевском театре.
+                        </div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Жанры</div>
+                        <div class="person-page-card__row-value"><a href="#">Драма</a>,<a href="#">Боевик</a>,<a
+                                href="#">Исторический</a>,<a href="#">Приключенческий</a></div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Награды и премии
+                        </div>
+                        <div class="person-page-card__row-value">1988 — Премия «Золотой глобус»: лучший актёр второго
+                            плана мини-сериала или фильма на ТВ (за фильм «Побег из Собибора»)
+                        </div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Материалы о персоне
+                        </div>
+                        <div class="person-page-card__row-value"><a href="#">Статьи</a></div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Сайт</div>
+                        <div class="person-page-card__row-value"><a href="#">www.actorsite.com</a></div>
+                    </div>
+                    <div class="person-page-card__row">
+                        <div class="person-page-card__row-value person-page-card__row-value--bold">Всего постановок
+                        </div>
+                        <div class="person-page-card__row-value"><a href="#">123</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+<script src="assets/js/vendors.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

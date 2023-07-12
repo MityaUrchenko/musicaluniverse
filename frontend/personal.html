@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Личные данные</title>
+    <meta name="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="page__wrapper">
+    <header class="mu-header">
+        <div class="mu-container">
+            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img src="assets/img/logo.png"></a>
+                <div class="mu-header__inner">
+                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span
+                            class="mu-header__personal-status">суперадмин</span>
+                        <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                        <div class="mu-header-menu js-header-menu">
+                            <div class="mu-header-menu__personal js-header-menu-personal"><span
+                                    class="mu-header-menu__personal-name">Имя пользователя</span><span
+                                    class="mu-header-menu__personal-status">суперадмин</span>
+                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                            </div>
+                            <ul class="mu-header-menu__list">
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="users">
+                                        <use xlink:href="#users"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Пользователи</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="calendar">
+                                        <use xlink:href="#calendar"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Тикеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="content">
+                                        <use xlink:href="#content"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Контент</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="base">
+                                        <use xlink:href="#base"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Базы данных</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="card">
+                                        <use xlink:href="#card"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Билеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="statistic">
+                                        <use xlink:href="#statistic"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Статистика</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="promo">
+                                        <use xlink:href="#promo"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Промо</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="person">
+                                        <use xlink:href="#person"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Личные данные</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mu-header__controls">
+                        <div class="mu-header__controls-item">
+                            <button class="mu-header__theme-toggle">
+                                <svg class="night">
+                                    <use xlink:href="#night"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mu-header__controls-item">
+                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>
+                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
+                                <div class="mu-select__toggle-wrap">
+                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
+                                </div>
+                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                    data-id="role-1" for="role-1"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-1"
+                                        name="role" data-text="Rus"><span
+                                        class="mu-select__item-text">Rus</span></label><label class="mu-select__item"
+                                                                                              data-type="item"
+                                                                                              data-id="role-2"
+                                                                                              for="role-2"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-2"
+                                        name="role" data-text="Eng"><span
+                                        class="mu-select__item-text">Eng</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="page__main">
+        <div class="mu-container"><h1 class="page__title">Личные данные</h1>
+            <form class="mu-personal__form">
+                <div class="mu-personal__blocks">
+                    <div class="mu-personal__block"><span class="mu-personal__block-title">Кабинет суперадмина</span>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="email" id="email"
+                                                               placeholder="e-mail" value="" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="login" id="login"
+                                                               placeholder="Логин" value="" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap">
+                                <div class="mu-input__inner-password js-input-password"><input class="mu-input__input"
+                                                                                               type="password"
+                                                                                               name="search" id="search"
+                                                                                               placeholder="Пароль"
+                                                                                               value="" required><span
+                                        class="mu-input__password-icon"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mu-personal__block"><span class="mu-personal__block-title">ФИО суперадмина</span>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="last-name" id="last-name"
+                                                               placeholder="Фамилия" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="name" id="name"
+                                                               placeholder="Имя" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="middle-name"
+                                                               id="middle-name" placeholder="Отчество" required></div>
+                        </div>
+                    </div>
+                    <div class="mu-personal__block"><span class="mu-personal__block-title">Паспортные данные</span>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Серия и номер паспорта" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Кем выдан" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Код подразделения" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Когда выдан паспорт" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Прописка" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Место рождения" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><input class="mu-input__input" name="" id=""
+                                                               placeholder="Дата рождения" required></div>
+                        </div>
+                    </div>
+                    <div class="mu-personal__block-group">
+                        <div class="mu-personal__block"><span class="mu-personal__block-title">Пароль</span>
+                            <button class="btn btn--round btn--filled"><span>Изменить пароль</span></button>
+                        </div>
+                        <div class="mu-personal__block"><span class="mu-personal__block-title">Профиль</span>
+                            <button class="btn btn--round btn--filled"><span>Удалить профиль</span></button>
+                        </div>
+                    </div>
+                    <div class="mu-personal__panel-column">
+                        <div class="mu-file-input">
+                            <div class="mu-file-input__result js-file-input-result">
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="doc">
+                                            <use xlink:href="#doc"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер один.doc</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="pdf">
+                                            <use xlink:href="#pdf"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер два с д....pdf</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="pdf">
+                                            <use xlink:href="#pdf"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер два с д....pdf</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mu-file-input__wrap">
+                                <svg class="file mu-file-input__icon">
+                                    <use xlink:href="#file"></use>
+                                </svg>
+                                <label class="mu-file-input__label">Загрузить документы</label><input
+                                    class="mu-file-input__input js-file-input" type="file"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mu-personal__panel-textarea">
+                    <div class="mu-textarea"><label class="mu-textarea__label" for="text">Информация о
+                        суперадмине</label><textarea name="text"
+                                                     placeholder="Введите текст или перетащите изображение в поле"></textarea>
+                    </div>
+                </div>
+            </form>
+            <div class="mu-personal__content"><h2 class="page__title-h2">Карточки в управлении</h2>
+                <div class="mu-personal__content-search">
+                    <div class="mu-input">
+                        <div class="mu-input__wrap">
+                            <div class="mu-input__inner">
+                                <svg class="search mu-input__icon">
+                                    <use xlink:href="#search"></use>
+                                </svg>
+                                <input class="mu-input__input" name="search" id="search" placeholder="Искать" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mu-users__table">
+                    <div class="mu-content-table">
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                        <div class="mu-content-table__row"><p class="mu-content-table__row-title">Название страницы</p>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="id" id="id"
+                                                                   placeholder="" value="123456789014348449490"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="lang" id="lang"
+                                                                   placeholder="" value="Рус." required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" name="type" id="type"
+                                                                   placeholder="" value="Новость" required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap"><input class="mu-input__input" type="email" name="email"
+                                                                   id="email" placeholder="" value="mypost@post.ru"
+                                                                   required></div>
+                            </div>
+                            <div class="mu-input">
+                                <div class="mu-input__wrap">
+                                    <div class="mu-input__inner-date"><input class="mu-input__input" name="date"
+                                                                             id="date" placeholder="" value="12.04.2023"
+                                                                             required><span
+                                            class="mu-input__date-icon"></span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn--round btn--filled btn--medium"><span>Утвердить</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mu-pagination">
+                    <ul class="mu-pagination__list">
+                        <li class="mu-pagination__item mu-pagination__item-control"><a href="#">
+                            <svg class="arrow-prev">
+                                <use xlink:href="#arrow-prev"></use>
+                            </svg>
+                        </a></li>
+                        <li class="mu-pagination__item active"><a href="#">01</a></li>
+                        <li class="mu-pagination__item"><a href="#">02</a></li>
+                        <li class="mu-pagination__item"><a href="#">03</a></li>
+                        <li class="mu-pagination__item"><a href="#">04</a></li>
+                        <li class="mu-pagination__item"><a href="#">05</a></li>
+                        <li class="mu-pagination__item"><a href="#">06</a></li>
+                        <li class="mu-pagination__item"><a href="#">07</a></li>
+                        <li class="mu-pagination__item"><a href="#">08</a></li>
+                        <li class="mu-pagination__item"><a href="#">09</a></li>
+                        <li class="mu-pagination__item"><a href="#">10</a></li>
+                        <li class="mu-pagination__item"><a href="#">...</a></li>
+                        <li class="mu-pagination__item"><a href="#">999</a></li>
+                        <li class="mu-pagination__item mu-pagination__item-control"><a href="#">
+                            <svg class="arrow-next">
+                                <use xlink:href="#arrow-next"></use>
+                            </svg>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+<script src="assets/js/vendors.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

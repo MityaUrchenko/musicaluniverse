@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Пользователи</title>
+    <meta name="description">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="page__wrapper">
+    <header class="mu-header">
+        <div class="mu-container">
+            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img src="assets/img/logo.png"></a>
+                <div class="mu-header__inner">
+                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span
+                            class="mu-header__personal-status">суперадмин</span>
+                        <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                        <div class="mu-header-menu js-header-menu">
+                            <div class="mu-header-menu__personal js-header-menu-personal"><span
+                                    class="mu-header-menu__personal-name">Имя пользователя</span><span
+                                    class="mu-header-menu__personal-status">суперадмин</span>
+                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                            </div>
+                            <ul class="mu-header-menu__list">
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="users">
+                                        <use xlink:href="#users"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Пользователи</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="calendar">
+                                        <use xlink:href="#calendar"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Тикеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="content">
+                                        <use xlink:href="#content"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Контент</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="base">
+                                        <use xlink:href="#base"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Базы данных</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="card">
+                                        <use xlink:href="#card"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Билеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="statistic">
+                                        <use xlink:href="#statistic"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Статистика</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="promo">
+                                        <use xlink:href="#promo"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Промо</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                    <svg class="person">
+                                        <use xlink:href="#person"></use>
+                                    </svg>
+                                    <span class="mu-header-menu__link-name">Личные данные</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mu-header__controls">
+                        <div class="mu-header__controls-item">
+                            <button class="mu-header__theme-toggle">
+                                <svg class="night">
+                                    <use xlink:href="#night"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mu-header__controls-item">
+                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>
+                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
+                                <div class="mu-select__toggle-wrap">
+                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
+                                </div>
+                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                    data-id="role-1" for="role-1"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-1"
+                                        name="role" data-text="Rus"><span
+                                        class="mu-select__item-text">Rus</span></label><label class="mu-select__item"
+                                                                                              data-type="item"
+                                                                                              data-id="role-2"
+                                                                                              for="role-2"><input
+                                        class="mu-select__item-input js-select-input" type="radio" id="role-2"
+                                        name="role" data-text="Eng"><span
+                                        class="mu-select__item-text">Eng</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="page__main">
+        <div class="mu-container"><h1 class="page__title">Пользователи</h1>
+            <div class="mu-users__filters">
+                <div class="mu-filters">
+                    <div class="mu-filters__row">
+                        <button class="btn btn--add active"><span>+</span></button>
+                        <button class="btn"><span>На рассмотрении</span></button>
+                        <button class="btn"><span>Все пользователи</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="mu-users__panel">
+                <div class="mu-users__panel-tabs"><span class="mu-users__panel-tab active">русский</span><span
+                        class="mu-users__panel-tab">english</span><span class="mu-users__panel-tab">deutsche</span>
+                </div>
+                <div class="mu-users__panel-inner">
+                    <div class="mu-users__panel-top"><span class="mu-users__panel-title">Добавление</span><span
+                            class="mu-users__panel-id">ID 123456789014348449490</span></div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_filled">
+                            <div class="mu-select__title">Выберите роль</div>
+                            <div class="mu-select__toggle-wrap">
+                                <div class="mu-select__toggle" data-type="toggle" data-default-text="Выберите роль">
+                                    Выберите роль
+                                </div>
+                            </div>
+                            <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                data-id="role-1" for="role-1"><input
+                                    class="mu-select__item-input js-select-input" type="radio" id="role-1" name="role"
+                                    data-text="Автор"><span class="mu-select__item-text">Автор</span></label><label
+                                    class="mu-select__item" data-type="item" data-id="role-2" for="role-2"><input
+                                    class="mu-select__item-input js-select-input" type="radio" id="role-2" name="role"
+                                    data-text="Администратор"><span
+                                    class="mu-select__item-text">Администратор</span></label></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="email">Почта</label><input
+                                    class="mu-input__input" type="email" name="email" id="email"
+                                    placeholder="Введите e-mail" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="login">Логин</label><input
+                                    class="mu-input__input" name="login" id="login" placeholder="Введите логин"
+                                    required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="password">Пароль</label>
+                                <div class="mu-input__inner-password js-input-password"><input class="mu-input__input"
+                                                                                               type="password"
+                                                                                               name="password"
+                                                                                               id="password"
+                                                                                               placeholder="Введите пароль"
+                                                                                               required><span
+                                        class="mu-input__password-icon"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label"
+                                                               for="last-name">Фамилия</label><input
+                                    class="mu-input__input" name="last-name" id="last-name"
+                                    placeholder="Введите фамилию" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="name">Имя</label><input
+                                    class="mu-input__input" name="name" id="name" placeholder="Введите имя" required>
+                            </div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label"
+                                                               for="middle-name">Отчество</label><input
+                                    class="mu-input__input" name="middle-name" id="middle-name"
+                                    placeholder="Введите отчество" required></div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="">Серия и номер
+                                паспорта</label><input class="mu-input__input" name="" id=""
+                                                       placeholder="Введите серию и номер" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="">Кем выдан</label><input
+                                    class="mu-input__input" name="" id="" placeholder="Укажите" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="">Код
+                                подразделения</label><input class="mu-input__input" name="" id="" placeholder="Укажите"
+                                                            required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="">Когда выдан
+                                паспорт</label><input class="mu-input__input" name="" id="" placeholder="Укажите"
+                                                      required></div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label"
+                                                               for="last-name">Прописка</label><input
+                                    class="mu-input__input" name="last-name" id="last-name" placeholder="Укажите"
+                                    required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="name">Место рождения</label><input
+                                    class="mu-input__input" name="name" id="name" placeholder="Укажите" required></div>
+                        </div>
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label" for="middle-name">Дата
+                                рождения</label><input class="mu-input__input" name="middle-name" id="middle-name"
+                                                       placeholder="Укажите" required></div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-input">
+                            <div class="mu-input__wrap"><label class="mu-input__label"
+                                                               for="last-name">Телефон</label><input
+                                    class="mu-input__input" type="phone" name="last-name" id="last-name"
+                                    placeholder="Введите телефон" required></div>
+                        </div>
+                        <div class="mu-file-input">
+                            <div class="mu-file-input__result js-file-input-result"></div>
+                            <div class="mu-file-input__wrap">
+                                <svg class="file mu-file-input__icon">
+                                    <use xlink:href="#file"></use>
+                                </svg>
+                                <label class="mu-file-input__label">Фото профиля</label><input
+                                    class="mu-file-input__input js-file-input" type="file"></div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-row">
+                        <div class="mu-file-input">
+                            <div class="mu-file-input__result js-file-input-result">
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="doc">
+                                            <use xlink:href="#doc"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер один.doc</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="pdf">
+                                            <use xlink:href="#pdf"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер два с д....pdf</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="mu-file">
+                                    <div class="mu-file__icon">
+                                        <svg class="pdf">
+                                            <use xlink:href="#pdf"></use>
+                                        </svg>
+                                    </div>
+                                    <span class="mu-file__name">Подтверждающий документ номер два с д....pdf</span>
+                                    <button class="mu-file__delete" type="button">
+                                        <svg class="close">
+                                            <use xlink:href="#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mu-file-input__wrap">
+                                <svg class="file mu-file-input__icon">
+                                    <use xlink:href="#file"></use>
+                                </svg>
+                                <label class="mu-file-input__label">Загрузить документы</label><input
+                                    class="mu-file-input__input js-file-input" type="file"></div>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-textarea">
+                        <div class="mu-textarea"><label class="mu-textarea__label" for="text">Рассказ об
+                            авторе</label><textarea name="text"
+                                                    placeholder="Введите текст или перетащите изображение в поле"></textarea>
+                        </div>
+                    </div>
+                    <div class="mu-users__panel-button">
+                        <button class="btn btn--round btn--filled"><span>Создать</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+<script src="assets/js/vendors.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

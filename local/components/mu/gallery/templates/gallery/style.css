@@ -1,0 +1,25 @@
+.grid-item {
+    display: flex;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    line-height: 0;
+    overflow: hidden;
+    text-decoration: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.grid-item div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: .15s linear all;
+    background: var(--main-bg);
+    width: 100%;
+    height: 100%;
+    color: var(--secondary-text-color);
+}
+.grid-item:hover div {
+    opacity: 1;
+}
