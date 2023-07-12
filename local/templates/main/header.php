@@ -9,6 +9,7 @@ use \Bitrix\Main\Page\Asset;
 $curPage = $APPLICATION->GetCurPage(true);
 $curDir = $APPLICATION->GetCurDir();
 define("IBLOCK_ID_ARTICLES", 5);
+define("IBLOCK_ID_SPECIAL", 4);
 
 
 
@@ -175,7 +176,7 @@ $countries = (array) json_decode($countries);
         </div>
     </header>
 
-    <div class="workarea <?=$curDir=="/"?"main-page":"";?> pt-4 pb-5">
+    <div class="workarea <?=$curDir=="/"?"main-page":"";?> pt-4 <?=$curDir=="/"?:"pb-5";?>">
 
         <?if(explode("/",$curDir)[1] == "personal" || ($curDir != "/" && count(explode("/",$curDir))<4)){?>
             <div class="container">
