@@ -1,2 +1,1 @@
-<p>Информация, размещенная на данном ресурсе, предназначена только для персонального использования</p>
-<p>Использование и размещение содержащейся на ресурсе информации возможно при обязательном указании ссылки на источник: sibnovosti.ru</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, at, iusto. Distinctio esse odit porro quidem similique sunt ullam, voluptatem voluptatum! Asperiores aut, doloribus eaque exercitationem ipsum, modi nulla officiis praesentium quae quasi, quidem quos unde ut? Aliquid animi asperiores aut dignissimos eligendi esse eum id, nulla officia rem voluptatum.</p>

@@ -1,4 +1,1 @@
-<p>Адрес электронной почты и номер телефона редакции: sibnovosti@mkrmedia.ru +74996425304</p>
-<p>1127299 г. Москва, ул. Б. Академическая, дом 5А</p>
-<p>Знак информационной продукции: 18 +</p>
-<p>Сетевое издание зарегистрировано Роскомнадзором, Свидетельство о регистрации</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto dolorem doloribus explicabo facilis ipsa ipsam itaque laudantium magnam nam possimus quaerat quidem reiciendis rem reprehenderit saepe, temporibus? Aliquid atque autem ducimus eligendi est explicabo molestias mollitia nihil nobis, reiciendis repellat unde voluptatibus. Fugit illo iure quis reprehenderit velit vero.</p>

@@ -1,3 +1,2 @@
 <div class="header">Контакты</div>
-<div class="mb-1">sibnovosti@mkrmedia.ru</div>
-<div class="footer-phone mb-1">+74996425304</div>
+<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis distinctio ea earum ipsum, sed suscipit tempora veniam vero voluptates.</div>
