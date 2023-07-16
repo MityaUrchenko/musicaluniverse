@@ -48,6 +48,11 @@ $(document).ready(function() {
     addFavorite(favorID);
   });
 
+  $('.mu-save-mark').on('click', function(e) {
+    var favorID = $(this).attr('data-item');
+    addFavorite(favorID);
+  });
+
   $('.like-btn').on('click', function(e) {
     var likeID = $(this).attr('data-item');
     addLike(likeID);
@@ -65,9 +70,19 @@ function addFavorite(id)
     success: function(response) {
       var result = $.parseJSON(response);
       if(result == 1){
-        $('.favor[data-item="'+id+'"]').addClass('active');
+        if ($('.favor[data-item="'+id+'"]').length) {
+          $('.favor[data-item="'+id+'"]').addClass('active');
+        }
+        if ($('.mu-save-mark[data-item="'+id+'"]').length) {
+          $('.mu-save-mark[data-item="'+id+'"]').addClass('active');
+        }
       } else if(result == -1){
-        $('.favor[data-item="'+id+'"]').removeClass('active');
+        if ($('.favor[data-item="'+id+'"]').length) {
+          $('.favor[data-item="'+id+'"]').removeClass('active');
+        }
+        if ($('.mu-save-mark[data-item="'+id+'"]').length) {
+          $('.mu-save-mark[data-item="'+id+'"]').removeClass('active');
+        }
       }
     },
     error: function(jqXHR, textStatus, errorThrown){

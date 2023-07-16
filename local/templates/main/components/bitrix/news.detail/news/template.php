@@ -31,6 +31,11 @@ if (in_array($arResult["ID"], $arLikedElements)) {
                 <svg>
                     <use xlink:href="#mark"></use>
                 </svg>
+
+<!--                TODO: если страница в избранном, добавить svg ниже-->
+<!--                <svg>-->
+<!--                    <use xlink:href="#markFilled"></use>-->
+<!--                </svg>-->
             </button>
         </div>
         <div class="mu-content-page__inner">
