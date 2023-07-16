@@ -45,11 +45,15 @@ $countries = (array) json_decode($countries);
     <script src="<?= SITE_TEMPLATE_PATH?>/vendors/bootstrap/popper.min.js"></script>
     <script src="<?= SITE_TEMPLATE_PATH?>/vendors/bootstrap/bootstrap.min.js"></script>
 
-    <?if(explode("/",$curDir)[1] != "personal" && count(explode("/",$curDir))>3){?>
-        <link href="<?= SITE_TEMPLATE_PATH?>/assets/css/app.css" rel="stylesheet">
-    <?}?>
+<!--    --><?//if(explode("/",$curDir)[1] != "personal" && count(explode("/",$curDir))>3){?>
+<!--        <link href="--><?//= SITE_TEMPLATE_PATH?><!--/assets/css/app.css" rel="stylesheet">-->
+<!--    --><?//}?>
+    <link href="<?= SITE_TEMPLATE_PATH?>/assets/css/app.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column">
+<?php
+include(__DIR__ . '/svg.php')
+?>
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <div class="wrapper d-flex flex-column" id="bx_eshop_wrap">
     <header class="">
@@ -77,19 +81,20 @@ $countries = (array) json_decode($countries);
                     <div class="pl-lg-3 w-100 align-items-start flex-column">
                         <div class="d-flex w-100 align-items-center justify-content-lg-between flex-column flex-lg-row">
 
-                            <div class="header-phone mr-3 mb-3 mb-lg-0 d-none d-lg-flex">
-                                <?$APPLICATION->IncludeComponent(
-                                    "bitrix:main.include",
-                                    "",
-                                    array(
-                                        "AREA_FILE_SHOW" => "file",
-                                        "PATH" => SITE_DIR."include/phone.php"
-                                    ),
-                                    false
-                                );?>
-                            </div>
+                            <a href="tel: 8-123-456-78-99" class="header-phone mr-3 mb-3 mb-lg-0 d-lg-flex">
+                                8-123-456-78-99
+<!--                                --><?//$APPLICATION->IncludeComponent(
+//                                    "bitrix:main.include",
+//                                    "",
+//                                    array(
+//                                        "AREA_FILE_SHOW" => "file",
+//                                        "PATH" => SITE_DIR."include/phone.php"
+//                                    ),
+//                                    false
+//                                );?>
+                            </a>
 
-                            <div class="search-container ml-lg-auto mr-lg-3 mb-3 mb-lg-0">
+                            <div class="search-container mr-3">
                                 <?$APPLICATION->IncludeComponent(
                                     "bitrix:search.title",
                                     "main_search",
@@ -127,26 +132,27 @@ $countries = (array) json_decode($countries);
                                     false
                                 );?>
                             </div>
-                            <div class="dropdown ml-lg-3 mb-3 mb-lg-0">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <?
-                                    $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-                                    $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
-                                    $uri->addParams(["country"=>"all"]);
-                                    ?>
-                                    <a class="dropdown-item" href="<?=$uri?>">Все</a>
-                                    <?
-                                    foreach ($countries as $key => $country) {
-                                        $uri->addParams(["country"=>$key]);
-                                        ?>
-                                        <a class="dropdown-item" href="<?=$uri?>"><?=$country?></a>
-                                    <?}?>
-                                </div>
-                            </div>
-                            <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>
+<!--                            <div class="dropdown ml-lg-3 mb-3 mb-lg-0">-->
+<!--                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                    --><?//=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>
+<!--                                </button>-->
+<!--                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">-->
+<!--                                    --><?//
+//                                    $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+//                                    $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
+//                                    $uri->addParams(["country"=>"all"]);
+//                                    ?>
+<!--                                    <a class="dropdown-item" href="--><?//=$uri?><!--">Все</a>-->
+<!--                                    --><?//
+//                                    foreach ($countries as $key => $country) {
+//                                        $uri->addParams(["country"=>$key]);
+//                                        ?>
+<!--                                        <a class="dropdown-item" href="--><?//=$uri?><!--">--><?//=$country?><!--</a>-->
+<!--                                    --><?//}?>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>-->
+                            <a href="/login" class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
                         </div>
                         <div class="w-100 mt-2 d-flex align-items-center">
                             <div class="menu-container w-100">
@@ -166,6 +172,22 @@ $countries = (array) json_decode($countries);
                                 ),
                                                                  false
                                 );?>
+                            </div>
+                            <div class="header-select mu-select js-mu-select js-select-single mu-select_single mu-select_round ml-3">
+                                <div class="mu-select__toggle-wrap">
+                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
+                                </div>
+                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                    data-id="role-1" for="role-1"><input
+                                                class="mu-select__item-input js-select-input" type="radio" id="role-1"
+                                                name="role" data-text="Rus"><span
+                                                class="mu-select__item-text">Rus</span></label><label class="mu-select__item"
+                                                                                                      data-type="item"
+                                                                                                      data-id="role-2"
+                                                                                                      for="role-2"><input
+                                                class="mu-select__item-input js-select-input" type="radio" id="role-2"
+                                                name="role" data-text="Eng"><span
+                                                class="mu-select__item-text">Eng</span></label></div>
                             </div>
                             <!-- <a href="#" class="btn btn-secondary ml-5 ml-lg-auto header-btn d-none d-lg-block">Rus</a> -->
                         </div>

@@ -49,12 +49,12 @@ if (in_array($arResult["ID"], $arLikedElements)) {
                     </svg>
                 </div>
                 <div class="person-page-card__post">Актер, Продюсер, Режиссер, Сценарист</div>
-                <div class="person-page-card__controls"><a class="btn btn--filled btn--round btn--icon"
+                <div class="person-page-card__controls"><a class="mu-btn mu-btn--filled mu-btn--round mu-btn--icon"
                                                            href="#"><span>Купить</span>
                         <svg class="ticket">
                             <use xlink:href="#ticket"></use>
                         </svg>
-                    </a><a class="btn btn--round" href="#"><span>Контактные данные и резюме</span></a></div>
+                    </a><a class="mu-btn mu-btn--round" href="#"><span>Контактные данные и резюме</span></a></div>
 
                 <?
                 foreach ($arResult["DISPLAY_PROPERTIES"] as $property) {?>

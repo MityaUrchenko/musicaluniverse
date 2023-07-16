@@ -27,7 +27,11 @@ if (in_array($arResult["ID"], $arLikedElements)) {
         <span class="mu-content-page__date"><?=$arResult["ACTIVE_FROM"]?:$arResult["DATE_CREATE"]?></span>
         <div class="mu-content-page__top position-relative">
             <h1 class="mu-content-page__title"><?=$arResult["NAME"]?></h1>
-            <button class="mu-save-mark favor <?=in_array($arResult['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arResult['ID']?>"></button>
+            <button class="mu-save-mark <?=in_array($arResult['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arResult['ID']?>">
+                <svg>
+                    <use xlink:href="#mark"></use>
+                </svg>
+            </button>
         </div>
         <div class="mu-content-page__inner">
             <div class="mu-content-page__main">

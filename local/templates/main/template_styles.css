@@ -78,6 +78,9 @@ header .header-btn{
     width: 85px;
 }
 
+.search-container {
+    width: 100%;
+}
 
 
 
@@ -157,6 +160,32 @@ header, footer{
 
 .header-phone{
     font-size: 24px;
+    flex-shrink: 0;
+    color: #F9CB74;
+    transition: all .3s ease-in-out;
+}
+.header-phone:hover {
+    color: #fff460;
+}
+.header-select {
+    max-width: 86px;
+}
+.header-select .mu-select__toggle-wrap {
+    min-width: unset;
+}
+.header-select.mu-select_round .mu-select__toggle-wrap {
+    padding: 4px 13px;
+}
+.header-select .mu-select__toggle {
+    font-size: 16px;
+}
+.header-select .mu-select__toggle:before {
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+}
+.header-select.mu-select.isOpen .mu-select__toggle:before {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
 }
 .company-logo{
     width: 225px;
@@ -574,14 +603,15 @@ header, footer{
 
 /* MENU */
 .menu-container .main-menu{
-    margin-left: -1rem;
-    margin-right: -1rem;
+    /*margin-left: -1rem;*/
+    /*margin-right: -1rem;*/
 }
 .main-menu ul{
     padding: 0;
     margin: 0;
     list-style: none;
     font-size: 16px;
+    gap: 14px;
 }
 .main-menu ul li{
     padding: 0;
@@ -589,7 +619,7 @@ header, footer{
 }
 .main-menu ul li a{
     color: var(--main-text-color);
-    padding: .5rem 1rem;
+    /*padding: .5rem 1rem;*/
     text-transform: capitalize;
     text-decoration: none;
     transition: .15s linear all;
