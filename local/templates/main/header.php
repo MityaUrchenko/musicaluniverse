@@ -45,9 +45,9 @@ $countries = (array) json_decode($countries);
     <script src="<?= SITE_TEMPLATE_PATH?>/vendors/bootstrap/popper.min.js"></script>
     <script src="<?= SITE_TEMPLATE_PATH?>/vendors/bootstrap/bootstrap.min.js"></script>
 
-<!--    --><?//if(explode("/",$curDir)[1] != "personal" && count(explode("/",$curDir))>3){?>
-<!--        <link href="--><?//= SITE_TEMPLATE_PATH?><!--/assets/css/app.css" rel="stylesheet">-->
-<!--    --><?//}?>
+    <?if(explode("/",$curDir)[1] != "personal" && count(explode("/",$curDir))>3){?>
+        <link href="<?= SITE_TEMPLATE_PATH?>/assets/css/app.css" rel="stylesheet">
+    <?}?>
     <link href="<?= SITE_TEMPLATE_PATH?>/assets/css/app.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column">
@@ -56,7 +56,97 @@ include(__DIR__ . '/svg.php')
 ?>
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <div class="wrapper d-flex flex-column" id="bx_eshop_wrap">
-    <header class="">
+
+    <header class="mu-header">
+        <div class="mu-container">
+            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img src="<?= SITE_TEMPLATE_PATH?>/assets/img/logo.png"></a>
+                <div class="mu-header__inner">
+                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span
+                                class="mu-header__personal-status">суперадмин</span>
+                        <div class="mu-header__personal-avatar"><img src="<?= SITE_TEMPLATE_PATH?>/assets/img/avatar.png"></div>
+                        <div class="mu-header-menu js-header-menu">
+                            <div class="mu-header-menu__personal js-header-menu-personal"><span
+                                        class="mu-header-menu__personal-name">Имя пользователя</span><span
+                                        class="mu-header-menu__personal-status">суперадмин</span>
+                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>
+                            </div>
+                            <ul class="mu-header-menu__list">
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="users">
+                                            <use xlink:href="#users"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Пользователи</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="calendar">
+                                            <use xlink:href="#calendar"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Тикеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="content">
+                                            <use xlink:href="#content"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Контент</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="base">
+                                            <use xlink:href="#base"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Базы данных</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="card">
+                                            <use xlink:href="#card"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Билеты</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="statistic">
+                                            <use xlink:href="#statistic"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Статистика</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="promo">
+                                            <use xlink:href="#promo"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Промо</span></a></li>
+                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">
+                                        <svg class="person">
+                                            <use xlink:href="#person"></use>
+                                        </svg>
+                                        <span class="mu-header-menu__link-name">Личные данные</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mu-header__controls">
+                        <div class="mu-header__controls-item">
+                            <button class="mu-header__theme-toggle">
+                                <svg class="night">
+                                    <use xlink:href="#night"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mu-header__controls-item">
+                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>
+                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
+                                <div class="mu-select__toggle-wrap">
+                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
+                                </div>
+                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"
+                                                                    data-id="role-1" for="role-1"><input
+                                                class="mu-select__item-input js-select-input" type="radio" id="role-1"
+                                                name="role" data-text="Rus"><span
+                                                class="mu-select__item-text">Rus</span></label><label class="mu-select__item"
+                                                                                                      data-type="item"
+                                                                                                      data-id="role-2"
+                                                                                                      for="role-2"><input
+                                                class="mu-select__item-input js-select-input" type="radio" id="role-2"
+                                                name="role" data-text="Eng"><span
+                                                class="mu-select__item-text">Eng</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header class="d-none">
         <div class="container">
             <!--region bx-header-->
             <div class="d-flex align-items-stretch flex-column flex-lg-row position-relative">
@@ -132,26 +222,28 @@ include(__DIR__ . '/svg.php')
                                     false
                                 );?>
                             </div>
-<!--                            <div class="dropdown ml-lg-3 mb-3 mb-lg-0">-->
-<!--                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                    --><?//=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>
-<!--                                </button>-->
-<!--                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">-->
-<!--                                    --><?//
-//                                    $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-//                                    $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
-//                                    $uri->addParams(["country"=>"all"]);
-//                                    ?>
-<!--                                    <a class="dropdown-item" href="--><?//=$uri?><!--">Все</a>-->
-<!--                                    --><?//
-//                                    foreach ($countries as $key => $country) {
-//                                        $uri->addParams(["country"=>$key]);
-//                                        ?>
-<!--                                        <a class="dropdown-item" href="--><?//=$uri?><!--">--><?//=$country?><!--</a>-->
-<!--                                    --><?//}?>
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>-->
+                            <?/*
+                            <div class="dropdown ml-lg-3 mb-3 mb-lg-0">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <?
+                                    $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+                                    $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
+                                    $uri->addParams(["country"=>"all"]);
+                                    ?>
+                                    <a class="dropdown-item" href="<?=$uri?>">Все</a>
+                                    <?
+                                    foreach ($countries as $key => $country) {
+                                        $uri->addParams(["country"=>$key]);
+                                        ?>
+                                        <a class="dropdown-item" href="<?=$uri?>"><?=$country?></a>
+                                    <?}?>
+                                </div>
+                            </div>
+                            <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>
+                            */?>
                             <a href="/login" class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
                         </div>
                         <div class="w-100 mt-2 d-flex align-items-center">
