@@ -39,7 +39,7 @@ $this->setFrameMode(true);
 						array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
 					);
 				?>
-				<div class="mb-2 col-sm" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+				<div class="mb-2 col-sm d-flex" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 					<div class="card">
 
                         <button class="favor <?=in_array($arItem['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arItem['ID']?>"></button>

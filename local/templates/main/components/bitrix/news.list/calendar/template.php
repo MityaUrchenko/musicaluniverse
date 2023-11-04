@@ -92,8 +92,8 @@ $this->setFrameMode(true);
 
         if (todayString == curDateString) {
           dayContainer.classList.remove('element-bg')
-          //dayContainer.classList.remove("bg-light");
           dayContainer.classList.add('bg-light')
+          dayContainer.classList.add('text-dark')
         }
 
         if (calendarDates.includes(curDateString)) {

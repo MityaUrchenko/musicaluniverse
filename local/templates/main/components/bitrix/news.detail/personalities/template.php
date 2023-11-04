@@ -42,7 +42,18 @@ if (in_array($arResult["ID"], $arLikedElements)) {
                 }?>
             </div>
             <div class="mu-person-page__main person-page-card">
-                <button class="mu-save-mark favor <?=in_array($arResult['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arResult['ID']?>"></button>
+                <button class="mu-save-mark" data-item="<?= $arResult['ID'] ?>">
+                    <?
+                    if (unserialize($_COOKIE['favorites'])) {?>
+                        <svg>
+                            <use xlink:href="#markFilled"></use>
+                        </svg>
+                    <?} else {?>
+                        <svg>
+                            <use xlink:href="#mark"></use>
+                        </svg>
+                    <?}?>
+                </button>
                 <div class="person-page-card__name"><?=$arResult["NAME"]?>
                     <svg class="success person-page-card__name-icon">
                         <use xlink:href="#success"></use>

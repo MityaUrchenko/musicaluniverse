@@ -48,7 +48,6 @@ $countries = (array)json_decode($countries);
     <script src="<?= SITE_TEMPLATE_PATH ?>/vendors/bootstrap/bootstrap.min.js"></script>
 
     <? if (explode("/", $curDir)[1] != "personal" && count(explode("/", $curDir)) > 3) { ?>
-        <link href="<?= SITE_TEMPLATE_PATH ?>/assets/css/app.css" rel="stylesheet">
     <? } ?>
     <link href="<?= SITE_TEMPLATE_PATH ?>/assets/css/app.css" rel="stylesheet">
 </head>
@@ -62,14 +61,44 @@ include(__DIR__ . '/svg.php')
         <div class="mu-container">
             <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/logo.png"></a>
                 <div class="mu-header__inner">
-                    <div class="mu-header__row"><a class="mu-header__phone" href="tel:8-123-456-78-99">8-123-456-78-99</a>
-                        <form class="mu-header__search"><input class="mu-header__search-input" placeholder="События, люди, места">
-                            <button class="mu-header__search-button">
-                                <svg class="">
-                                    <use xlink:href="#search"></use>
-                                </svg>
-                            </button>
-                        </form>
+                    <div class="mu-header__row">
+                        <a class="mu-header__phone" href="tel:8-123-456-78-99">8-123-456-78-99</a>
+                        <? $APPLICATION->IncludeComponent(
+	"bitrix:search.title", 
+	"bootstrap_v4", 
+	array(
+		"NUM_CATEGORIES" => "1",
+		"TOP_COUNT" => "5",
+		"CHECK_DATES" => "N",
+		"SHOW_OTHERS" => "N",
+		"PAGE" => SITE_DIR."search/",
+		"CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
+		"CATEGORY_0" => array(
+			0 => "no",
+		),
+		"CATEGORY_0_iblock_catalog" => array(
+			0 => "all",
+		),
+		"CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
+		"SHOW_INPUT" => "Y",
+		"INPUT_ID" => "title-search-input",
+		"CONTAINER_ID" => "title-search-container",
+		"PRICE_CODE" => array(
+		),
+		"SHOW_PREVIEW" => "Y",
+		"PREVIEW_WIDTH" => "75",
+		"PREVIEW_HEIGHT" => "75",
+		"CONVERT_CURRENCY" => "Y",
+		"COMPONENT_TEMPLATE" => "bootstrap_v4",
+		"ORDER" => "rank",
+		"USE_LANGUAGE_GUESS" => "Y",
+		"TEMPLATE_THEME" => "blue",
+		"PRICE_VAT_INCLUDE" => "Y",
+		"PREVIEW_TRUNCATE_LEN" => "",
+		"CURRENCY_ID" => "RUB"
+	),
+	false
+); ?>
                         <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span class="mu-header__personal-status">суперадмин</span>
                             <div class="mu-header__personal-avatar"><img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/avatar.png"></div>
                             <div class="mu-header-menu js-header-menu">
@@ -129,29 +158,53 @@ include(__DIR__ . '/svg.php')
                         </div>
                     </div>
                     <div class="mu-header__row">
-                        <nav class="mu-header__nav"><a class="mu-header__nav-item" href="#">Новости</a><a class="mu-header__nav-item" href="#">Статьи</a><a class="mu-header__nav-item" href="#">Спецпроекты</a><a class="mu-header__nav-item" href="#">Афиша</a>
-                            <div class="mu-header__nav-item"><span>База знаний</span>
-                                <svg class="">
-                                    <use xlink:href="#arrow-down"></use>
-                                </svg>
-                                <ul class="mu-header__nav-list">
-                                    <li class="mu-header__nav-list-item"><a href="#">Персоналии</a></li>
-                                    <li class="mu-header__nav-list-item"><a href="#">Постановки</a></li>
-                                    <li class="mu-header__nav-list-item"><a href="#">Произведения</a></li>
-                                    <li class="mu-header__nav-list-item"><a href="#">Сцены</a></li>
-                                    <li class="mu-header__nav-list-item"><a href="#">Организаторы</a></li>
-                                    <li class="mu-header__nav-list-item"><a href="#">Мероприятия</a></li>
-                                </ul>
-                            </div>
-                        </nav>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:menu",
+                            "main_menu",
+                            array(
+                                "ALLOW_MULTI_SELECT" => "N",
+                                "CHILD_MENU_TYPE" => "left",
+                                "DELAY" => "N",
+                                "MAX_LEVEL" => "2",
+                                "MENU_CACHE_GET_VARS" => array(
+                                ),
+                                "MENU_CACHE_TIME" => "3600",
+                                "MENU_CACHE_TYPE" => "N",
+                                "MENU_CACHE_USE_GROUPS" => "N",
+                                "ROOT_MENU_TYPE" => "top",
+                                "USE_EXT" => "N",
+                                "COMPONENT_TEMPLATE" => "main_menu",
+                                "MENU_THEME" => "site"
+                            ),
+                            false
+                        );?>
+
                         <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
-                            <div class="mu-select__toggle-wrap">
+                            <?
+                            $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+                            $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
+                            $uri->addParams(["country"=>"all"]);
+                            ?>
+                            <div class="mu-select__toggle-wrap" data-type="toggle">
                                 <svg class="">
                                     <use xlink:href="#location"></use>
                                 </svg>
-                                <div class="mu-select__toggle" data-type="toggle" data-default-text="Все страны и города">Все страны и города</div>
+                                <div class="mu-select__toggle"
+                                     data-default-text="<?=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>"><?=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?></div>
                             </div>
-                            <div class="mu-select__drop"><label class="mu-select__item" data-type="item" data-id="city-1" for="city-1"><input class="mu-select__item-input js-select-input" type="radio" id="city-1" name="city" data-text="Город 1"><span class="mu-select__item-text">Город 1</span></label><label class="mu-select__item" data-type="item" data-id="city-2" for="city-2"><input class="mu-select__item-input js-select-input" type="radio" id="city-2" name="city" data-text="Город 2"><span class="mu-select__item-text">Город 2</span></label></div>
+                            <div class="mu-select__drop">
+                                <a href="<?=$uri?>" class="mu-select__item" data-type="item" data-id="country-0>">
+                                    <span class="mu-select__item-text">Все</span>
+                                </a>
+                                <?
+                                foreach ($countries as $key => $country) {
+                                    $uri->addParams(["country"=>$key]);
+                                    ?>
+                                    <a href="<?=$uri?>" class="mu-select__item" data-type="item" data-id="country-<?=$key?>>">
+                                        <span class="mu-select__item-text"><?=$country?></span>
+                                    </a>
+                                <?}?>
+                            </div>
                         </div>
                         <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
                             <div class="mu-select__toggle-wrap">
@@ -164,98 +217,98 @@ include(__DIR__ . '/svg.php')
             </div>
         </div>
     </header>
-<!--    <header class="mu-header">-->
-<!--        <div class="mu-container">-->
-<!--            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img-->
-<!--                            src="--><?php //= SITE_TEMPLATE_PATH ?><!--/assets/img/logo.png"></a>-->
-<!--                <div class="mu-header__inner">-->
-<!--                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span-->
-<!--                                class="mu-header__personal-status">суперадмин</span>-->
-<!--                        <div class="mu-header__personal-avatar"><img-->
-<!--                                    src="--><?php //= SITE_TEMPLATE_PATH ?><!--/assets/img/avatar.png"></div>-->
-<!--                        <div class="mu-header-menu js-header-menu">-->
-<!--                            <div class="mu-header-menu__personal js-header-menu-personal"><span-->
-<!--                                        class="mu-header-menu__personal-name">Имя пользователя</span><span-->
-<!--                                        class="mu-header-menu__personal-status">суперадмин</span>-->
-<!--                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>-->
-<!--                            </div>-->
-<!--                            <ul class="mu-header-menu__list">-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="users">-->
-<!--                                            <use xlink:href="#users"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Пользователи</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="calendar">-->
-<!--                                            <use xlink:href="#calendar"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Тикеты</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="content">-->
-<!--                                            <use xlink:href="#content"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Контент</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="base">-->
-<!--                                            <use xlink:href="#base"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Базы данных</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="card">-->
-<!--                                            <use xlink:href="#card"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Билеты</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="statistic">-->
-<!--                                            <use xlink:href="#statistic"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Статистика</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="promo">-->
-<!--                                            <use xlink:href="#promo"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Промо</span></a></li>-->
-<!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
-<!--                                        <svg class="person">-->
-<!--                                            <use xlink:href="#person"></use>-->
-<!--                                        </svg>-->
-<!--                                        <span class="mu-header-menu__link-name">Личные данные</span></a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="mu-header__controls">-->
-<!--                        <div class="mu-header__controls-item">-->
-<!--                            <button class="mu-header__theme-toggle">-->
-<!--                                <svg class="night">-->
-<!--                                    <use xlink:href="#night"></use>-->
-<!--                                </svg>-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                        <div class="mu-header__controls-item">-->
-<!--                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>-->
-<!--                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">-->
-<!--                                <div class="mu-select__toggle-wrap">-->
-<!--                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>-->
-<!--                                </div>-->
-<!--                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"-->
-<!--                                                                    data-id="role-1" for="role-1"><input-->
-<!--                                                class="mu-select__item-input js-select-input" type="radio" id="role-1"-->
-<!--                                                name="role" data-text="Rus"><span-->
-<!--                                                class="mu-select__item-text">Rus</span></label><label-->
-<!--                                            class="mu-select__item"-->
-<!--                                            data-type="item"-->
-<!--                                            data-id="role-2"-->
-<!--                                            for="role-2"><input-->
-<!--                                                class="mu-select__item-input js-select-input" type="radio" id="role-2"-->
-<!--                                                name="role" data-text="Eng"><span-->
-<!--                                                class="mu-select__item-text">Eng</span></label></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </header>-->
+    <!--    <header class="mu-header">-->
+    <!--        <div class="mu-container">-->
+    <!--            <div class="mu-header__wrap"><a class="mu-header__logo" href="/"><img-->
+    <!--                            src="--><?php /*//= SITE_TEMPLATE_PATH */?><!--/assets/img/logo.png"></a>-->
+    <!--                <div class="mu-header__inner">-->
+    <!--                    <div class="mu-header__personal js-header-personal"><span class="mu-header__personal-name">Имя пользователя</span><span-->
+    <!--                                class="mu-header__personal-status">суперадмин</span>-->
+    <!--                        <div class="mu-header__personal-avatar"><img-->
+    <!--                                    src="--><!--<?php //= SITE_TEMPLATE_PATH ?>/assets/img/avatar.png"></div>-->
+    <!--                        <div class="mu-header-menu js-header-menu">-->
+    <!--                            <div class="mu-header-menu__personal js-header-menu-personal"><span-->
+    <!--                                        class="mu-header-menu__personal-name">Имя пользователя</span><span-->
+    <!--                                        class="mu-header-menu__personal-status">суперадмин</span>-->
+    <!--                                <div class="mu-header__personal-avatar"><img src="assets/img/avatar.png"></div>-->
+    <!--                            </div>-->
+    <!--                            <ul class="mu-header-menu__list">-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="users">-->
+    <!--                                            <use xlink:href="#users"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Пользователи</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="calendar">-->
+    <!--                                            <use xlink:href="#calendar"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Тикеты</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="content">-->
+    <!--                                            <use xlink:href="#content"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Контент</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="base">-->
+    <!--                                            <use xlink:href="#base"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Базы данных</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="card">-->
+    <!--                                            <use xlink:href="#card"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Билеты</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="statistic">-->
+    <!--                                            <use xlink:href="#statistic"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Статистика</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="promo">-->
+    <!--                                            <use xlink:href="#promo"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Промо</span></a></li>-->
+    <!--                                <li class="mu-header-menu__item"><a class="mu-header-menu__link" href="#">-->
+    <!--                                        <svg class="person">-->
+    <!--                                            <use xlink:href="#person"></use>-->
+    <!--                                        </svg>-->
+    <!--                                        <span class="mu-header-menu__link-name">Личные данные</span></a></li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                    <div class="mu-header__controls">-->
+    <!--                        <div class="mu-header__controls-item">-->
+    <!--                            <button class="mu-header__theme-toggle">-->
+    <!--                                <svg class="night">-->
+    <!--                                    <use xlink:href="#night"></use>-->
+    <!--                                </svg>-->
+    <!--                            </button>-->
+    <!--                        </div>-->
+    <!--                        <div class="mu-header__controls-item">-->
+    <!--                            <button class="btn btn--round btn--filled btn--medium"><span>Выйти</span></button>-->
+    <!--                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">-->
+    <!--                                <div class="mu-select__toggle-wrap">-->
+    <!--                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>-->
+    <!--                                </div>-->
+    <!--                                <div class="mu-select__drop"><label class="mu-select__item" data-type="item"-->
+    <!--                                                                    data-id="role-1" for="role-1"><input-->
+    <!--                                                class="mu-select__item-input js-select-input" type="radio" id="role-1"-->
+    <!--                                                name="role" data-text="Rus"><span-->
+    <!--                                                class="mu-select__item-text">Rus</span></label><label-->
+    <!--                                            class="mu-select__item"-->
+    <!--                                            data-type="item"-->
+    <!--                                            data-id="role-2"-->
+    <!--                                            for="role-2"><input-->
+    <!--                                                class="mu-select__item-input js-select-input" type="radio" id="role-2"-->
+    <!--                                                name="role" data-text="Eng"><span-->
+    <!--                                                class="mu-select__item-text">Eng</span></label></div>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </header>-->
     <header class="d-none">
         <div class="container">
             <!--region bx-header-->
@@ -283,7 +336,7 @@ include(__DIR__ . '/svg.php')
 
                             <a href="tel: 8-123-456-78-99" class="header-phone mr-3 mb-3 mb-lg-0 d-lg-flex">
                                 8-123-456-78-99
-                                <!--                                --><? //$APPLICATION->IncludeComponent(
+                                <? //$APPLICATION->IncludeComponent(
                                 //                                    "bitrix:main.include",
                                 //                                    "",
                                 //                                    array(
@@ -313,8 +366,8 @@ include(__DIR__ . '/svg.php')
                                         ),
                                         "CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
                                         "SHOW_INPUT" => "Y",
-                                        "INPUT_ID" => "title-search-input",
-                                        "CONTAINER_ID" => "search",
+                                        "INPUT_ID" => "mobile-search-input",
+                                        "CONTAINER_ID" => "mobile-search-container",
                                         "PRICE_CODE" => array(),
                                         "SHOW_PREVIEW" => "Y",
                                         "PREVIEW_WIDTH" => "75",
@@ -331,7 +384,7 @@ include(__DIR__ . '/svg.php')
                                     false
                                 ); ?>
                             </div>
-                            <? /*
+
                             <div class="dropdown ml-lg-3 mb-3 mb-lg-0">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?=$countries[$_SESSION["countryFilter"]]?:"Все страны и города";?>
@@ -352,7 +405,7 @@ include(__DIR__ . '/svg.php')
                                 </div>
                             </div>
                             <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>
-                            */ ?>
+
                             <a href="/login"
                                class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
                         </div>

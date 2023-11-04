@@ -22,29 +22,15 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Люди", 
-		"/personalities/", 
+		"Афиша", 
+		"/afisha/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Места", 
-		"/places/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Произведения", 
-		"/compositions/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Мероприятия", 
-		"/events/", 
+		"База знаний", 
+		"/",
 		Array(), 
 		Array(), 
 		"" 

@@ -1,0 +1,46 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Персоналии",
+		"/personalities/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Постановки",
+		"/performances/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Произведения",
+		"/compositions/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Сцены",
+		"/scenes/",
+		Array(),
+		Array(),
+		""
+	),
+	Array(
+		"Организаторы",
+		"/managers/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Мероприятия",
+		"/events/",
+		Array(),
+		Array(),
+		""
+	)
+);
+?>

@@ -50,10 +50,18 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
                         <div class="card">
 
 
-
-
-                            <button class="favor <?=in_array($arItem['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arItem['ID']?>"></button>
-
+                            <button class="mu-save-mark" data-item="<?= $arResult['ID'] ?>">
+                                <?
+                                if (unserialize($_COOKIE['favorites'])) {?>
+                                    <svg>
+                                        <use xlink:href="#markFilled"></use>
+                                    </svg>
+                                <?} else {?>
+                                    <svg>
+                                        <use xlink:href="#mark"></use>
+                                    </svg>
+                                <?}?>
+                            </button>
                             <?php
                             /*
                             switch($arItem["PROPERTIES"]["TYPE"]["VALUE_ENUM"]){

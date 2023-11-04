@@ -36,12 +36,8 @@
 .bx-nav-1-lvl.bx-active > .bx-nav-1-lvl-link,
 .bx-nav-1-lvl:hover > .bx-nav-1-lvl-link {
 	border-bottom: none;
-	background: var(--button-bg-color);
+	background: var(--theme-color-second);
 }
-.bx-nav-1-lvl:hover > .bx-nav-1-lvl-link > .bx-nav-1-lvl-link-text {
-	color:	var(--third-text-color);
-}
-
 
 .bx-nav-1-lvl-link-text {
 	display: flex;
