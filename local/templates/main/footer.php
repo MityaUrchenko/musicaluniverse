@@ -1,13 +1,13 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-    <?if(explode("/",$curDir)[1] == "personal" || ($curDir != "/" && count(explode("/",$curDir))<4)){?>
-        </div><!--end .container-->
+    <?if($curDir != "/"){ ?>
+        </div><!--end .page__main-->
     <?}?>
 
-    </div><!--end .workarea-->
+    </div><!--end .mu_container-->
 
 	<footer class="py-5">
-			<div class="container">
+			<div class="mu-container">
 				<div class="row mb-5">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="row pr-md-2">

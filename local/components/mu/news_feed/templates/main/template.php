@@ -49,7 +49,7 @@ $this->setFrameMode(true);
             <div class="d-flex mb-4 col-12 col-md-6 <?=$width?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" data-date="<?=$arItem["ACTIVE_FROM"]?>">
                 <div class="card <?=$wideCard?>">
 
-                    <button class="favor <?=in_array($arItem['ID'], unserialize($_COOKIE['favorites']))?"active":""?>" data-item="<?=$arItem['ID']?>"></button>
+                    <button class="favor <?=in_array($arItem['ID'], $_SESSION['favorites'])?"active":""?>" data-item="<?=$arItem['ID']?>"></button>
 
                     <div class="card-img-container">
                         <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
@@ -85,12 +85,6 @@ $this->setFrameMode(true);
             </div>
         <?endforeach;?>
     </div>
-
-    <?if(count(explode("/",$APPLICATION->GetCurDir())) <= 3 && $APPLICATION->GetCurDir() != $arResult["LIST_PAGE_URL"]){?>
-        <div class="text-center mt-4">
-            <a href="<?=$arResult["LIST_PAGE_URL"]?>" class="btn btn-secondary py-2 px-4">Показать больше</a>
-        </div>
-    <?}?>
 
     <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
         <?=$arResult["NAV_STRING"]?>

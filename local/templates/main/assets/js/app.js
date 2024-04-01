@@ -7096,7 +7096,8 @@
       var e;
       $(".js-header-personal").
         on("click", (function (e) {
-          e.preventDefault(), e.stopPropagation(), $(".js-header-menu").
+          //e.preventDefault(), 
+          e.stopPropagation(), $(".js-header-menu").
             addClass("active")
         })), $(".js-header-menu-personal").
         on("click", (function (e) {

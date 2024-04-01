@@ -2,10 +2,6 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Люди");
 
-global $countryFilter;
-$arrFilter = [];
-$arrFilter = array_merge($arrFilter, $countryFilter);
-
 $APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"news", 

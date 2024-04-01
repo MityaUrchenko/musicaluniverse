@@ -62,7 +62,7 @@ body a:hover {
 
 
 .wrapper{
-    height: 100%;
+   /* height: 100%; */
 }
 .workarea{
     background: var(--workarea-bg);
@@ -163,7 +163,7 @@ header, footer{
     border: none;
     border-radius: 5px;
     outline: none;
-    z-index: 10;
+    z-index: 1;
     background: var(--element-bg) url("images/favor.svg") center no-repeat;
 }
 .favor.active{
@@ -242,6 +242,7 @@ header, footer{
     overflow: hidden;
     display: -webkit-box;
     text-overflow: ellipsis;
+    margin-bottom: 1rem;
 }
 .card .card-title a{
     font-family: 'Nunito-SemiBold', sans-serif ;
@@ -417,23 +418,6 @@ header, footer{
     font-size: 16px;
 }
 
-.owl-carousel .card-img-container{
-    height: 0;
-    padding-bottom: 36.9%;
-    overflow: hidden;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-@media (max-width: 767px) {
-    .owl-carousel .card-img-container{
-        padding-bottom: 100%;
-    }
-    .owl-carousel .card-img-container img{
-        width: auto!important;
-    }
-}
-
 .owl-carousel .card-img-container .btn{
     bottom: 2.7rem;
     right: 2.7rem;
@@ -513,6 +497,8 @@ header, footer{
 
 .afisha-date{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     border: 1px solid var(--secondary-text-color);
@@ -521,8 +507,15 @@ header, footer{
     height: 80px;
     width: 75px;
     margin-right: 2rem;
+    gap: 5px;
 }
-
+.afisha-date span {
+    line-height: 1rem;
+}
+.afisha-date span:first-child{
+    font-size: 28px;
+    line-height: 2rem;
+}
 
 
 
@@ -590,6 +583,11 @@ header, footer{
     width: 40px;
     background-image: url("images/loupe.png");
     background-color: var(--white-bg);
+}
+.bx-searchtitle .input-group {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .title-search-result a {
     color: var(--third-text-color);
@@ -676,7 +674,50 @@ footer .footer-phone {
     color: #f9cb74;
 }
 
-.mu-select .mu-select__drop {
+.mu-select_header .mu-select__drop {
     max-height: 300px;
     overflow-y: scroll;
+}
+
+
+
+
+
+/* ADMIN MODAL */
+.mu-modal {
+
+}
+.mu-modal .mu-modal__wrap {
+    margin: auto;
+}
+
+
+
+.mu-users-table__head,
+.mu-users-table__row {
+    grid-template-columns: 100px 210px 160px 180px 180px -webkit-min-content 1fr;
+    grid-template-columns: 100px 210px 160px 180px 180px min-content 1fr;
+}
+
+
+
+
+/*
+.mu-users-table__row a .mu-input__input{
+    transition: all .3s ease;
+    background-color: #fff460;
+    color: #000;
+}
+.mu-users-table__row a .mu-input__input:hover{
+    background-color: #f9cb74;
+}
+*/
+
+.news-list .card-img-container {
+    height: 208px;
+}
+
+
+.personalities-list .card-img-container {
+    height: 350px;
 }

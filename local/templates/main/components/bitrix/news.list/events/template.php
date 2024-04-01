@@ -47,7 +47,7 @@ $this->setFrameMode(true);
 
                     <button class="favor <?= in_array(
                         $arItem['ID'],
-                        unserialize($_COOKIE['favorites'])
+                        $_SESSION['favorites']
                     ) ? "active" : "" ?>" data-item="<?= $arItem['ID'] ?>"></button>
 
                     <?php

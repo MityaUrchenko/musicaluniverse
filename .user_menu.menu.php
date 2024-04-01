@@ -1,0 +1,67 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Пользователи",
+		"/admin/users/",
+		Array(),
+        Array('icon'=>"users"),
+		""
+	),
+	Array(
+		"Тикеты",
+		"/admin/tikets/",
+		Array(),
+        Array('icon'=>"calendar"),
+		""
+	),
+	Array(
+		"Контент",
+		"/admin/content/",
+        Array(),
+        Array('icon'=>"content"),
+		""
+	),
+	Array(
+		"Базы данных",
+		"/admin/base/",
+		Array(),
+        Array('icon'=>"base"),
+		""
+	),
+	Array(
+		"Билеты",
+		"/admin/card/",
+		Array(),
+        Array('icon'=>"card"),
+		""
+	),
+	Array(
+		"Статистика",
+		"/admin/statistics/",
+		Array(),
+        Array('icon'=>"statistic"),
+		""
+	),
+	Array(
+		"Промо",
+		"/admin/promo/",
+		Array(),
+        Array('icon'=>"promo"),
+		""
+	),
+	Array(
+		"Личные данные",
+		"/admin/personal/",
+		Array(),
+        Array('icon'=>"person"),
+		""
+	),
+	Array(
+		"Избранное",
+		"/personal/favorites/",
+		Array(),
+        Array('icon'=>"person"),
+        ""
+    )
+);
+?>

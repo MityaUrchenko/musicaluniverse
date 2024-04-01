@@ -52,7 +52,7 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
 
                             <button class="mu-save-mark" data-item="<?= $arResult['ID'] ?>">
                                 <?
-                                if (unserialize($_COOKIE['favorites'])) {?>
+                                if ($_SESSION['favorites']) {?>
                                     <svg>
                                         <use xlink:href="#markFilled"></use>
                                     </svg>

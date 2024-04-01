@@ -1,5 +1,29 @@
 <?php
 $arUrlRewrite=array (
+  27 => 
+  array (
+    'CONDITION' => '#^/admin/content/(\\d+)#',
+    'RULE' => 'id=$1',
+    'ID' => '',
+    'PATH' => '/admin/content/add.php',
+    'SORT' => 100,
+  ),
+  25 => 
+  array (
+    'CONDITION' => '#^/admin/users/(\\d+)#',
+    'RULE' => 'id=$1',
+    'ID' => '',
+    'PATH' => '/admin/users/add.php',
+    'SORT' => 100,
+  ),
+  28 => 
+  array (
+    'CONDITION' => '#^/admin/content/add#',
+    'RULE' => 'add=true',
+    'ID' => '',
+    'PATH' => '/admin/content/add.php',
+    'SORT' => 100,
+  ),
   5 => 
   array (
     'CONDITION' => '#^/personal/order/#',
@@ -8,7 +32,15 @@ $arUrlRewrite=array (
     'PATH' => '/personal/order/index.php',
     'SORT' => 100,
   ),
-  24 => 
+  26 => 
+  array (
+    'CONDITION' => '#^/admin/users/add#',
+    'RULE' => 'add=true',
+    'ID' => '',
+    'PATH' => '/admin/users/add.php',
+    'SORT' => 100,
+  ),
+  34 => 
   array (
     'CONDITION' => '#^/personalities/#',
     'RULE' => '',
@@ -24,7 +56,7 @@ $arUrlRewrite=array (
     'PATH' => '/personal/index.php',
     'SORT' => 100,
   ),
-  22 => 
+  33 => 
   array (
     'CONDITION' => '#^/articles/#',
     'RULE' => '',
@@ -48,7 +80,15 @@ $arUrlRewrite=array (
     'PATH' => '/events/index.php',
     'SORT' => 100,
   ),
-  23 => 
+  30 => 
+  array (
+    'CONDITION' => '#^/afisha/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/afisha/index.php',
+    'SORT' => 100,
+  ),
+  31 => 
   array (
     'CONDITION' => '#^/news/#',
     'RULE' => '',

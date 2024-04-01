@@ -12,7 +12,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 </div>
 <? $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-	"slider",
+	"slider", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -25,7 +25,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
@@ -62,7 +62,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
-			0 => "",
+			0 => "DATE",
 			1 => "",
 		),
 		"SEARCH_PAGE" => "/search/",
@@ -82,7 +82,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"TEMPLATE_THEME" => "blue",
 		"USE_RATING" => "N",
 		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => "afisha-slider"
+		"COMPONENT_TEMPLATE" => "slider"
 	),
 	false
 ); ?>
@@ -174,7 +174,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
 <div class="header">Новости</div>
 <? $APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
+	"mu:news_plus_inactive_list",
 	"news", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -188,7 +188,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "N",
 		"DISPLAY_DATE" => "Y",
@@ -197,8 +197,13 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"FIELD_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "ID",
+			1 => "SORT",
+			2 => "PREVIEW_TEXT",
+			3 => "PREVIEW_PICTURE",
+			4 => "DATE_ACTIVE_FROM",
+			5 => "DATE_CREATE",
+			6 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
@@ -220,7 +225,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
-			0 => "",
+			0 => "COUNTRY",
 			1 => "TYPE",
 			2 => "",
 		),
@@ -235,11 +240,11 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"SLIDER_PROPERTY" => "",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "ID",
-		"SORT_ORDER1" => "ASC",
-		"SORT_ORDER2" => "ASC",
+		"SORT_ORDER1" => "DESC",
+		"SORT_ORDER2" => "DESC",
 		"STRICT_SECTION_CHECK" => "N",
 		"TEMPLATE_THEME" => "blue",
-		"USE_RATING" => "Y",
+		"USE_RATING" => "N",
 		"USE_SHARE" => "N",
 		"COMPONENT_TEMPLATE" => "news",
 		"DISPLAY_AS_RATING" => "rating",
@@ -260,8 +265,8 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
     <div class="header">Статьи</div>
     <? $APPLICATION->IncludeComponent(
-	"bitrix:news.list", 
-	"articles", 
+        "mu:news_plus_inactive_list",
+        "articles",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -274,7 +279,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "N",
 		"DISPLAY_DATE" => "Y",
@@ -283,9 +288,16 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"FIELD_CODE" => array(
-			0 => "CREATED_BY",
-			1 => "CREATED_USER_NAME",
-			2 => "",
+			0 => "ID",
+			1 => "SORT",
+			2 => "PREVIEW_TEXT",
+			3 => "PREVIEW_PICTURE",
+			4 => "DATE_ACTIVE_FROM",
+			5 => "ACTIVE_FROM",
+			6 => "DATE_CREATE",
+			7 => "CREATED_BY",
+			8 => "CREATED_USER_NAME",
+			9 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
@@ -308,7 +320,9 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "CATEGORY",
-			1 => "",
+			1 => "LIKES",
+			2 => "COUNTRY",
+			3 => "",
 		),
 		"SEARCH_PAGE" => "/search/",
 		"SET_BROWSER_TITLE" => "N",
@@ -321,19 +335,13 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"SLIDER_PROPERTY" => "",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "ID",
-		"SORT_ORDER1" => "ASC",
+		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
 		"TEMPLATE_THEME" => "blue",
 		"USE_RATING" => "Y",
 		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => "articles",
-		"DISPLAY_AS_RATING" => "rating",
-		"MAX_VOTE" => "1",
-		"VOTE_NAMES" => array(
-			0 => "1",
-			1 => "",
-		)
+		"COMPONENT_TEMPLATE" => "articles"
 	),
 	false
 ); ?>

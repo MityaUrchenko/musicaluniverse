@@ -2,12 +2,12 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Афиша");
 
-
 global $countryFilter;
 $arrFilter = [];
 $arrFilter = array_merge($arrFilter, $countryFilter);
+?>
 
-$APPLICATION->IncludeComponent(
+<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"news", 
 	array(
@@ -23,14 +23,14 @@ $APPLICATION->IncludeComponent(
 		"USE_RATING" => "N",
 		"USE_CATEGORIES" => "N",
 		"USE_REVIEW" => "N",
-		"USE_FILTER" => "N",
+		"USE_FILTER" => "Y",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
 		"CHECK_DATES" => "Y",
 		"SEF_MODE" => "Y",
-		"SEF_FOLDER" => "/articles/",
+		"SEF_FOLDER" => "/afisha/",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_SHADOW" => "Y",
 		"AJAX_OPTION_JUMP" => "N",
@@ -63,8 +63,8 @@ $APPLICATION->IncludeComponent(
 		),
 		"LIST_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
+			1 => "LIKES",
+			2 => "CATEGORY",
 			3 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
@@ -88,8 +88,8 @@ $APPLICATION->IncludeComponent(
 		),
 		"DETAIL_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
+			1 => "LIKES",
+			2 => "CATEGORY",
 			3 => "",
 		),
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",

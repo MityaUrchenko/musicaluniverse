@@ -7,17 +7,15 @@ if($_GET['id'])
 {
     $arElements = [];
     if($USER->IsAuthorized()) {
-        $idUser = $USER->GetID();
-        $rsUser = CUser::GetByID($idUser);
-        $arUser = $rsUser->Fetch();
+        $arUser = $USER->GetById($USER->GetId())->fetch();
         if(!empty($arUser['UF_FAVORITES'])) {
-            $arElements = unserialize($arUser['UF_FAVORITES']);
+            $arElements = json_decode($arUser['UF_FAVORITES']);
         }
     }
 
 
-    if(empty($arElements) && !empty(unserialize($_COOKIE['favorites']))) {
-        $arElements = unserialize($_COOKIE['favorites']);
+    if(empty($arElements) && !empty(json_decode($_COOKIE['favorites']))) {
+        $arElements = json_decode($_COOKIE['favorites']);
     }
 
 
@@ -31,14 +29,18 @@ if($_GET['id'])
         $result = -1;
     }
 
+    $arElements = array_unique($arElements);
+    $_SESSION['favorites'] = $arElements;
+    $serializedElements = json_encode($arElements);
+
     if(empty($arElements)){
         setcookie("favorites", '', time() - 1, "/", $_SERVER['SERVER_NAME'], false);
     } else {
-        setcookie("favorites", serialize($arElements), time() + 60*60*24*365*10, "/", $_SERVER['SERVER_NAME'], false);
+        setcookie("favorites", $serializedElements, time() + 60*60*24*365*10, "/", $_SERVER['SERVER_NAME'], false);
     }
 
     if($USER->IsAuthorized()) {
-        $USER->Update($idUser, Array("UF_FAVORITES" => serialize($arElements)));
+        $USER->Update($USER->GetId(), Array("UF_FAVORITES" => $serializedElements));
     }
 }
 echo json_encode($result);

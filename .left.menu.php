@@ -41,6 +41,13 @@ $aMenuLinks = Array(
 		Array(),
 		Array(),
 		""
+	),
+	Array(
+		"Умная лента",
+		"/news-feed/",
+		Array(),
+		Array(),
+		""
 	)
 );
 ?>

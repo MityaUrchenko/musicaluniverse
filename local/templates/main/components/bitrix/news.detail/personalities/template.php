@@ -43,8 +43,7 @@ if (in_array($arResult["ID"], $arLikedElements)) {
             </div>
             <div class="mu-person-page__main person-page-card">
                 <button class="mu-save-mark" data-item="<?= $arResult['ID'] ?>">
-                    <?
-                    if (unserialize($_COOKIE['favorites'])) {?>
+                    <?if (in_array($arResult['ID'], $_SESSION['favorites'])) {?>
                         <svg>
                             <use xlink:href="#markFilled"></use>
                         </svg>

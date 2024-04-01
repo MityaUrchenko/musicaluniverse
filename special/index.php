@@ -22,7 +22,7 @@ $APPLICATION->IncludeComponent(
         "USE_RATING" => "N",
         "USE_CATEGORIES" => "N",
         "USE_REVIEW" => "N",
-        "USE_FILTER" => "N",
+        "USE_FILTER" => "Y",
         "SORT_BY1" => "ACTIVE_FROM",
         "SORT_ORDER1" => "DESC",
         "SORT_BY2" => "SORT",

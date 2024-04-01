@@ -16,7 +16,9 @@ global $INTRANET_TOOLBAR;
 use Bitrix\Main\Context,
     Bitrix\Main\Type\DateTime,
     Bitrix\Main\Loader,
-    Bitrix\Iblock;
+    Bitrix\Iblock,
+    Bitrix\Search\SearchTagsTable;
+
 
 CPageOption::SetOptionString("main", "nav_page_in_session", "N");
 
@@ -219,13 +221,10 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     $arFilter = array (
         //"IBLOCK_ID" => $arResult["ID"],
         "IBLOCK_LID" => SITE_ID,
-        "ACTIVE" => "Y",
+        "ACTIVE" => $USER->isAdmin()?["Y","N"]:"Y",
         "CHECK_PERMISSIONS" => $arParams['CHECK_PERMISSIONS'] ? "Y" : "N",
     );
 
-    //== ФИЛЬТРАЦИЯ ПО СВОЙСТВУ true/false
-    if($arParams["FILTER_PROPERTY_CODE"])
-        $arrFilter["!PROPERTY_".$arParams["FILTER_PROPERTY_CODE"]."_VALUE"] = false;
 
     if($arParams["CHECK_DATES"])
         $arFilter["ACTIVE_DATE"] = "Y";
@@ -318,20 +317,10 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
 
     $listPageUrl = '';
 
-    //== ФИЛЬТРАЦИЯ ПО СХОЖИМ ЭЛЕМЕНТАМ
-    if($USER->IsAuthorized()) {
-        $idUser = $USER->GetID();
-        $rsUser = CUser::GetByID($idUser);
-        $arUser = $rsUser->Fetch();
-        if(!empty($arUser['UF_FAVORITES'])) {
-            $arFavorites = unserialize($arUser['UF_FAVORITES']);
-        }
-    }
-    if(empty($arFavorites) && !empty(unserialize($_COOKIE['favorites']))) {
-        $arFavorites = unserialize($_COOKIE['favorites']);
-    }
 
-    $tempFilter = ["ID" => $arFavorites];
+    //== ФИЛЬТРАЦИЯ ПО СХОЖИМ ЭЛЕМЕНТАМ
+    
+    $tempFilter = ["ID" => ''];
     $tempSelect = ["*"];
     $rsElement = CIBlockElement::GetList($arSort, $tempFilter, false, $arNavParams, $tempSelect);
 
@@ -340,8 +329,8 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
         $iblock_ids[] = (int)$row['IBLOCK_ID'];
         $section_ids[] = (int)$row['IBLOCK_SECTION_ID'];
     }
-    $arrFilter["=IBLOCK_ID"] = $iblock_ids;
-    $arrFilter["=SECTION_ID"] = $section_ids;
+    //$arrFilter["=IBLOCK_ID"] = $iblock_ids;
+    //$arrFilter["=SECTION_ID"] = $section_ids;
     unset($iblock_ids);
     unset($section_ids);
     unset($row);
