@@ -221,13 +221,16 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     $arFilter = array (
         //"IBLOCK_ID" => $arResult["ID"],
         "IBLOCK_LID" => SITE_ID,
-        "ACTIVE" => $USER->isAdmin()?["Y","N"]:"Y",
         "CHECK_PERMISSIONS" => $arParams['CHECK_PERMISSIONS'] ? "Y" : "N",
     );
 
-
     if($arParams["CHECK_DATES"])
         $arFilter["ACTIVE_DATE"] = "Y";
+
+    if($USER->isAdmin()){
+        $arFilter["ACTIVE"] = 'Y';
+        unset($arFilter["ACTIVE_DATE"]);
+    }
 
     $PARENT_SECTION = CIBlockFindTools::GetSectionID(
         $arParams["PARENT_SECTION"],

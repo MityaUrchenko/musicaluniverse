@@ -23,7 +23,7 @@ if(in_array($arResult["ID"], $arLikedElements)) {
 }
 ?>
 
-<div class="mu-person-page__inner" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
+<div class="mu-person-page__inner mb-5" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
     <div class="mu-person-page__gallery">
         <div class="mu-person-page__gallery-slide">
             <img

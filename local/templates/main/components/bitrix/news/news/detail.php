@@ -85,8 +85,7 @@ $ElementID = $APPLICATION->IncludeComponent(
 
 // Выборка элементов по аналогичным тегам
 $rsElement = CIBlockElement::GetList([], ['ID'=>$ElementID], false, [], ['ID','IBLOCK_ID','TAGS'])->Fetch();
-$arTags[] = $rsElement['TAGS'];
-$arTags = array_merge($arTags, explode(", ", $rsElement['TAGS']));
+$arTags = explode(", ", $rsElement['TAGS']);
 
 global $arrFilter;
 $arrFilter = [];
@@ -95,7 +94,7 @@ $arrFilter['%TAGS'] = $arTags;
 
 $APPLICATION->IncludeComponent(
     "mu:news_feed",
-    "main",
+    "in_detail_list",
     array(
         "ACTIVE_DATE_FORMAT" => "d.m.Y",
         "ADD_SECTIONS_CHAIN" => "N",

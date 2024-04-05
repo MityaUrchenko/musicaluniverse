@@ -22,7 +22,7 @@ if (in_array($arResult["ID"], $arLikedElements)) {
 
 ?>
 
-    <div id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
+    <div class="mb-5" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
         <span class="mu-content-page__date"><?= $arResult["ACTIVE_FROM"] ?: $arResult["DATE_CREATE"] ?></span>
         <div class="mu-content-page__top position-relative">
             <h1 class="mu-content-page__title"><?= $arResult["NAME"] ?></h1>
