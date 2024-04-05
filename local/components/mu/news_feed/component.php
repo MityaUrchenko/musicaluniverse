@@ -331,15 +331,14 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     $arResult["ITEMS"] = array();
     $arResult["ELEMENTS"] = array();
 
-    if(empty($arrFilter['%TAGS'])){
+    if(empty($arrFilter['%TAGS']) && !empty($_SESSION['favorites'])){
         $arTagsFilter = array_merge($arrFilter, ['ID'=>$_SESSION['favorites']]);
-        $rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter , $arTagsFilter), false, [], array_merge($shortSelect,['TAGS']));
+        $rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter , $arTagsFilter), false, [], ['ID','TAGS']);
 
         $arTags = [];
         while ($row = $rsElement->Fetch())
         {
             if(!$row['TAGS']) continue;
-            $arTags[] = $row['TAGS'];
             $arTags = array_merge($arTags, explode(", ", $row['TAGS']));
         }
         $arrFilter['%TAGS'] = array_unique($arTags);

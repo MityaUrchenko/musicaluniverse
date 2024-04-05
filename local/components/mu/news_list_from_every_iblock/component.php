@@ -223,12 +223,17 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
         "CHECK_PERMISSIONS" => $arParams['CHECK_PERMISSIONS'] ? "Y" : "N",
     );
 
+    if($arParams["CHECK_DATES"])
+        $arFilter["ACTIVE_DATE"] = "Y";
+
+    if($USER->isAdmin()){
+        $arFilter["ACTIVE"] = 'Y';
+        unset($arFilter["ACTIVE_DATE"]);
+    }
+
     //== ФИЛЬТРАЦИЯ ПО СВОЙСТВУ true/false
     if($arParams["FILTER_PROPERTY_CODE"])
         $arrFilter["!PROPERTY_".$arParams["FILTER_PROPERTY_CODE"]."_VALUE"] = false;
-
-    if($arParams["CHECK_DATES"])
-        $arFilter["ACTIVE_DATE"] = "Y";
 
     $PARENT_SECTION = CIBlockFindTools::GetSectionID(
         $arParams["PARENT_SECTION"],
