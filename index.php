@@ -104,7 +104,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "N",
 		"DISPLAY_DATE" => "Y",
@@ -174,7 +174,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
 <div class="header">Новости</div>
 <? $APPLICATION->IncludeComponent(
-	"mu:news_plus_inactive_list",
+	"mu:news_list_plus_inactive",
 	"news", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -265,7 +265,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
     <div class="header">Статьи</div>
     <? $APPLICATION->IncludeComponent(
-        "mu:news_plus_inactive_list",
+        "mu:news_list_plus_inactive",
         "articles",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -364,7 +364,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
         "CACHE_GROUPS" => "Y",
         "CACHE_TIME" => "36000000",
         "CACHE_TYPE" => "A",
-        "CHECK_DATES" => "N",
+        "CHECK_DATES" => "Y",
         "DETAIL_URL" => "",
         "DISPLAY_BOTTOM_PAGER" => "Y",
         "DISPLAY_DATE" => "Y",

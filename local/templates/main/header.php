@@ -109,7 +109,7 @@ include(__DIR__ . '/svg.php');
                             array(
                                 "NUM_CATEGORIES" => "1",
                                 "TOP_COUNT" => "5",
-                                "CHECK_DATES" => "N",
+                                "CHECK_DATES" => "Y",
                                 "SHOW_OTHERS" => "N",
                                 "PAGE" => SITE_DIR . "search/",
                                 "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
@@ -310,7 +310,7 @@ include(__DIR__ . '/svg.php');
                                     array(
                                         "NUM_CATEGORIES" => "1",
                                         "TOP_COUNT" => "5",
-                                        "CHECK_DATES" => "N",
+                                        "CHECK_DATES" => "Y",
                                         "SHOW_OTHERS" => "N",
                                         "PAGE" => SITE_DIR . "search/",
                                         "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),

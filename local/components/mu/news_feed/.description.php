@@ -2,19 +2,20 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arComponentDescription = array(
-	"NAME" => GetMessage("T_IBLOCK_DESC_LIST"),
-	"DESCRIPTION" => GetMessage("T_IBLOCK_DESC_LIST_DESC"),
-	"ICON" => "/images/news_list.gif",
-	"SORT" => 20,
-//	"SCREENSHOT" => array(
-//		"/images/post-77-1108567822.jpg",
-//		"/images/post-1169930140.jpg",
-//	),
-	"CACHE_PATH" => "Y",
+	"NAME" => GetMessage("IBLOCK_NEWS_NAME"),
+	"DESCRIPTION" => GetMessage("IBLOCK_NEWS_DESCRIPTION"),
+	"ICON" => "/images/news_all.gif",
+	"COMPLEX" => "Y",
 	"PATH" => array(
-        "ID" => "gtu",
-        "NAME" => GetMessage("SECTION_NAME"),
-        "SORT" => 9999,
+		"ID" => "content",
+		"CHILD" => array(
+			"ID" => "news",
+			"NAME" => GetMessage("T_IBLOCK_DESC_NEWS"),
+			"SORT" => 10,
+			"CHILD" => array(
+				"ID" => "news_cmpx",
+			),
+		),
 	),
 );
 

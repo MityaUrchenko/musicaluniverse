@@ -16,9 +16,7 @@ global $INTRANET_TOOLBAR;
 use Bitrix\Main\Context,
     Bitrix\Main\Type\DateTime,
     Bitrix\Main\Loader,
-    Bitrix\Iblock,
-    Bitrix\Search\SearchTagsTable;
-
+    Bitrix\Iblock;
 
 CPageOption::SetOptionString("main", "nav_page_in_session", "N");
 
@@ -221,10 +219,13 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     $arFilter = array (
         //"IBLOCK_ID" => $arResult["ID"],
         "IBLOCK_LID" => SITE_ID,
-        "ACTIVE" => $USER->isAdmin()?["Y","N"]:"Y",
+        "ACTIVE" => "Y",
         "CHECK_PERMISSIONS" => $arParams['CHECK_PERMISSIONS'] ? "Y" : "N",
     );
 
+    //== ФИЛЬТРАЦИЯ ПО СВОЙСТВУ true/false
+    if($arParams["FILTER_PROPERTY_CODE"])
+        $arrFilter["!PROPERTY_".$arParams["FILTER_PROPERTY_CODE"]."_VALUE"] = false;
 
     if($arParams["CHECK_DATES"])
         $arFilter["ACTIVE_DATE"] = "Y";
@@ -237,8 +238,6 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
             "IBLOCK_ID" => $arResult["ID"],
         )
     );
-    //==
-
 
     if (
         $arParams["STRICT_SECTION_CHECK"]
@@ -290,14 +289,20 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
     //ORDER BY
     $arSort = array(
         $arParams["SORT_BY1"]=>$arParams["SORT_ORDER1"],
-        $arParams["SORT_BY2"]=>$arParams["SORT_ORDER2"]
+        $arParams["SORT_BY2"]=>$arParams["SORT_ORDER2"],
+        $arParams["PROPERTY_".$arParams["SORT_PROPERTY_CODE"]."_VALUE"]=>"ASC",
     );
     if(!array_key_exists("ID", $arSort))
         $arSort["ID"] = "DESC";
-    //==
-
 
     $shortSelect = array('ID', 'IBLOCK_ID');
+
+
+    //== ДОБАВЛЕНИЕ В ВЫБОРКУ СВОЙСТВА СОРТИРОВКИ
+    if($arParams["SORT_PROPERTY_CODE"])
+        array_push($shortSelect, "PROPERTY_".$arParams["SORT_PROPERTY_CODE"]);
+
+
     foreach (array_keys($arSort) as $index)
     {
         if (!in_array($index, $shortSelect))
@@ -308,46 +313,10 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
 
     $listPageUrl = '';
 
-
-    //== ФИЛЬТРАЦИЯ ПО СХОЖИМ ЭЛЕМЕНТАМ
-
-    $tempFilter = ["ID" => ''];
-    $tempSelect = ["*"];
-    $rsElement = CIBlockElement::GetList($arSort, $tempFilter, false, $arNavParams, $tempSelect);
-
-    while ($row = $rsElement->Fetch())
-    {
-        $iblock_ids[] = (int)$row['IBLOCK_ID'];
-        $section_ids[] = (int)$row['IBLOCK_SECTION_ID'];
-    }
-    unset($row);
-    //==
-
-
-    //== ВЫБОРКА ЭЛЕМЕНТОВ ПО ТЕГАМ В ИЗБРАННЫХ
     $arResult["ITEMS"] = array();
     $arResult["ELEMENTS"] = array();
+    $rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter , $arrFilter), false, $arNavParams, $shortSelect);
 
-    if(empty($arrFilter['%TAGS'])){
-        $arTagsFilter = array_merge($arrFilter, ['ID'=>$_SESSION['favorites']]);
-        $rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter , $arTagsFilter), false, [], array_merge($shortSelect,['TAGS']));
-
-        $arTags = [];
-        while ($row = $rsElement->Fetch())
-        {
-            if(!$row['TAGS']) continue;
-            $arTags[] = $row['TAGS'];
-            $arTags = array_merge($arTags, explode(", ", $row['TAGS']));
-        }
-        $arrFilter['%TAGS'] = array_unique($arTags);
-    }
-    unset($arTags);
-    unset($row);
-    //==
-
-
-    //== ВЫБОРКА ОСНОВНЫХ ЭЛЕМЕНТОВ
-    $rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter, $arrFilter), false, $arNavParams, $shortSelect);
     $items = [];
     $itemsSorted = [];
     $itemsUnsorted = [];
@@ -358,7 +327,43 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
         $arResult["ELEMENTS"][] = $id;
     }
     unset($row);
-    //==
+
+
+
+    //== ЛОГИКА СОРТИРОВКИ
+    foreach ($arResult["ITEMS"] as $item) {
+        if($item["PROPERTY_".$arParams["SORT_PROPERTY_CODE"]."_VALUE"]){
+            $itemsSorted[$item["PROPERTY_".$arParams["SORT_PROPERTY_CODE"]."_VALUE"]] = $item;
+        }else{
+            $itemsUnsorted[] = $item;
+        }
+    }
+    ksort($itemsSorted);
+    $itemsSorted = array_values($itemsSorted);
+
+    for($i=1; $i <= count($arResult["ITEMS"]); $i++){
+        if(reset($itemsSorted)["PROPERTY_".$arParams["SORT_PROPERTY_CODE"]."_VALUE"] == $i){
+            $curItem = array_shift($itemsSorted);
+        }else{
+            $curItem = array_shift($itemsUnsorted);
+        }
+        if($curItem){
+            $items[$curItem["ID"]] = $curItem;
+        }
+    }
+
+    if($itemsSorted){
+        foreach ($itemsSorted as $item) {
+            $items[$item["ID"]] = $item;
+        }
+    }
+    $arResult["ITEMS"] = $items;
+    $arResult["ELEMENTS"] = array_keys($arResult["ITEMS"]);
+    unset($items);
+    unset($itemsSorted);
+    unset($itemsUnsorted);
+    unset($curItem);
+
 
 
     if (!empty($arResult['ITEMS']))

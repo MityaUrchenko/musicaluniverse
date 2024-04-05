@@ -15,7 +15,7 @@ $APPLICATION->SetTitle("Поиск");
 		"AJAX_OPTION_STYLE" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DEFAULT_SORT" => "rank",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",

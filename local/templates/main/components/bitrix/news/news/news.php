@@ -17,7 +17,7 @@ if($arParams["IBLOCK_ID"] == IBLOCK_ID_ARTICLES) $template = "articles";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_SPECIAL) $template = "special";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_PERSONALITIES) $template = "personalities";
 $APPLICATION->IncludeComponent(
-	"mu:news_plus_inactive_list",
+	"mu:news_list_plus_inactive",
 	$template,
 	Array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],

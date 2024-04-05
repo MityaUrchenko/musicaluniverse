@@ -2,10 +2,9 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Умная лента");
 
-$arrFilter["!IBLOCK_ID"] = 7;
 global $countryFilter;
-$arrFilter = array_merge($arrFilter, $countryFilter);
-$arrFilter['ID'] = [9, 33, 34, 35];
+$arrFilter["!IBLOCK_ID"] = 7;
+//$arrFilter = array_merge($arrFilter, $countryFilter);
 $APPLICATION->IncludeComponent(
 	"mu:news_feed",
 	"main", 
@@ -21,7 +20,7 @@ $APPLICATION->IncludeComponent(
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
-		"CHECK_DATES" => "N",
+		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",

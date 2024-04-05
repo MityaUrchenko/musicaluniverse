@@ -7,7 +7,7 @@ $arrFilter = [];
 $arrFilter['ID'] = $_SESSION['favorites'];
 if($_SESSION['favorites']) {
     $APPLICATION->IncludeComponent(
-        "mu:news_feed",
+        "mu:news_list_from_every_iblock",
         "main",
         array(
             "ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -21,7 +21,7 @@ if($_SESSION['favorites']) {
             "CACHE_GROUPS" => "Y",
             "CACHE_TIME" => "36000000",
             "CACHE_TYPE" => "A",
-            "CHECK_DATES" => "N",
+            "CHECK_DATES" => "Y",
             "DETAIL_URL" => "",
             "DISPLAY_BOTTOM_PAGER" => "Y",
             "DISPLAY_DATE" => "Y",
