@@ -26,21 +26,22 @@ if($_GET['id'])
     } else {
         $key = array_search($_GET['id'], $arElements);
         unset($arElements[$key]);
+        $arElements = array_values($arElements);
         $result = -1;
     }
 
     $arElements = array_unique($arElements);
     $_SESSION['favorites'] = $arElements;
-    $serializedElements = json_encode($arElements);
+    $jsonElements = json_encode($arElements);
 
     if(empty($arElements)){
         setcookie("favorites", '', time() - 1, "/", $_SERVER['SERVER_NAME'], false);
     } else {
-        setcookie("favorites", $serializedElements, time() + 60*60*24*365*10, "/", $_SERVER['SERVER_NAME'], false);
+        setcookie("favorites", $jsonElements, time() + 60*60*24*365*10, "/", $_SERVER['SERVER_NAME'], false);
     }
 
     if($USER->IsAuthorized()) {
-        $USER->Update($USER->GetId(), Array("UF_FAVORITES" => $serializedElements));
+        $USER->Update($USER->GetId(), Array("UF_FAVORITES" => $jsonElements));
     }
 }
 echo json_encode($result);
