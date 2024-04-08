@@ -147,6 +147,7 @@ if($arParams["SHOW_WORKFLOW"] || $this->startResultCache(false, array(($arParams
 	$arFilter = array(
 		"IBLOCK_LID" => SITE_ID,
 		"IBLOCK_ACTIVE" => "Y",
+        "ACTIVE" => "Y",
 		"CHECK_PERMISSIONS" => "Y",
 		"SHOW_HISTORY" => $arParams["SHOW_WORKFLOW"]? "Y": "N",
 	);
@@ -155,7 +156,7 @@ if($arParams["SHOW_WORKFLOW"] || $this->startResultCache(false, array(($arParams
         $arFilter["ACTIVE_DATE"] = "Y";
 
     if($USER->isAdmin()){
-        $arFilter["ACTIVE"] = 'Y';
+        unset($arFilter["ACTIVE"]);
         unset($arFilter["ACTIVE_DATE"]);
     }
 

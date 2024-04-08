@@ -227,7 +227,7 @@ if($this->startResultCache(false, array(($arParams["CACHE_GROUPS"]==="N"? false:
         $arFilter["ACTIVE_DATE"] = "Y";
 
     if($USER->isAdmin()){
-        $arFilter["ACTIVE"] = 'Y';
+        unset($arFilter["ACTIVE"]);
         unset($arFilter["ACTIVE_DATE"]);
     }
 
