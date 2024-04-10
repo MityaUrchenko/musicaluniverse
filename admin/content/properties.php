@@ -42,6 +42,3 @@ foreach($arResult['PROPERTIES'] as $property) { ?>
         </div>
     </div>
 <?}
-echo "<pre>";
-print_r($arResult['PROPERTIES']);
-echo "</pre>";
