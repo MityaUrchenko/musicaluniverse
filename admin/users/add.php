@@ -33,7 +33,6 @@ if($request->get("update") && !empty($_POST)) {
     if(empty($_POST["PASSWORD"])) {
         unset($_POST["PASSWORD"]);
     }
-    $strError = "";
     if($_FILES["photo"]) {
         $_POST["PERSONAL_PHOTO"] = $_FILES["photo"];
     }
@@ -52,6 +51,7 @@ if($request->get("update") && !empty($_POST)) {
         }
     }
 
+    $strError = "";
     $strError .= $user->LAST_ERROR;
 }
 //========================================================
