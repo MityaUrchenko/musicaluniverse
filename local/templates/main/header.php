@@ -138,6 +138,7 @@ include(__DIR__ . '/svg.php');
                             ),
                             false
                         ); ?>
+                        <?if($USER->isAuthorized()){?>
                         <div class="mu-header__personal js-header-personal">
                             <span class="mu-header__personal-name"><?=$curUser["NAME"]?></span>
                             <span class="mu-header__personal-status"><?=$curUser["ROLE"]?></span>
@@ -157,19 +158,20 @@ include(__DIR__ . '/svg.php');
                                 </div>
 
                                 <? $APPLICATION->IncludeComponent(
-                                    "bitrix:menu",
-                                    "user_menu",
+                                "bitrix:menu",
+                                "user_menu", 
                                     array(
                                         "ROOT_MENU_TYPE" => "user_menu",
                                         "MAX_LEVEL" => "1",
                                         "CHILD_MENU_TYPE" => "",
-                                        "USE_EXT" => "Y",
+                                        "USE_EXT" => "N",
                                         "DELAY" => "N",
-                                        "ALLOW_MULTI_SELECT" => "Y",
+                                        "ALLOW_MULTI_SELECT" => "N",
                                         "MENU_CACHE_TYPE" => "N",
                                         "MENU_CACHE_TIME" => "3600",
                                         "MENU_CACHE_USE_GROUPS" => "Y",
-                                        "MENU_CACHE_GET_VARS" => array(),
+                                        "MENU_CACHE_GET_VARS" => array(
+                                        ),
                                         "COMPONENT_TEMPLATE" => "user_menu",
                                         "MENU_THEME" => "site"
                                     ),
@@ -177,6 +179,9 @@ include(__DIR__ . '/svg.php');
                                 ); ?>
                             </div>
                         </div>
+                        <?}else{?>
+                        <button class="btn btn-primary js-login-btn">Войти</button>
+                        <?}?>
                         <?/*
                         <div class="mu-header__controls-item">
                             <button class="mu-header__theme-toggle">

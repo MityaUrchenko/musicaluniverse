@@ -1,0 +1,123 @@
+#code_link {
+    position: absolute;
+    left: -15px;
+    top: 37px;
+    filter: brightness(.8);
+
+    width: 11px;
+    height: 21px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Поля загрузки картинок */
+.adm-fileinput-wrapper.adm-fileinput-wrapper-single,
+.adm-fileinput-area-container,
+.adm-fileinput-drag-area .bx-bxu-thumb-thumb,
+.adm-fileinput-area-container div.adm-fileinput-item-wrapper {
+    width: 100%;
+}
+
+.adm-fileinput-wrapper-single {
+    line-height: 0;
+}
+
+.adm-fileinput-wrapper-single * {
+    line-height: initial;
+}
+
+.adm-fileinput-wrapper-single .adm-fileinput-area {
+    width: 100%;
+    min-height: 217px;
+    height: 217px;
+    padding: 0;
+    border-radius: 15px;
+}
+
+div.adm-fileinput-item {
+    width: 100%;
+    height: 100%;
+    background: #444343;
+    margin: 0;
+    border-radius: 15px;
+}
+
+div.adm-fileinput-item-saved {
+    box-shadow: inset 0 0 0 2px #f9cb74;
+    box-shadow: none;
+}
+
+div.adm-fileinput-item div.adm-fileinput-item-preview {
+    width: initial;
+    height: initial;
+    background: none;
+    box-shadow: none;
+    margin: 0 auto;
+}
+
+.adm-fileinput-item-panel-btn:before,
+.adm-fileinput-item-panel-btn.adm-btn-del:before {
+    filter: brightness(2);
+}
+
+div.adm-fileinput-wrapper-single input.adm-fileinput-drag-area-input {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.adm-fileinput-drag-area {
+    border: 2px dashed #a8a8a8;
+}
+
+.adm-fileinput-drag-area:hover {
+    border: 2px dashed #fff;
+}
+
+.adm-fileinput-area .adm-fileinput-drag-area-hint {
+    color: #a8a8a8;
+}
+
+.adm-fileinput-area:hover .adm-fileinput-drag-area-hint {
+    color: #fff;
+}
+
+.adm-fileinput-btn-panel {
+    display: none;
+}
+
+
+/* Текстовые поле */
+.bx-ed-type-selector {
+    display: flex;
+    gap: 1rem;
+    margin: 0 0 .5rem 0;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.2;
+}
+.bx-ed-type-selector .bx-ed-type-selector-item{
+    display: flex;
+    gap: .5rem;
+}
+
+
+.mu-textarea textarea[name='PREVIEW_TEXT'] {
+    height: 200px;
+}
+.mu-textarea label[for='bxed_PREVIEW_TEXT'] + .bx-ed-type-selector .bx-ed-type-selector-item:last-child {
+    display: none;
+}
+.bxhtmled-taskbar-cnt {
+    top: 39px;
+}
+.bxhtmled-split-btn-l .bxhtmled-split-btn-bg {
+    height: 28px;
+}
+div.bx-html-editor {
+    border-color: #a8a8a8;
+}
+.bxhtmled-popup {
+    color: initial;
+}

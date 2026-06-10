@@ -1,67 +1,74 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Пользователи",
-		"/admin/users/",
-		Array(),
-        Array('icon'=>"users"),
-		""
+		"Пользователи", 
+		"/admin/users/", 
+		Array(), 
+		Array("icon"=>"users"),
+		"CSite::InGroup(array(1,5))" 
 	),
 	Array(
-		"Тикеты",
-		"/admin/tikets/",
-		Array(),
-        Array('icon'=>"calendar"),
-		""
+		"Тикеты", 
+		"/admin/tikets/", 
+		Array(), 
+		Array("icon"=>"calendar"), 
+		"false" 
 	),
 	Array(
-		"Контент",
-		"/admin/content/",
-        Array(),
-        Array('icon'=>"content"),
-		""
+		"Контент", 
+		"/admin/content/", 
+		Array(), 
+		Array("icon"=>"content"),
+        "CSite::InGroup(array(1,5))"
+    ),
+	Array(
+		"Базы данных", 
+		"/admin/base/", 
+		Array(), 
+		Array("icon"=>"base"),
+        "CSite::InGroup(array(1,5))"
+    ),
+	Array(
+		"Билеты", 
+		"/admin/card/", 
+		Array(), 
+		Array("icon"=>"card"),
+        "CSite::InGroup(array(1,5))"
+    ),
+	Array(
+		"Статистика", 
+		"/admin/statistics/", 
+		Array(), 
+		Array("icon"=>"statistic"),
+        "CSite::InGroup(array(1,5))"
+    ),
+	Array(
+		"Промо", 
+		"/admin/promo/", 
+		Array(), 
+		Array("icon"=>"promo"),
+        "CSite::InGroup(array(1,5))"
+    ),
+	Array(
+		"Личные данные", 
+		"/personal/",
+		Array(), 
+		Array("icon"=>"person"), 
+		"" 
 	),
 	Array(
-		"Базы данных",
-		"/admin/base/",
-		Array(),
-        Array('icon'=>"base"),
-		""
+		"Избранное", 
+		"/personal/favorites/", 
+		Array(), 
+		Array("icon"=>"person"), 
+		"" 
 	),
 	Array(
-		"Билеты",
-		"/admin/card/",
-		Array(),
-        Array('icon'=>"card"),
-		""
-	),
-	Array(
-		"Статистика",
-		"/admin/statistics/",
-		Array(),
-        Array('icon'=>"statistic"),
-		""
-	),
-	Array(
-		"Промо",
-		"/admin/promo/",
-		Array(),
-        Array('icon'=>"promo"),
-		""
-	),
-	Array(
-		"Личные данные",
-		"/admin/personal/",
-		Array(),
-        Array('icon'=>"person"),
-		""
-	),
-	Array(
-		"Избранное",
-		"/personal/favorites/",
-		Array(),
-        Array('icon'=>"person"),
-        ""
-    )
+		"Выйти", 
+		"/?logout=yes&".bitrix_sessid_get(),
+		Array(), 
+		Array("icon"=>"person"), 
+		"" 
+	)
 );
 ?>

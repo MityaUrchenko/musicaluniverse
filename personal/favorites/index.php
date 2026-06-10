@@ -74,8 +74,8 @@ if($_SESSION['favorites']) {
             "SET_TITLE" => "N",
             "SHOW_404" => "N",
             "SLIDER_PROPERTY" => "",
-            "SORT_BY1" => "ID",
-            "SORT_BY2" => "ID",
+            "SORT_BY1" => "",
+            "SORT_BY2" => "",
             "SORT_ORDER1" => "DESC",
             "SORT_ORDER2" => "DESC",
             "SORT_PROPERTY_CODE" => "",
@@ -83,7 +83,8 @@ if($_SESSION['favorites']) {
             "TEMPLATE_THEME" => "blue",
             "USE_RATING" => "N",
             "USE_SHARE" => "N",
-            "COMPONENT_TEMPLATE" => "news"
+            "COMPONENT_TEMPLATE" => "news",
+            "SORT_BY_IDS" => $_SESSION['favorites']
         ),
         false
     );

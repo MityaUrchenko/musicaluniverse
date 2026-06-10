@@ -113,8 +113,10 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"FIELD_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "ID",
+			1 => "DATE_ACTIVE_FROM",
+			2 => "DATE_ACTIVE_TO",
+			3 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
