@@ -1,13 +1,5 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<?php
 
-use Bitrix\Main\Type\DateTime;
-$date = "2026.01.30";
-$date = new DateTime($date, 'Y.m.d H:i:s');
-echo "<pre style='background:#222;color:#ddd;padding:20px;font:14px monospace'>";
-print_r($date->format('d-m-Y H:i:s'));
-echo "</pre>";
-?>
 <div id="calendar-component">
     <div>
         <div id="calendar_dates" class="owl-carousel my-4"></div>
