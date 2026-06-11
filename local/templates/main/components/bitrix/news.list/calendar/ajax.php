@@ -16,7 +16,6 @@ if (empty($dateStr)) {
     die();
 }
 
-// Правильное преобразование даты
 try {
     $date = new DateTime($dateStr . " 00:00:00", 'Y.m.d H:i:s');
     $date = $date->format('d.m.Y H:i:s');
