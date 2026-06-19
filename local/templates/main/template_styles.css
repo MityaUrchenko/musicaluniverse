@@ -24,10 +24,12 @@
     --white-bg: #fff;
     --black-bg: #000;
     --gold-bg: #f9cb74;
+    --pink-bg: #E65364;
+    --pink-alt-bg: #E27D8A;
     --main-text-color: #fff;
     --button-bg-color: #fff460;
     --secondary-text-color: #f9cb74;
-    --third-text-color: #000;
+    --third-text-color: #171717;
 }
 
 html, body {
@@ -348,6 +350,12 @@ header, footer{
     margin-right: 40%;
 }
 
+
+#calendar-news-list,
+#calendar-news-list__not-found
+{
+    min-height: 526px;
+}
 #calendar_dates.owl-carousel .owl-nav {
     top: 50%;
     right: 0.25rem;
@@ -376,6 +384,11 @@ header, footer{
 #calendar_dates .calendar_dates_month{
     width: 100%;
 }
+#calendar_dates .calendar_dates_month .month-name{
+    margin-bottom: 5px;
+    color: var(--secondary-text-color);
+    font-weight: bold;
+}
 
 #calendar_dates .calendar_dates_date{
     line-height: 22px;
@@ -389,10 +402,36 @@ header, footer{
 #calendar_dates .calendar_dates_date span:last-child{
     font-size: 12px;
 }
+
 #calendar_dates .calendar_dates_date.bg-golden span{
     color: var(--third-text-color);
 }
 
+#calendar_dates .calendar_dates_date {
+    background: var(--element-bg);
+    padding: .25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#calendar_dates .calendar_dates_date.chosen_date_alt {
+    background: var(--pink-alt-bg);
+    color: var(--main-text-color);
+}
+#calendar_dates .calendar_dates_date.chosen_date {
+    background: var(--pink-bg);
+    color: var(--main-text-color);
+}
+#calendar_dates .calendar_dates_date.event_date {
+    background: var(--gold-bg);
+    color: var(--third-text-color);
+}
+#calendar_dates .calendar_dates_date.current_date {
+    background: var(--white-bg);
+    color: var(--third-text-color);
+}
 
 
 

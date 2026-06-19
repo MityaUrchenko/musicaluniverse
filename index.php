@@ -7,6 +7,7 @@ $arrFilter = [];
 $arrFilter = array_merge($arrFilter, $countryFilter);
 ?>
 
+<?php /*
 <div class="container">
 <div class="header">Актуальные события</div>
 </div>
@@ -86,6 +87,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 	),
 	false
 ); ?>
+ */?>
 
 <div class="container">
     <div class="header">Календарь событий</div>

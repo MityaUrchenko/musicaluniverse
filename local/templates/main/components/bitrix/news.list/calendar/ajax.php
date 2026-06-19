@@ -9,28 +9,33 @@ use Bitrix\Main\Type\DateTime;
 Loader::includeModule('iblock');
 
 $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-$dateStr = trim($request->get('calendar_date')); // приходит в формате yyyy.mm.dd
 
-if (empty($dateStr)) {
+$dateFrom = trim($request->get('calendar_date'));
+$dateRangeFrom = trim($request->get('date_from'));
+$dateRangeTo   = trim($request->get('date_to'));
+
+if (!empty($dateRangeFrom) && !empty($dateRangeTo)) {
+    // Диапазон
+    $df = new DateTime($dateRangeFrom . " 00:00:00", 'Y.m.d H:i:s');
+    $dt = new DateTime($dateRangeTo   . " 23:59:59", 'Y.m.d H:i:s');
+
+    $arFilter = [
+            "IBLOCK_ID"     => 1,
+            "ACTIVE"        => "Y",
+            ">=DATE_ACTIVE_FROM" => $df->format('d.m.Y H:i:s'),
+            "<=DATE_ACTIVE_FROM" => $dt->format('d.m.Y H:i:s'),
+    ];
+} else if (!empty($dateFrom)) {
+    $date = new DateTime($dateFrom . " 00:00:00", 'Y.m.d H:i:s');
+    $arFilter = [
+            "IBLOCK_ID"     => 1,
+            "ACTIVE"        => "Y",
+            "=DATE_ACTIVE_FROM" => $date->format('d.m.Y H:i:s'),
+    ];
+} else {
     echo '<div class="col-12"><p class="text-center">Дата не указана.</p></div>';
     die();
 }
-
-try {
-    $date = new DateTime($dateStr . " 00:00:00", 'Y.m.d H:i:s');
-    $date = $date->format('d.m.Y H:i:s');
-
-} catch (Exception $e) {
-    echo '<div class="col-12"><p class="text-center">Ошибка формата даты.</p></div>';
-    die();
-}
-
-$arFilter = [
-        "IBLOCK_ID"     => 1,
-        "ACTIVE"        => "Y",
-        "ACTIVE_DATE"   => "Y",
-        "=DATE_ACTIVE_FROM" => $date,
-];
 
 $rs = CIBlockElement::GetList(
         ["ACTIVE_FROM" => "ASC"],
@@ -75,9 +80,7 @@ $rs = CIBlockElement::GetList(
         </div>
     <?php endwhile; ?>
 <?php else: ?>
-    <div class="col-12">
-        <p class="text-center">Новостей на выбранную дату нет.</p>
-    </div>
+
 <?php endif; ?>
 
 <?php die(); ?>
