@@ -178,7 +178,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
 <div class="header">Новости</div>
 <? $APPLICATION->IncludeComponent(
-	"mu:news_list_plus_inactive",
+	"bitrix:news.list",
 	"news", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -269,7 +269,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 <div class="container">
     <div class="header">Статьи</div>
     <? $APPLICATION->IncludeComponent(
-        "mu:news_list_plus_inactive",
+        "bitrix:news.list",
         "articles",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",

@@ -225,6 +225,56 @@ header, footer{
 }
 
 
+
+
+
+
+
+
+.news-list.view-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.news-list.view-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Grid (карточки) — текущий вид */
+.view-grid .calendar-item,
+.view-grid .news-item {
+    /* твои текущие стили карточек */
+}
+
+
+.view-list .card {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+
+.view-list .card-img-container {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+
+.view-list .card-title {
+    font-size: 1.1rem;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .view-list .card-img-container {
+        width: 140px;
+    }
+}
+
+
+
 /* CARD */
 .card{
     background-color: var(--element-bg);
@@ -255,6 +305,9 @@ header, footer{
 }
 .card .card-img-container{
     position: relative;
+}
+.news-list .card-img-container {
+    height: 200px;
 }
 
 .card .card-img-container img{
@@ -752,9 +805,10 @@ footer .footer-phone {
 }
 */
 
-.news-list .card-img-container {
-    height: 208px;
-}
+
+
+
+
 
 
 .personalities-list .card-img-container {

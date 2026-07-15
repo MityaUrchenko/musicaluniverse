@@ -11,13 +11,22 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
-
+?>
+<div class="view-toggle mb-4 text-end">
+	<button id="view-grid" class="btn btn-light me-1 active" title="Карточки">
+		<i class="fas fa-th"></i> Карточки
+	</button>
+	<button id="view-list" class="btn btn-light" title="Список">
+		<i class="fas fa-list"></i> Список
+	</button>
+</div>
+<?php
 $template = "news";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_ARTICLES) $template = "articles";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_SPECIAL) $template = "special";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_PERSONALITIES) $template = "personalities";
 $APPLICATION->IncludeComponent(
-	"mu:news_list_plus_inactive",
+	"bitrix:news.list",
 	$template,
 	Array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
