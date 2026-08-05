@@ -5,10 +5,7 @@
 /** @global CUser $USER */
 /** @var CBitrixComponentTemplate $this */
 $this->setFrameMode(true);
-
-
-
-if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
+if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
     $arCloudParams = [
             "SEARCH" => $arResult["REQUEST"]["~QUERY"],
             "TAGS" => $arResult["REQUEST"]["~TAGS"],
@@ -157,7 +154,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                                                 $isChecked = false;
                                                 if (is_array($currentVal)) {
                                                     $isChecked = in_array($enum["ID"], $currentVal) || in_array($enum["VALUE"], $currentVal);
-                                                } elseif ($currentVal !== null && $currentVal !== "") {
+                                                } else if ($currentVal !== null && $currentVal !== "") {
                                                     $isChecked = ((string)$currentVal === (string)$enum["ID"] || (string)$currentVal === (string)$enum["VALUE"]);
                                                 }
                                                 ?>
@@ -167,7 +164,8 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                                                            value="<?= $enum["ID"] ?>"
                                                            id="prop_<?= $iblock["ID"] ?>_<?= $prop["ID"] ?>_<?= $enum["ID"] ?>"
                                                             <?= $isChecked ? 'checked' : '' ?>>
-                                                    <label class="form-check-label" for="prop_<?= $iblock["ID"] ?>_<?= $prop["ID"] ?>_<?= $enum["ID"] ?>">
+                                                    <label class="form-check-label"
+                                                           for="prop_<?= $iblock["ID"] ?>_<?= $prop["ID"] ?>_<?= $enum["ID"] ?>">
                                                         <?= htmlspecialcharsbx($enum["VALUE"]) ?>
                                                     </label>
                                                 </div>
@@ -176,7 +174,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                                         <?php elseif ($prop["PROPERTY_TYPE"] === "N"): ?>
                                             <?php
                                             $from = $arResult["CURRENT_FILTER"]["PROPS"][$iblock["ID"]][$prop["CODE"] . "_from"] ?? "";
-                                            $to   = $arResult["CURRENT_FILTER"]["PROPS"][$iblock["ID"]][$prop["CODE"] . "_to"] ?? "";
+                                            $to = $arResult["CURRENT_FILTER"]["PROPS"][$iblock["ID"]][$prop["CODE"] . "_to"] ?? "";
                                             ?>
                                             <div class="row g-2">
                                                 <div class="col">
@@ -214,18 +212,12 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                         <span class="accordion-arrow">▼</span>
                     </div>
                     <div class="card-body filter-accordion-body collapsed">
-                        <div class="filter-date-row">
-                            <label class="filter-date-label">с</label>
-                            <input type="date"
-                                   class="form-control filter-date-input"
-                                   name="filter_date_from"
-                                   value="<?= htmlspecialcharsbx($arResult["CURRENT_FILTER"]["DATE_FROM"] ?? "") ?>">
-                            <label class="filter-date-label">по</label>
-                            <input type="date"
-                                   class="form-control filter-date-input"
-                                   name="filter_date_to"
-                                   value="<?= htmlspecialcharsbx($arResult["CURRENT_FILTER"]["DATE_TO"] ?? "") ?>">
-                        </div>
+                        <input type="date" class="form-control mb-2" name="filter_date_from"
+                               value="<?= htmlspecialcharsbx($arResult["CURRENT_FILTER"]["DATE_FROM"] ?? "") ?>"
+                               placeholder="С">
+                        <input type="date" class="form-control" name="filter_date_to"
+                               value="<?= htmlspecialcharsbx($arResult["CURRENT_FILTER"]["DATE_TO"] ?? "") ?>"
+                               placeholder="По">
                     </div>
                 </div>
 
@@ -277,10 +269,21 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <?php if ($arParams["DISPLAY_TOP_PAGER"] != "N") echo $arResult["NAV_STRING"]; ?>
 
             <?php
+            // Группировка по инфоблоку. Результаты уже отсортированы по релевантности (rank).
+            // Из каждой группы берём максимум 6 самых релевантных.
+            $maxPerIblock = 6;
             $grouped = [];
+            $counts = [];
             foreach ($arResult["SEARCH"] as $arItem) {
                 $iblockName = $arItem["IBLOCK_NAME"] ?? "Результаты поиска";
+                if (!isset($counts[$iblockName])) {
+                    $counts[$iblockName] = 0;
+                }
+                if ($counts[$iblockName] >= $maxPerIblock) {
+                    continue;
+                }
                 $grouped[$iblockName][] = $arItem;
+                $counts[$iblockName]++;
             }
             ?>
 
@@ -316,7 +319,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                                 <?php endif; ?>
 
                                 <div class="date-published mt-auto">
-                                    <?= htmlspecialcharsbx($arItem["DATE_CREATE"] ?? $arItem["DATE_CREATE"] ?? "") ?>
+                                    <?= htmlspecialcharsbx($arItem["DATE_CHANGE"] ?? $arItem["DATE_CREATE"] ?? "") ?>
                                 </div>
                             </div>
                         </div>
@@ -329,9 +332,11 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <br/>
             <p>
                 <?php if ($arResult["REQUEST"]["HOW"] == "d"): ?>
-                    <a href="<?= $arResult["URL"] ?>&amp;how=r"><?= GetMessage("SEARCH_SORT_BY_RANK") ?></a>&nbsp;|&nbsp;<b><?= GetMessage("SEARCH_SORTED_BY_DATE") ?></b>
+                    <a href="<?= $arResult["URL"] ?>&amp;how=r"><?= GetMessage("SEARCH_SORT_BY_RANK") ?></a>&nbsp;|&nbsp;
+                    <b><?= GetMessage("SEARCH_SORTED_BY_DATE") ?></b>
                 <?php else: ?>
-                    <b><?= GetMessage("SEARCH_SORTED_BY_RANK") ?></b>&nbsp;|&nbsp;<a href="<?= $arResult["URL"] ?>&amp;how=d"><?= GetMessage("SEARCH_SORT_BY_DATE") ?></a>
+                    <b><?= GetMessage("SEARCH_SORTED_BY_RANK") ?></b>&nbsp;|&nbsp;<a
+                            href="<?= $arResult["URL"] ?>&amp;how=d"><?= GetMessage("SEARCH_SORT_BY_DATE") ?></a>
                 <?php endif; ?>
             </p>
         <?php else: ?>
@@ -354,7 +359,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
 
     function toggleAllIblocks(allCb) {
         var cbs = document.querySelectorAll('.filter-iblock-cb');
-        cbs.forEach(function(cb) {
+        cbs.forEach(function (cb) {
             cb.checked = allCb.checked;
         });
         onIblockChange();
@@ -365,7 +370,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
         var cbs = document.querySelectorAll('.filter-iblock-cb');
         var allChecked = true;
         var anyChecked = false;
-        cbs.forEach(function(cb) {
+        cbs.forEach(function (cb) {
             if (!cb.checked) allChecked = false;
             if (cb.checked) anyChecked = true;
         });
@@ -374,7 +379,7 @@ if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         onIblockChange();
     });
 </script>
