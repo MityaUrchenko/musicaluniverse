@@ -269,10 +269,10 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <?php if ($arParams["DISPLAY_TOP_PAGER"] != "N") echo $arResult["NAV_STRING"]; ?>
 
             <div class="view-toggle mb-4 text-end">
-                <button type="button" id="view-grid" class="btn btn-light me-1 active" title="Карточки">
+                <button type="button" id="view-grid" class="btn btn-light me-1" title="Карточки">
                     <i class="fas fa-th"></i> Карточки
                 </button>
-                <button type="button" id="view-list" class="btn btn-light" title="Список">
+                <button type="button" id="view-list" class="btn btn-light active" title="Список">
                     <i class="fas fa-list"></i> Список
                 </button>
             </div>
@@ -280,7 +280,7 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <?php
             // Группировка по инфоблоку. Результаты уже отсортированы по релевантности (rank).
             // Из каждой группы берём максимум 6 самых релевантных.
-            $maxPerIblock = 6;
+            $maxPerIblock = 3;
             $grouped = [];
             $counts = [];
             foreach ($arResult["SEARCH"] as $arItem) {
@@ -299,7 +299,7 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <?php foreach ($grouped as $groupName => $items): ?>
                 <h2 class="mb-4"><?= htmlspecialcharsbx($groupName) ?></h2>
 
-                <div class="items-container news-list news-list__3-columns view-grid mb-5">
+                <div class="items-container news-list news-list__3-columns view-list mb-5">
                     <?php foreach ($items as $arItem): ?>
                         <div class="card" id="search-item-<?= (int)$arItem["ITEM_ID"] ?>">
 
@@ -397,7 +397,7 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
         var btnList = document.getElementById('view-list');
 
         if (btnGrid && btnList && containers.length) {
-            var savedView = localStorage.getItem('viewMode') || 'grid';
+            var savedView = localStorage.getItem('viewMode') || 'list';
 
             containers.forEach(function (container) {
                 container.classList.remove('view-grid', 'view-list');
