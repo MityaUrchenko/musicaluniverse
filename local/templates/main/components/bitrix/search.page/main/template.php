@@ -8,63 +8,49 @@ $this->setFrameMode(true);
 
 
 
-
-$arCloudParams = array(
-        "SEARCH" => $arResult["REQUEST"]["~QUERY"],
-        "TAGS" => $arResult["REQUEST"]["~TAGS"],
-        "CHECK_DATES" => $arParams["CHECK_DATES"],
-        "arrFILTER" => $arParams["arrFILTER"],
-        "SORT" => $arParams["TAGS_SORT"],
-        "PAGE_ELEMENTS" => $arParams["TAGS_PAGE_ELEMENTS"],
-        "PERIOD" => $arParams["TAGS_PERIOD"],
-        "URL_SEARCH" => $arParams["TAGS_URL_SEARCH"],
-        "TAGS_INHERIT" => $arParams["TAGS_INHERIT"],
-        "FONT_MAX" => $arParams["FONT_MAX"],
-        "FONT_MIN" => $arParams["FONT_MIN"],
-        "COLOR_NEW" => $arParams["COLOR_NEW"],
-        "COLOR_OLD" => $arParams["COLOR_OLD"],
-        "PERIOD_NEW_TAGS" => $arParams["PERIOD_NEW_TAGS"],
-        "SHOW_CHAIN" => $arParams["SHOW_CHAIN"],
-        "COLOR_TYPE" => $arParams["COLOR_TYPE"],
-        "WIDTH" => $arParams["WIDTH"],
-        "CACHE_TIME" => $arParams["CACHE_TIME"],
-        "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-        "RESTART" => $arParams["RESTART"],
-);
-
-if(is_array($arCloudParams["arrFILTER"]))
-{
-    foreach($arCloudParams["arrFILTER"] as $strFILTER)
-    {
-        if($strFILTER=="main")
-        {
-            $arCloudParams["arrFILTER_main"] = $arParams["arrFILTER_main"];
-        }
-        elseif($strFILTER=="forum" && IsModuleInstalled("forum"))
-        {
-            $arCloudParams["arrFILTER_forum"] = $arParams["arrFILTER_forum"];
-        }
-        elseif(mb_strpos($strFILTER, "iblock_") === 0)
-        {
-            if (isset($arParams["arrFILTER_".$strFILTER]) && is_array($arParams["arrFILTER_".$strFILTER]))
-            {
-                foreach($arParams["arrFILTER_".$strFILTER] as $strIBlock)
-                    $arCloudParams["arrFILTER_".$strFILTER] = $arParams["arrFILTER_".$strFILTER];
+if($arParams["SHOW_TAGS_CLOUD"] == "Y") {
+    $arCloudParams = [
+            "SEARCH" => $arResult["REQUEST"]["~QUERY"],
+            "TAGS" => $arResult["REQUEST"]["~TAGS"],
+            "CHECK_DATES" => $arParams["CHECK_DATES"],
+            "arrFILTER" => $arParams["arrFILTER"],
+            "SORT" => $arParams["TAGS_SORT"],
+            "PAGE_ELEMENTS" => $arParams["TAGS_PAGE_ELEMENTS"],
+            "PERIOD" => $arParams["TAGS_PERIOD"],
+            "URL_SEARCH" => $arParams["TAGS_URL_SEARCH"],
+            "TAGS_INHERIT" => $arParams["TAGS_INHERIT"],
+            "FONT_MAX" => $arParams["FONT_MAX"],
+            "FONT_MIN" => $arParams["FONT_MIN"],
+            "COLOR_NEW" => $arParams["COLOR_NEW"],
+            "COLOR_OLD" => $arParams["COLOR_OLD"],
+            "PERIOD_NEW_TAGS" => $arParams["PERIOD_NEW_TAGS"],
+            "SHOW_CHAIN" => $arParams["SHOW_CHAIN"],
+            "COLOR_TYPE" => $arParams["COLOR_TYPE"],
+            "WIDTH" => $arParams["WIDTH"],
+            "CACHE_TIME" => $arParams["CACHE_TIME"],
+            "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+            "RESTART" => $arParams["RESTART"],
+    ];
+    if (is_array($arCloudParams["arrFILTER"])) {
+        foreach ($arCloudParams["arrFILTER"] as $strFILTER) {
+            if ($strFILTER == "main") {
+                $arCloudParams["arrFILTER_main"] = $arParams["arrFILTER_main"];
+            } else if ($strFILTER == "forum" && IsModuleInstalled("forum")) {
+                $arCloudParams["arrFILTER_forum"] = $arParams["arrFILTER_forum"];
+            } else if (mb_strpos($strFILTER, "iblock_") === 0) {
+                if (isset($arParams["arrFILTER_" . $strFILTER]) && is_array($arParams["arrFILTER_" . $strFILTER])) {
+                    foreach ($arParams["arrFILTER_" . $strFILTER] as $strIBlock)
+                        $arCloudParams["arrFILTER_" . $strFILTER] = $arParams["arrFILTER_" . $strFILTER];
+                }
+            } else if ($strFILTER == "blog") {
+                $arCloudParams["arrFILTER_blog"] = $arParams["arrFILTER_blog"];
+            } else if ($strFILTER == "socialnetwork") {
+                $arCloudParams["arrFILTER_socialnetwork"] = $arParams["arrFILTER_socialnetwork"];
             }
         }
-        elseif($strFILTER=="blog")
-        {
-            $arCloudParams["arrFILTER_blog"] = $arParams["arrFILTER_blog"];
-        }
-        elseif($strFILTER=="socialnetwork")
-        {
-            $arCloudParams["arrFILTER_socialnetwork"] = $arParams["arrFILTER_socialnetwork"];
-        }
     }
+    $APPLICATION->IncludeComponent("bitrix:search.tags.cloud", ".default", $arCloudParams, $component);
 }
-
-$APPLICATION->IncludeComponent("bitrix:search.tags.cloud", ".default", $arCloudParams, $component);
-
 ?>
 
 <form action="" method="get" class="search-page-form mb-4 d-flex align-items-center gap-2">
