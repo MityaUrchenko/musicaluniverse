@@ -268,6 +268,15 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
         <?php elseif (!empty($arResult["SEARCH"])): ?>
             <?php if ($arParams["DISPLAY_TOP_PAGER"] != "N") echo $arResult["NAV_STRING"]; ?>
 
+            <div class="view-toggle mb-4 text-end">
+                <button type="button" id="view-grid" class="btn btn-light me-1 active" title="Карточки">
+                    <i class="fas fa-th"></i> Карточки
+                </button>
+                <button type="button" id="view-list" class="btn btn-light" title="Список">
+                    <i class="fas fa-list"></i> Список
+                </button>
+            </div>
+
             <?php
             // Группировка по инфоблоку. Результаты уже отсортированы по релевантности (rank).
             // Из каждой группы берём максимум 6 самых релевантных.
@@ -290,7 +299,7 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
             <?php foreach ($grouped as $groupName => $items): ?>
                 <h2 class="mb-4"><?= htmlspecialcharsbx($groupName) ?></h2>
 
-                <div id="items-container" class="news-list news-list__3-columns view-grid mb-5">
+                <div class="items-container news-list news-list__3-columns view-grid mb-5">
                     <?php foreach ($items as $arItem): ?>
                         <div class="card" id="search-item-<?= (int)$arItem["ITEM_ID"] ?>">
 
@@ -381,5 +390,46 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
 
     document.addEventListener('DOMContentLoaded', function () {
         onIblockChange();
+
+        // Переключение вида: плитка / список (как в шаблоне новостей)
+        var containers = document.querySelectorAll('.items-container');
+        var btnGrid = document.getElementById('view-grid');
+        var btnList = document.getElementById('view-list');
+
+        if (btnGrid && btnList && containers.length) {
+            var savedView = localStorage.getItem('viewMode') || 'grid';
+
+            containers.forEach(function (container) {
+                container.classList.remove('view-grid', 'view-list');
+                container.classList.add('view-' + savedView);
+            });
+            if (savedView === 'list') {
+                btnList.classList.add('active');
+                btnGrid.classList.remove('active');
+            } else {
+                btnGrid.classList.add('active');
+                btnList.classList.remove('active');
+            }
+
+            btnGrid.addEventListener('click', function () {
+                containers.forEach(function (container) {
+                    container.classList.remove('view-list');
+                    container.classList.add('view-grid');
+                });
+                btnGrid.classList.add('active');
+                btnList.classList.remove('active');
+                localStorage.setItem('viewMode', 'grid');
+            });
+
+            btnList.addEventListener('click', function () {
+                containers.forEach(function (container) {
+                    container.classList.remove('view-grid');
+                    container.classList.add('view-list');
+                });
+                btnList.classList.add('active');
+                btnGrid.classList.remove('active');
+                localStorage.setItem('viewMode', 'list');
+            });
+        }
     });
 </script>

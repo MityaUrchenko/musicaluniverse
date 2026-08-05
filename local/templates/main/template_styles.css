@@ -229,6 +229,31 @@ header, footer {
     line-height: 19px;
 }
 
+/* View toggle (карточки / список) */
+.view-toggle .btn-light {
+    background-color: var(--element-bg);
+    border: 1px solid transparent;
+    color: var(--main-text-color);
+    border-radius: 2rem;
+    padding: 4px 16px;
+}
+
+.view-toggle .btn-light:hover {
+    background-color: #5a5a5a;
+    color: var(--main-text-color);
+    border-color: transparent;
+}
+
+.view-toggle .btn-light.active {
+    background-color: var(--button-bg-color);
+    color: var(--third-text-color);
+    border-color: transparent;
+}
+
+.view-toggle .btn-light.active:hover {
+    background-color: var(--white-bg);
+    color: var(--third-text-color);
+}
 
 .news-list.view-grid {
     display: grid;
