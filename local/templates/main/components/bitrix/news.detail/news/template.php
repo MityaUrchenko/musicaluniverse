@@ -22,7 +22,6 @@ if (in_array($arResult["ID"], $arLikedElements)) {
 
 ?>
 
-<div class="page__main mu-content-page">
     <div class="mu-container" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
         <span class="mu-content-page__date"><?= $arResult["ACTIVE_FROM"] ?: $arResult["DATE_CREATE"] ?></span>
         <div class="mu-content-page__top position-relative">
@@ -78,5 +77,4 @@ if (in_array($arResult["ID"], $arLikedElements)) {
             </div>
         </div>
     </div>
-</div>
 

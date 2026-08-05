@@ -90,7 +90,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
  */?>
 
 <div class="container">
-    <div class="header">Календарь событий</div>
+    <div class="header">Афиша</div>
     <? $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"calendar", 

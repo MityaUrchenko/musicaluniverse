@@ -14,10 +14,10 @@ $this->setFrameMode(true);
 ?>
 
 <div>
+    <? if ($arParams["DISPLAY_TOP_PAGER"]): ?>
+        <?= $arResult["NAV_STRING"] ?><br/>
+    <? endif; ?>
     <div id="items-container" class="news-list view-grid mb-4">
-        <? if ($arParams["DISPLAY_TOP_PAGER"]): ?>
-            <?= $arResult["NAV_STRING"] ?><br/>
-        <? endif; ?>
 
         <? foreach ($arResult["ITEMS"] as $key => $arItem): ?>
             <?
@@ -85,11 +85,11 @@ $this->setFrameMode(true);
             </div>
         <? endforeach; ?>
 
-
-        <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
-            <?= $arResult["NAV_STRING"] ?>
-        <? endif; ?>
     </div>
+
+    <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
+        <?= $arResult["NAV_STRING"] ?>
+    <? endif; ?>
     <? if (count(explode("/", $APPLICATION->GetCurDir())) <= 3 && $APPLICATION->GetCurDir() != $arResult["LIST_PAGE_URL"]) { ?>
         <div class="text-center mt-4">
             <a href="<?= $arResult["LIST_PAGE_URL"] ?>" class="btn btn-secondary py-2 px-4">Показать больше</a>

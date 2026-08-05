@@ -24,7 +24,7 @@ $this->setFrameMode(true);
 $template = "news";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_ARTICLES) $template = "articles";
 if($arParams["IBLOCK_ID"] == IBLOCK_ID_SPECIAL) $template = "special";
-if($arParams["IBLOCK_ID"] == IBLOCK_ID_PERSONALITIES) $template = "personalities";
+//if($arParams["IBLOCK_ID"] == IBLOCK_ID_PERSONALITIES) $template = "personalities";
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	$template,

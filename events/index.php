@@ -11,9 +11,9 @@ $APPLICATION->IncludeComponent(
 	"news", 
 	array(
 		"IBLOCK_TYPE" => "content",
-		"IBLOCK_ID" => "1",
+		"IBLOCK_ID" => "6",
 		"TEMPLATE_THEME" => "blue",
-		"NEWS_COUNT" => "20",
+		"NEWS_COUNT" => "999",
 		"USE_SEARCH" => "N",
 		"USE_RSS" => "N",
 		"NUM_NEWS" => "20",
@@ -40,7 +40,7 @@ $APPLICATION->IncludeComponent(
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"DISPLAY_PANEL" => "Y",
-		"SET_TITLE" => "Y",
+		"SET_TITLE" => "N",
 		"SET_STATUS_404" => "Y",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -118,6 +118,14 @@ $APPLICATION->IncludeComponent(
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"SHOW_404" => "N",
 		"MESSAGE_404" => "",
+		"FILTER_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"FILTER_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",

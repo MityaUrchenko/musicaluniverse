@@ -7,13 +7,13 @@ $arrFilter = [];
 $arrFilter = array_merge($arrFilter, $countryFilter);
 
 $APPLICATION->IncludeComponent(
-	"bitrix:news",
-	"news",
+	"bitrix:news", 
+	"news", 
 	array(
 		"IBLOCK_TYPE" => "content",
-		"IBLOCK_ID" => "9",
+		"IBLOCK_ID" => "7",
 		"TEMPLATE_THEME" => "blue",
-		"NEWS_COUNT" => "20",
+		"NEWS_COUNT" => "999",
 		"USE_SEARCH" => "N",
 		"USE_RSS" => "N",
 		"NUM_NEWS" => "20",
@@ -25,8 +25,8 @@ $APPLICATION->IncludeComponent(
 		"USE_FILTER" => "Y",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
-		"SORT_BY2" => "SORT",
-		"SORT_ORDER2" => "ASC",
+		"SORT_BY2" => "ID",
+		"SORT_ORDER2" => "DESC",
 		"CHECK_DATES" => "Y",
 		"SEF_MODE" => "Y",
 		"SEF_FOLDER" => "/news/",
@@ -62,10 +62,12 @@ $APPLICATION->IncludeComponent(
 		),
 		"LIST_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
-			3 => "",
+			1 => "LIKES",
+			2 => "COUNTRY",
+			3 => "CARD_SPAN",
+			4 => "",
 		),
+		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"DISPLAY_NAME" => "Y",
 		"META_KEYWORDS" => "-",
@@ -86,8 +88,8 @@ $APPLICATION->IncludeComponent(
 		),
 		"DETAIL_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
+			1 => "LIKES",
+			2 => "COUNTRY",
 			3 => "",
 		),
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
@@ -117,6 +119,14 @@ $APPLICATION->IncludeComponent(
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"SHOW_404" => "N",
 		"MESSAGE_404" => "",
+		"FILTER_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"FILTER_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",

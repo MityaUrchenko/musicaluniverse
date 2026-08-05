@@ -30,7 +30,7 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Организаторы",
-		"/managers/",
+		"/organizers/",
 		Array(), 
 		Array(), 
 		"" 

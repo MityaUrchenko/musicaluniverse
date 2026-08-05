@@ -11,7 +11,7 @@ $APPLICATION->IncludeComponent(
 	"news",
 	array(
 		"IBLOCK_TYPE" => "content",
-		"IBLOCK_ID" => "9",
+		"IBLOCK_ID" => "10",
 		"TEMPLATE_THEME" => "blue",
 		"NEWS_COUNT" => "20",
 		"USE_SEARCH" => "N",
