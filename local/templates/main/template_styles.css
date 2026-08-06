@@ -1111,3 +1111,24 @@ footer .footer-phone {
 .personalities-list .card-img-container {
     height: 350px;
 }
+
+
+/* Personal profile: blocks height by content, not stretched */
+.mu-personal__blocks {
+    align-items: start;
+}
+
+.mu-personal__block {
+    height: auto;
+    align-self: start;
+}
+
+.mu-personal__block-group {
+    align-self: start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mu-personal__block-group .mu-personal__block {
+    margin-top: 0;
+}
