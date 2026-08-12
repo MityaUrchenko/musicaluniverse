@@ -2,13 +2,13 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новости");
 
-global $countryFilter;
+global $cityFilter;
 $arrFilter = [];
-$arrFilter = array_merge($arrFilter, $countryFilter);
+$arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 
 $APPLICATION->IncludeComponent(
-	"bitrix:news", 
-	"news", 
+	"bitrix:news",
+	"news",
 	array(
 		"IBLOCK_TYPE" => "content",
 		"IBLOCK_ID" => "7",
