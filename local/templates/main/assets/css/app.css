@@ -1641,7 +1641,10 @@ label.error {
 
 .mu-select_round .mu-select__toggle-wrap {
     border-radius: 20px;
-    padding: 10px 30px 10px 24px
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    height: 30px;
 }
 
 .mu-select_header .mu-select__toggle-wrap {
@@ -1697,7 +1700,7 @@ label.error {
     height: 6px;
     content: "";
     position: absolute;
-    top: 13px;
+    top: 10px;
     right: 10px;
     border: 2px solid #f9cb74;
     border-width: 2px 2px 0 0;
