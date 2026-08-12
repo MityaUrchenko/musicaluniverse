@@ -55,6 +55,9 @@ if($arGroupOfUser = $groupsOfUser->fetch()) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/mu_city.php';
 MuCity::init();
 
+// Отладка: ?city_debug=1 — жёлтый блок вверху страницы
+//$muCityDebugHtml = MuCity::renderDebug();
+
 global $cities, $cityFilter, $countryFilter;
 $cities = MuCity::getCities();
 // Фильтр по городу для разделов с PROPERTY_CITY (афиша, события, сцены…)
@@ -88,6 +91,7 @@ $countryFilter = [];
 <?php
 include(__DIR__ . '/svg.php');
 ?>
+<?= $muCityDebugHtml ?? '' ?>
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <div class="wrapper d-flex flex-column" id="bx_eshop_wrap">
     <header class="mu-header">
