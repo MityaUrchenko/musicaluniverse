@@ -56,7 +56,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/mu_city.p
 MuCity::init();
 
 // Отладка: ?city_debug=1 — жёлтый блок вверху страницы
-//$muCityDebugHtml = MuCity::renderDebug();
+$muCityDebugHtml = MuCity::renderDebug();
 
 global $cities, $cityFilter, $countryFilter;
 $cities = MuCity::getCities();

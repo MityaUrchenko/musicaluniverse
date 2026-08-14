@@ -92,7 +92,7 @@ $this->setFrameMode(true);
     <? endif; ?>
     <? if (count(explode("/", $APPLICATION->GetCurDir())) <= 3 && $APPLICATION->GetCurDir() != $arResult["LIST_PAGE_URL"]) { ?>
         <div class="text-center mt-4">
-            <a href="<?= $arResult["LIST_PAGE_URL"] ?>" class="btn btn-secondary py-2 px-4">Показать больше</a>
+            <a href="<?= $arResult["LIST_PAGE_URL"] ?>" class="btn btn-secondary">Показать больше</a>
         </div>
     <? } ?>
 </div>

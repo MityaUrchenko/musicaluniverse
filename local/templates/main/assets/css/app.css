@@ -2395,7 +2395,7 @@ label.error {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    gap: 3.5%
+    gap: 30px
 }
 
 .mu-header__logo {
@@ -2438,8 +2438,8 @@ label.error {
 }
 
 .mu-header__row:first-child {
-    grid-template-columns:-webkit-max-content 1fr -webkit-max-content;
-    grid-template-columns:max-content 1fr max-content
+    grid-template-columns: -webkit-max-content 1fr -webkit-max-content 100px;
+    grid-template-columns: max-content 1fr max-content;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2450,7 +2450,7 @@ label.error {
 }
 
 .mu-header__row:last-child {
-    grid-template-columns:1fr 178px 100px
+    grid-template-columns: 1fr max-content max-content
 }
 
 @media screen and (max-width: 1024px) {

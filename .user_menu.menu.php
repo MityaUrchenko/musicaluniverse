@@ -69,6 +69,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array("icon"=>"person"), 
 		"" 
-	)
+	),
+    Array(
+        "Умная лента",
+        "/news-feed/",
+        Array(),
+        Array("icon"=>"base"),
+        ""
+    )
 );
 ?>
