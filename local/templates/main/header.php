@@ -56,7 +56,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/mu_city.p
 MuCity::init();
 
 // Отладка: ?city_debug=1 — жёлтый блок вверху страницы
-$muCityDebugHtml = MuCity::renderDebug();
+//$muCityDebugHtml = MuCity::renderDebug();
 
 global $cities, $cityFilter, $countryFilter;
 $cities = MuCity::getCities();
@@ -136,6 +136,40 @@ include(__DIR__ . '/svg.php');
                                 ),
                                 false
                         ); ?>
+                        <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
+                            <?
+                            $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+                            $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
+                            $uri->deleteParams(['city', 'country']);
+                            $uriAll = clone $uri;
+                            $uriAll->addParams(['city' => 'all']);
+                            $cityLabel = MuCity::getName() ?: 'Все города';
+                            ?>
+                            <div class="mu-select__toggle-wrap" data-type="toggle">
+                                <svg class="">
+                                    <use xlink:href="#location"></use>
+                                </svg>
+                                <div class="mu-select__toggle"
+                                     data-default-text="<?= htmlspecialcharsbx($cityLabel) ?>"><?= htmlspecialcharsbx($cityLabel) ?></div>
+                            </div>
+                            <div class="mu-select__drop">
+                                <a href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>" class="mu-select__item" data-type="item" data-id="city-all">
+                                    <span class="mu-select__item-text">Все города</span>
+                                </a>
+                                <?php foreach ($cities as $key => $cityName):
+                                    $uriCity = clone $uri;
+                                    $uriCity->addParams(['city' => $key]);
+                                    ?>
+                                    <a href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"
+                                       class="mu-select__item"
+                                       data-type="item"
+                                       data-id="city-<?= htmlspecialcharsbx($key) ?>">
+                                        <span class="mu-select__item-text"><?= htmlspecialcharsbx($cityName) ?></span>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
                         <?if($USER->isAuthorized()){?>
                             <div class="mu-header__personal js-header-personal">
                                 <span class="mu-header__personal-name"><?=$curUser["NAME"]?></span>
@@ -211,39 +245,6 @@ include(__DIR__ . '/svg.php');
                                 false
                         ); ?>
 
-                        <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
-                            <?
-                            $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-                            $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
-                            $uri->deleteParams(['city', 'country']);
-                            $uriAll = clone $uri;
-                            $uriAll->addParams(['city' => 'all']);
-                            $cityLabel = MuCity::getName() ?: 'Все города';
-                            ?>
-                            <div class="mu-select__toggle-wrap" data-type="toggle">
-                                <svg class="">
-                                    <use xlink:href="#location"></use>
-                                </svg>
-                                <div class="mu-select__toggle"
-                                     data-default-text="<?= htmlspecialcharsbx($cityLabel) ?>"><?= htmlspecialcharsbx($cityLabel) ?></div>
-                            </div>
-                            <div class="mu-select__drop">
-                                <a href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>" class="mu-select__item" data-type="item" data-id="city-all">
-                                    <span class="mu-select__item-text">Все города</span>
-                                </a>
-                                <?php foreach ($cities as $key => $cityName):
-                                    $uriCity = clone $uri;
-                                    $uriCity->addParams(['city' => $key]);
-                                    ?>
-                                    <a href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"
-                                       class="mu-select__item"
-                                       data-type="item"
-                                       data-id="city-<?= htmlspecialcharsbx($key) ?>">
-                                        <span class="mu-select__item-text"><?= htmlspecialcharsbx($cityName) ?></span>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
                         <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round">
                             <div class="mu-select__toggle-wrap">
                                 <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>

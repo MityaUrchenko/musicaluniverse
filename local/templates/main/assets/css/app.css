@@ -2439,7 +2439,7 @@ label.error {
 
 .mu-header__row:first-child {
     grid-template-columns: -webkit-max-content 1fr -webkit-max-content 100px;
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content 1fr max-content 100px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2450,7 +2450,7 @@ label.error {
 }
 
 .mu-header__row:last-child {
-    grid-template-columns: 1fr max-content max-content
+    grid-template-columns: 1fr 100px
 }
 
 @media screen and (max-width: 1024px) {
