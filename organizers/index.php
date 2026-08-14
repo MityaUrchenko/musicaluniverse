@@ -1,12 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Новости");
-
-global $countryFilter;
-$arrFilter = [];
-$arrFilter = array_merge($arrFilter, $countryFilter);
-
-$APPLICATION->IncludeComponent(
+$APPLICATION->SetTitle("Организаторы");
+?>
+<?$APPLICATION->IncludeComponent(
 	"bitrix:news",
 	"news",
 	array(

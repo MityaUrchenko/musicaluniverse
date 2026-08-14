@@ -62,8 +62,15 @@ global $cities, $cityFilter, $countryFilter;
 $cities = MuCity::getCities();
 // Фильтр по городу для разделов с PROPERTY_CITY (афиша, события, сцены…)
 $cityFilter = MuCity::getFilter();
+
+global $cityFilter;
+$arrFilter = [];
+$arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
+
+
 // Старый фильтр по стране отключён (новости/статьи/персоналии без привязки к городу)
 $countryFilter = [];
+
 ?><!DOCTYPE html>
 <html xml:lang="<?=LANGUAGE_ID?>" lang="<?=LANGUAGE_ID?>">
 <head>

@@ -39,16 +39,8 @@ $curDir = $APPLICATION->GetCurDir();
                 array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
             );
             ?>
-            <?
-            $width = "col-lg-3";
-            $wideCard = "";
-            if($arItem['PROPERTIES']['CARD_SPAN']['VALUE']) {
-                $width = "col-lg-" . $arItem['PROPERTIES']['CARD_SPAN']['VALUE']*3;
-                //$wideCard = "wide-card";
-            }
-            ?>
-            <div class="d-flex mb-4 col-12 col-md-6 <?=$width?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" data-date="<?=$arItem["ACTIVE_FROM"]?>">
-                <div class="card <?=$wideCard?>">
+            <div class="d-flex mb-4 col-12 col-md-6" id="<?=$this->GetEditAreaId($arItem['ID']);?>" data-date="<?=$arItem["ACTIVE_FROM"]?>">
+                <div class="card">
 
                     <button class="favor <?=in_array($arItem['ID'], $_SESSION['favorites'])?"active":""?>" data-item="<?=$arItem['ID']?>"></button>
 

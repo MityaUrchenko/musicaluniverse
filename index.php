@@ -1,10 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Главная");
-
-global $countryFilter;
-$arrFilter = [];
-$arrFilter = array_merge($arrFilter, $countryFilter);
 ?>
 
 <?php /*
@@ -93,7 +89,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
     <div class="header">Афиша</div>
     <? $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-	"calendar", 
+	"afisha",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -120,7 +116,7 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 			2 => "DATE_ACTIVE_TO",
 			3 => "",
 		),
-		"FILTER_NAME" => "arrFilter",
+		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "1",
 		"IBLOCK_TYPE" => "content",
@@ -140,11 +136,8 @@ $arrFilter = array_merge($arrFilter, $countryFilter);
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
-			0 => "vote_count",
-			1 => "rating",
-			2 => "vote_sum",
-			3 => "TYPE",
-			4 => "",
+			1 => "TYPE",
+			2 => "",
 		),
 		"SEARCH_PAGE" => "/search/",
 		"SET_BROWSER_TITLE" => "N",

@@ -1,12 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новости");
-
-global $countryFilter;
-$arrFilter = [];
-$arrFilter = array_merge($arrFilter, $countryFilter);
-
-$APPLICATION->IncludeComponent(
+?>
+<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"news", 
 	array(
@@ -63,9 +59,8 @@ $APPLICATION->IncludeComponent(
 		"LIST_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
 			1 => "LIKES",
-			2 => "COUNTRY",
-			3 => "CARD_SPAN",
-			4 => "",
+			2 => "CITY",
+			3 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
@@ -89,7 +84,7 @@ $APPLICATION->IncludeComponent(
 		"DETAIL_PROPERTY_CODE" => array(
 			0 => "AUTHOR",
 			1 => "LIKES",
-			2 => "COUNTRY",
+			2 => "CITY",
 			3 => "",
 		),
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",

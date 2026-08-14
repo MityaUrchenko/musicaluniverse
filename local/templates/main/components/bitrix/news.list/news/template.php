@@ -38,15 +38,7 @@ $this->setFrameMode(true);
                     ["CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')]
             );
             ?>
-            <?
-            $width = "col-lg-3";
-            $wideCard = "";
-            if ($arItem['PROPERTIES']['CARD_SPAN']['VALUE']) {
-                $width = "col-lg-" . $arItem['PROPERTIES']['CARD_SPAN']['VALUE'] * 3;
-                //$wideCard = "wide-card";
-            }
-            ?>
-            <div class="card <?= $wideCard ?>" id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
+            <div class="card" id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
                  data-date="<?= $arItem["ACTIVE_FROM"] ?>">
 
                 <button class="favor <?= in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : "" ?>"
