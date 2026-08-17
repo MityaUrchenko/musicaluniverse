@@ -1,6 +1,11 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Мероприятия");
+
+global $cityFilter;
+$arrFilter = [];
+$arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
+
 ?>
 <?
 $APPLICATION->IncludeComponent(
@@ -8,7 +13,7 @@ $APPLICATION->IncludeComponent(
 	"news",
 	array(
 		"IBLOCK_TYPE" => "content",
-		"IBLOCK_ID" => "6",
+		"IBLOCK_ID" => "1",
 		"TEMPLATE_THEME" => "blue",
 		"NEWS_COUNT" => "999",
 		"USE_SEARCH" => "N",
@@ -24,7 +29,7 @@ $APPLICATION->IncludeComponent(
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
-		"CHECK_DATES" => "Y",
+		"CHECK_DATES" => "N",
 		"SEF_MODE" => "Y",
 		"SEF_FOLDER" => "/events/",
 		"AJAX_MODE" => "N",

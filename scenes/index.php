@@ -1,6 +1,11 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Сцены");
+
+global $cityFilter;
+$arrFilter = [];
+$arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
+
 ?>
 <?
 $APPLICATION->IncludeComponent(
