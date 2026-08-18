@@ -1054,25 +1054,21 @@ h2 {
     }
 }
 
-.page__main {
-    padding: 40px 0 50px
-}
-
-.mu-container {
+.container {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 50px
+    padding: 40px 0 50px
 }
 
 @media (max-width: 1280px) {
-    .mu-container {
+    .container {
         padding: 0 32px
     }
 }
 
 @media (max-width: 576px) {
-    .mu-container {
+    .container {
         padding: 0 16px
     }
 }
@@ -3581,7 +3577,7 @@ label.error {
 .mu-content-page__title {
     font-weight: 900;
     font-size: 30px;
-    line-height: 41px;
+    line-height: 48px;
     color: #fff460
 }
 

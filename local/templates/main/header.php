@@ -98,7 +98,7 @@ include(__DIR__ . '/svg.php');
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <div class="wrapper d-flex flex-column" id="bx_eshop_wrap">
     <header class="mu-header">
-        <div class="mu-container">
+        <div class="container">
             <div class="mu-header__wrap"><a class="mu-header__logo"
                                             href="/"><img src="<?=SITE_TEMPLATE_PATH?>/assets/img/logo.png"></a>
                 <div class="mu-header__inner">
@@ -447,8 +447,11 @@ include(__DIR__ . '/svg.php');
         </div>
     </header>
 
-    <div class="page__main mu-content-page <?=$curDir == "/"?"main-page":""?>">
-        <?if($curDir != "/"){ ?>
-        <div class="mu-container">
-            <h1 class="page__title"><? $APPLICATION->ShowTitle(false) ?></h1>
-<? } ?>
+    <div class="mu-content-page <?=$curDir == "/"?"main-page":""?>">
+        <?if(count(explode("/",$curDir)) > 2){ ?>
+        <div class="container">
+        <? } ?>
+
+        <?if(count(explode("/",$curDir)) == 3){ ?>
+            <h1 class="header"><? $APPLICATION->ShowTitle(false) ?></h1>
+        <? } ?>

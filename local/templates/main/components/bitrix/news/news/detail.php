@@ -18,7 +18,7 @@ $curDir = $APPLICATION->GetCurDir();
 $template = explode("/", $curDir)[1] == "personalities" ? "personalities" : "news";
 
 $ElementID = $APPLICATION->IncludeComponent(
-    "mu:news_detail_plus_inactive",
+    "bitrix:news.detail",
     $template,
     array(
         "DISPLAY_DATE" => $arParams["DISPLAY_DATE"],

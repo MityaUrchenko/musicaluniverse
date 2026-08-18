@@ -1,13 +1,13 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-    <?if($curDir != "/"){ ?>
-        </div><!--end .page__main-->
-    <?}?>
+    <?if(count(explode("/",$curDir)) > 2){ ?>
+        </div>
+    <? } ?>
 
-    </div><!--end .mu_container-->
+    </div><!--end .mu-content-page-->
 
 	<footer class="py-5">
-			<div class="mu-container">
+			<div class="container">
 				<div class="row mb-5">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="row pr-md-2">

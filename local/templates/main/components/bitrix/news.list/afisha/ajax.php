@@ -62,7 +62,7 @@ $rs = CIBlockElement::GetList(
 
                 <div class="card-img-container">
                     <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
-                        <img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '' ?>" alt="">
+                        <img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '/local/templates/main/assets/img/placeholder.jpg' ?>" alt="">
                     </a>
                     <a class="btn btn-primary" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">Купить <img src="<?= SITE_TEMPLATE_PATH ?>/images/ticket.svg" alt=""></a>
                 </div>

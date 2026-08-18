@@ -50,7 +50,7 @@ $this->setFrameMode(true);
                     <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
                         <img
                                 class=""
-                                src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '/local/templates/main/assets/img/placeholder.jpg'?>"
                                 alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
                                 title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
                         />
