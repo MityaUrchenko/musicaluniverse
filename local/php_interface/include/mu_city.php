@@ -182,12 +182,32 @@ class MuCity
         return ['=PROPERTY_CITY' => $name];
     }
 
+    /**
+     * Значение cookie для «все города» (пустая строка в cookie часто теряется).
+     */
+    const COOKIE_ALL = '__all__';
+
+    /**
+     * Записать cookie так же, как favorites в header (надёжно на Beget).
+     */
+    protected static function writeCookie($value)
+    {
+        $expire = time() + self::COOKIE_TTL;
+        $path = '/';
+        // Без domain и Secure — как рабочий cookie favorites на этом хостинге
+        $ok = setcookie(self::COOKIE_NAME, $value, $expire, $path);
+        // Чтобы значение было доступно в этом же запросе
+        $_COOKIE[self::COOKIE_NAME] = $value;
+        self::log('cookie writeCookie()', ['value' => $value, 'ok' => $ok, 'expire' => $expire]);
+        return $ok;
+    }
+
     public static function set($code, $byUser = false)
     {
         $code = trim((string)$code);
         $cities = self::getCities();
 
-        if ($code === '' || $code === 'all') {
+        if ($code === '' || $code === 'all' || $code === self::COOKIE_ALL) {
             self::$currentCode = '';
         } elseif (isset($cities[$code])) {
             self::$currentCode = $code;
@@ -198,21 +218,11 @@ class MuCity
 
         $_SESSION[self::SESSION_KEY] = self::$currentCode;
 
+        // Всегда пишем cookie при ручном выборе ИЛИ при успешном автоопределении.
+        // «Все города» храним как __all__, иначе браузер/PHP могут отбросить пустое значение.
         if ($byUser || self::$currentCode !== '') {
-            $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
-            setcookie(
-                self::COOKIE_NAME,
-                self::$currentCode,
-                [
-                    'expires'  => time() + self::COOKIE_TTL,
-                    'path'     => '/',
-                    'domain'   => '',
-                    'secure'   => $secure,
-                    'httponly' => false,
-                    'samesite' => 'Lax',
-                ]
-            );
-            self::log('cookie written', ['value' => self::$currentCode, 'byUser' => $byUser]);
+            $cookieVal = (self::$currentCode === '') ? self::COOKIE_ALL : self::$currentCode;
+            self::writeCookie($cookieVal);
         }
 
         self::log('set() done', [
@@ -235,38 +245,56 @@ class MuCity
             'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? '',
             'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR'] ?? '',
             'HTTP_X_FORWARDED_FOR' => $_SERVER['HTTP_X_FORWARDED_FOR'] ?? '',
+            'COOKIE_RAW' => $_COOKIE[self::COOKIE_NAME] ?? '(not set)',
+            'SESSION_RAW' => $_SESSION[self::SESSION_KEY] ?? '(not set)',
         ]);
 
         $cities = self::getCities();
 
+        // 1. Ручной выбор из URL — сохраняем в cookie и больше не трогаем GeoIP
         if (isset($_GET['city'])) {
             self::log('source: GET[city]', $_GET['city']);
             self::set($_GET['city'], true);
             return;
         }
 
+        // 2. Cookie — главный источник после первого определения/выбора
         if (array_key_exists(self::COOKIE_NAME, $_COOKIE)) {
             $code = (string)$_COOKIE[self::COOKIE_NAME];
             self::log('source: COOKIE', $code);
-            if ($code === '' || isset($cities[$code])) {
-                self::$currentCode = $code;
-                $_SESSION[self::SESSION_KEY] = $code;
+
+            if ($code === self::COOKIE_ALL || $code === '' || $code === 'all') {
+                self::$currentCode = '';
+                $_SESSION[self::SESSION_KEY] = '';
+                self::log('cookie = all cities');
                 return;
             }
-            self::log('cookie value not in cities list, ignore');
+
+            if (isset($cities[$code])) {
+                self::$currentCode = $code;
+                $_SESSION[self::SESSION_KEY] = $code;
+                self::log('cookie city applied', ['code' => $code, 'name' => $cities[$code]]);
+                return;
+            }
+
+            self::log('cookie value not in cities list, ignore and continue');
         }
 
-        if (!empty($_SESSION[self::SESSION_KEY])) {
+        // 3. Сессия (на случай, если cookie ещё не пришла, но в этой сессии уже выбирали)
+        if (isset($_SESSION[self::SESSION_KEY]) && $_SESSION[self::SESSION_KEY] !== null && $_SESSION[self::SESSION_KEY] !== '') {
             $code = (string)$_SESSION[self::SESSION_KEY];
             self::log('source: SESSION', $code);
             if (isset($cities[$code])) {
                 self::$currentCode = $code;
+                // Восстанавливаем cookie, если сессия есть, а cookie пропала
+                self::writeCookie($code);
                 return;
             }
             self::log('session value not in cities list, ignore');
         }
 
-        self::log('source: GeoIP auto-detect');
+        // 4. Только если города ещё не было — определяем по IP
+        self::log('source: GeoIP auto-detect (no cookie/session)');
         $detected = self::detectByIp();
         if ($detected !== null && $detected !== '') {
             self::log('GeoIP matched city code', $detected);
@@ -274,7 +302,8 @@ class MuCity
             return;
         }
 
-        self::log('GeoIP did not match any city → Все города');
+        // Не определили — «Все города», cookie НЕ ставим, чтобы при следующем визите снова попробовать GeoIP
+        self::log('GeoIP did not match any city → Все города (no cookie)');
         self::$currentCode = '';
         $_SESSION[self::SESSION_KEY] = '';
     }
