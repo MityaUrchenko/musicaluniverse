@@ -8,8 +8,8 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 
 ?>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:news",
-	"news",
+	"bitrix:news", 
+	"news", 
 	array(
 		"IBLOCK_TYPE" => "content",
 		"IBLOCK_ID" => "9",
@@ -30,7 +30,7 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 		"SORT_ORDER2" => "ASC",
 		"CHECK_DATES" => "Y",
 		"SEF_MODE" => "Y",
-		"SEF_FOLDER" => "/news/",
+		"SEF_FOLDER" => "/compositions/",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_SHADOW" => "Y",
 		"AJAX_OPTION_JUMP" => "N",
@@ -62,10 +62,11 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 			9 => "",
 		),
 		"LIST_PROPERTY_CODE" => array(
-			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
-			3 => "",
+			0 => "",
+			1 => "AUTHOR",
+			2 => "CATEGORY",
+			3 => "LIKES",
+			4 => "",
 		),
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"DISPLAY_NAME" => "Y",
@@ -86,10 +87,11 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 			9 => "",
 		),
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "AUTHOR",
-			1 => "CATEGORY",
-			2 => "LIKES",
-			3 => "",
+			0 => "",
+			1 => "AUTHOR",
+			2 => "CATEGORY",
+			3 => "LIKES",
+			4 => "",
 		),
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
@@ -118,6 +120,15 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"SHOW_404" => "N",
 		"MESSAGE_404" => "",
+		"FILTER_NAME" => "",
+		"FILTER_FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"FILTER_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",
