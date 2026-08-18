@@ -39,7 +39,9 @@ $this->setFrameMode(true);
             );
             ?>
             <div class="card" id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
-                 data-date="<?= $arItem["ACTIVE_FROM"] ?>">
+                 data-date="<?= $arItem["ACTIVE_FROM"] ?>"
+                style="grid-column: span <?=$arItem["PROPERTIES"]["CARD_WIDTH"]["VALUE"]?:"1"?>;"
+            >
 
                 <button class="favor <?= in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : "" ?>"
                         data-item="<?= $arItem['ID'] ?>"></button>
