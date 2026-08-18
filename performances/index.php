@@ -9,8 +9,8 @@ $arrFilter = array_merge($arrFilter, is_array($cityFilter) ? $cityFilter : []);
 ?>
 <?
 $APPLICATION->IncludeComponent(
-	"bitrix:news",
-	"news",
+	"bitrix:news", 
+	"news", 
 	array(
 		"IBLOCK_TYPE" => "content",
 		"IBLOCK_ID" => "7",
@@ -31,7 +31,7 @@ $APPLICATION->IncludeComponent(
 		"SORT_ORDER2" => "DESC",
 		"CHECK_DATES" => "Y",
 		"SEF_MODE" => "Y",
-		"SEF_FOLDER" => "/news/",
+		"SEF_FOLDER" => "/performances/",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_SHADOW" => "Y",
 		"AJAX_OPTION_JUMP" => "N",
@@ -63,9 +63,9 @@ $APPLICATION->IncludeComponent(
 			9 => "",
 		),
 		"LIST_PROPERTY_CODE" => array(
-			0 => "AUTHOR",
-			1 => "LIKES",
-			2 => "CITY",
+			0 => "CITY",
+			1 => "AUTHOR",
+			2 => "LIKES",
 			3 => "",
 		),
 		"FILTER_NAME" => "arrFilter",
@@ -88,9 +88,9 @@ $APPLICATION->IncludeComponent(
 			9 => "",
 		),
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "AUTHOR",
-			1 => "LIKES",
-			2 => "CITY",
+			0 => "CITY",
+			1 => "AUTHOR",
+			2 => "LIKES",
 			3 => "",
 		),
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
