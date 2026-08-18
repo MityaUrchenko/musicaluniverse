@@ -59,21 +59,17 @@ node_modules
 ## themes
 /bitrix/themes
 
-*.log
 log/nps/
 
 .env
 local/logs/
-local/vendor/
 assets/.dist
 
-/auth_tmp.php
 
 sitemap.xml
 sitemaps/*
 *.log
 *.txt
+*.txt
 *.json
 
-.vscode
-/.vscode/
