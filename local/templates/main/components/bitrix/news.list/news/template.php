@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 
-<div>
+<div class="mb-5">
     <? if ($arParams["DISPLAY_TOP_PAGER"]): ?>
         <?= $arResult["NAV_STRING"] ?><br/>
     <? endif; ?>
@@ -38,16 +38,16 @@ $this->setFrameMode(true);
                     ["CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')]
             );
             ?>
-            <div class="card" id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
+            <div class="card card__columns_<?=$arItem["PROPERTIES"]["CARD_WIDTH"]["VALUE"]?>"
+                 id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
                  data-date="<?= $arItem["ACTIVE_FROM"] ?>"
-                style="grid-column: span <?=$arItem["PROPERTIES"]["CARD_WIDTH"]["VALUE"]?:"1"?>;"
             >
 
                 <button class="favor <?= in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : "" ?>"
                         data-item="<?= $arItem['ID'] ?>"></button>
 
                 <div class="card-img-container">
-                    <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+                    <a class="card-img-container__a" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
                         <img
                                 class=""
                                 src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '/local/templates/main/assets/img/placeholder.jpg'?>"

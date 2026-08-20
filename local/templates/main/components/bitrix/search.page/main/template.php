@@ -306,11 +306,9 @@ if ($arParams["SHOW_TAGS_CLOUD"] == "Y") {
                             <button class="favor" data-item="<?= (int)$arItem["ITEM_ID"] ?>"></button>
 
                             <div class="card-img-container">
-                                <?php if (!empty($arItem["PREVIEW_PICTURE"]["SRC"])): ?>
-                                    <a href="<?= $arItem["URL"] ?>">
-                                        <img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>" alt="">
-                                    </a>
-                                <?php endif; ?>
+                                <a class="card-img-container__a" href="<?= $arItem["URL"] ?>">
+                                    <img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '/local/templates/main/assets/img/placeholder.jpg' ?>" alt="">
+                                </a>
                                 <a class="btn btn-primary" href="<?= $arItem["URL"] ?>">Подробнее</a>
                             </div>
 

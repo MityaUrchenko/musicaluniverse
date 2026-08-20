@@ -66,7 +66,7 @@ $months = [
 
 
                         <div class="card-img-container">
-                            <a href="<? echo $arItem["DETAIL_PAGE_URL"] ?>">
+                            <a class="card-img-container__a" href="<? echo $arItem["DETAIL_PAGE_URL"] ?>">
                                 <img src="<?=$arItem["DETAIL_PICTURE"]["SRC"]?>" alt="">
                             </a>
                             <a class="btn btn-primary"

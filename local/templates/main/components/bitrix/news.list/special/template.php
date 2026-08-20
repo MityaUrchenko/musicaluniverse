@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -12,79 +12,74 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-
-<div class="news-list mb-4">
-    <div class="row">
-        <?foreach($arResult["ITEMS"] as $arItem):?>
+<div class="mb-5">
+    <div class="news-list view-grid mb-4" id="items-container">
+        <? foreach ($arResult["ITEMS"] as $arItem): ?>
             <?
-                $this->AddEditAction(
+            $this->AddEditAction(
                     $arItem['ID'],
                     $arItem['EDIT_LINK'],
                     CIBlock::GetArrayByID(
-                        $arItem["IBLOCK_ID"],
-                        "ELEMENT_EDIT"
+                            $arItem["IBLOCK_ID"],
+                            "ELEMENT_EDIT"
                     )
-                );
-                $this->AddDeleteAction(
+            );
+            $this->AddDeleteAction(
                     $arItem['ID'],
                     $arItem['DELETE_LINK'],
                     CIBlock::GetArrayByID(
-                        $arItem["IBLOCK_ID"],
-                        "ELEMENT_DELETE"),
-                    array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
-                );
+                            $arItem["IBLOCK_ID"],
+                            "ELEMENT_DELETE"),
+                    ["CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')]
+            );
             ?>
-            <?
-                $width = "col-lg-6";
-                $wideCard = "wide-card";
-            ?>
-            <div class="d-flex mb-4 col-12 col-md-6 <?=$width?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" data-date="<?=$arItem["ACTIVE_FROM"]?>">
-                <div class="card <?=$wideCard?>">
 
-                    <button class="favor <?=in_array($arItem['ID'], $_SESSION['favorites'])?"active":""?>" data-item="<?=$arItem['ID']?>"></button>
+            <div class="card card__columns_ card__columns_<?= $arItem["PROPERTIES"]["CARD_WIDTH"]["VALUE"] ?: "2" ?>"
+                 id="<?= $this->GetEditAreaId($arItem['ID']); ?>" data-date="<?= $arItem["ACTIVE_FROM"] ?>">
 
-                    <div class="card-img-container">
-                        <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
-                            <img
-                                    class=""
-                                    src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                    alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
-                                    title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                            />
-                        </a>
-                        <a class="btn btn-primary" href="<?echo $arItem["DETAIL_PAGE_URL"]?>">Подробнее</a>
-                    </div>
+                <button class="favor <?= in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : "" ?>"
+                        data-item="<?= $arItem['ID'] ?>"></button>
+
+                <div class="card-img-container">
+                    <a class="card-img-container__a" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+                        <img
+                                class=""
+                                src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?? '/local/templates/main/assets/img/placeholder.jpg' ?>"
+                                alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                        />
+                    </a>
+                    <a class="btn btn-primary" href="<? echo $arItem["DETAIL_PAGE_URL"] ?>">Подробнее</a>
+                </div>
 
 
-                    <div class="card-body d-flex flex-column">
-                        <?if($arParams["DISPLAY_NAME"]!="N" && $arItem["NAME"]):?>
-                            <div class="card-title">
-                                <?if(!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])):?>
-                                    <a href="<?echo $arItem["DETAIL_PAGE_URL"]?>"><?echo $arItem["NAME"]?></a>
-                                <?else:?>
-                                    <?echo $arItem["NAME"]?>
-                                <?endif;?>
-                            </div>
-                        <?endif;?>
+                <div class="card-body d-flex flex-column">
+                    <? if ($arParams["DISPLAY_NAME"] != "N" && $arItem["NAME"]): ?>
+                        <div class="card-title">
+                            <? if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])): ?>
+                                <a href="<? echo $arItem["DETAIL_PAGE_URL"] ?>"><? echo $arItem["NAME"] ?></a>
+                            <? else: ?>
+                                <? echo $arItem["NAME"] ?>
+                            <? endif; ?>
+                        </div>
+                    <? endif; ?>
 
-                        <?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arItem["PREVIEW_TEXT"]):?>
-                            <p class="card-text"><?echo $arItem["PREVIEW_TEXT"];?></p>
-                        <?endif;?>
+                    <? if ($arParams["DISPLAY_PREVIEW_TEXT"] != "N" && $arItem["PREVIEW_TEXT"]): ?>
+                        <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
+                    <? endif; ?>
 
-                        <div class="date-published mt-auto"><?=$arItem["TIMESTAMP_X"]?></div>
-                    </div>
+                    <div class="date-published mt-auto"><?= $arItem["TIMESTAMP_X"] ?></div>
                 </div>
             </div>
-        <?endforeach;?>
+        <? endforeach; ?>
     </div>
-
-    <?if(count(explode("/",$APPLICATION->GetCurDir())) <= 3 && $APPLICATION->GetCurDir() != $arResult["LIST_PAGE_URL"]){?>
+    <? if (count(explode("/", $APPLICATION->GetCurDir())) <= 3 && $APPLICATION->GetCurDir() != $arResult["LIST_PAGE_URL"]) { ?>
         <div class="text-center mt-4">
-            <a href="<?=$arResult["LIST_PAGE_URL"]?>" class="btn btn-secondary">Показать больше</a>
+            <a href="<?= $arResult["LIST_PAGE_URL"] ?>" class="btn btn-secondary">Показать больше</a>
         </div>
-    <?}?>
+    <? } ?>
 
-    <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-        <?=$arResult["NAV_STRING"]?>
-    <?endif;?>
+    <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
+        <?= $arResult["NAV_STRING"] ?>
+    <? endif; ?>
 </div>
