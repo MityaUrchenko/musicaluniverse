@@ -1,5 +1,6 @@
 <?
 $aMenuLinks = Array(
+    /*
 	Array(
 		"Пользователи", 
 		"/admin/users/", 
@@ -48,7 +49,7 @@ $aMenuLinks = Array(
 		Array(), 
 		Array("icon"=>"promo"),
         "CSite::InGroup(array(1,5))"
-    ),
+    ),*/
 	Array(
 		"Личные данные", 
 		"/personal/",
@@ -63,19 +64,19 @@ $aMenuLinks = Array(
 		Array("icon"=>"person"), 
 		"" 
 	),
-	Array(
-		"Выйти", 
-		"/?logout=yes&".bitrix_sessid_get(),
-		Array(), 
-		Array("icon"=>"person"), 
-		"" 
-	),
     Array(
         "Умная лента",
-        "/news-feed/",
+        "/personal/news-feed/",
         Array(),
         Array("icon"=>"base"),
         ""
-    )
+    ),
+	Array(
+        "Выйти",
+        "/?logout=yes&".bitrix_sessid_get(),
+        Array(),
+        Array("icon"=>"person"),
+        ""
+    ),
 );
 ?>

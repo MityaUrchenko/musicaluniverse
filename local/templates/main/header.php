@@ -274,7 +274,7 @@ include(__DIR__ . '/svg.php');
             </div>
         </div>
     </header>
-    <header class="d-none">
+    <header class="mu-header d-none">
         <div class="container">
             <!--region bx-header-->
             <div class="d-flex align-items-stretch flex-column flex-lg-row position-relative">
@@ -377,10 +377,8 @@ include(__DIR__ . '/svg.php');
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <a href="/login" class="btn btn-primary ml-5 header-btn d-none">Войти</a>
 
-                            <a href="/login"
-                               class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
+                            <a href="/login" class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
                         </div>
                         <div class="w-100 mt-2 d-flex align-items-center">
                             <div class="menu-container w-100">
@@ -447,10 +445,8 @@ include(__DIR__ . '/svg.php');
         </div>
     </header>
 
-    <div class="mu-content-page <?=$curDir == "/"?"main-page":""?>">
-        <?if(count(explode("/",$curDir)) > 2){ ?>
-        <div class="container">
-        <? } ?>
+    <div class="mu-content-page<?=$curDir == "/"?"main-page":""?>">
+        <div class="container my-5">
 
         <?if(count(explode("/",$curDir)) == 3){ ?>
             <h1 class="header"><? $APPLICATION->ShowTitle(false) ?></h1>

@@ -1,13 +1,15 @@
 <?
-
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Избранное");
 
-$arrFilter = [];
-$arrFilter['ID'] = $_SESSION['favorites'];
 if($_SESSION['favorites']) {
+    $arrFilter = [];
+    $arrFilter['ID'] = $_SESSION['favorites'];
+    ?>
+    <h1 class="header"><? $APPLICATION->ShowTitle(false) ?></h1>
+    <?php
     $APPLICATION->IncludeComponent(
-        "mu:news_list_from_every_iblock",
+        "mu:news_feed",
         "main",
         array(
             "ACTIVE_DATE_FORMAT" => "d.m.Y",

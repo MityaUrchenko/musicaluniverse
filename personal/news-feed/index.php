@@ -1,10 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Умная лента");
-
-global $countryFilter;
-$arrFilter["!IBLOCK_ID"] = 7;
-//$arrFilter = array_merge($arrFilter, $countryFilter);
+?>
+<h1 class="header"><? $APPLICATION->ShowTitle(false) ?></h1>
+<?php
 $APPLICATION->IncludeComponent(
 	"mu:news_feed",
 	"main", 
