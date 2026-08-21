@@ -5,14 +5,14 @@
         <div id="calendar_dates" class="owl-carousel my-4"></div>
         <script>
             let calendarDates = <?=CUtil::PhpToJSObject($arResult["CALENDAR_DATES"])?>;
-            let firstDate = new Date(calendarDates[0].split('.'))
+            let firstDate = new Date(calendarDates[0].split(' ')[0].split('.'))
             if (firstDate > new Date()) {
                 firstDate = new Date()
             }
 
             firstDate.setDate(1)
 
-            let lastDate = new Date(calendarDates[calendarDates.length - 1].split('.'))
+            let lastDate = new Date(calendarDates[calendarDates.length - 1].split(' ')[0].split('.'))
             if (lastDate < new Date()) {
                 lastDate = new Date()
             }
