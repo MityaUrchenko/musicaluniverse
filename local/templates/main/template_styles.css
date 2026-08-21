@@ -302,7 +302,7 @@ header, footer {
     }
 
     .view-list .card-img-container {
-        width: 220px;
+        width: 200px;
         flex-shrink: 0;
     }
 

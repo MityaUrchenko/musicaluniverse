@@ -1,4 +1,4 @@
-<? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
 /** @var array $arParams */
@@ -15,68 +15,68 @@
 $this->setFrameMode(true);
 ?>
 
-<div class="news-list mb-4">
-    <? foreach($arResult["ITEMS_BY_IBLOCKS"] as $iblockKey => $iblock) { ?>
-        <div class="page__title"><?=$arResult['IBLOCKS'][$iblockKey]['NAME']?></div>
-        <div class="row">
-            <? foreach($iblock as $arItem): ?>
+<div class="mb-5">
+    <? foreach ($arResult["ITEMS_BY_IBLOCKS"] as $iblockKey => $iblock) { ?>
+        <div class="page__title">
+            <a  href="<?= $arResult['IBLOCKS'][$iblockKey]['LIST_PAGE_URL'] ?>"><?= $arResult['IBLOCKS'][$iblockKey]['NAME'] ?></a>
+        </div>
+        <div class="news-list view-grid mb-4">
+            <? foreach ($iblock as $arItem): ?>
                 <?
                 $this->AddEditAction(
-                    $arItem['ID'],
-                    $arItem['EDIT_LINK'],
-                    CIBlock::GetArrayByID(
-                        $arItem["IBLOCK_ID"],
-                        "ELEMENT_EDIT"
-                    )
+                        $arItem['ID'],
+                        $arItem['EDIT_LINK'],
+                        CIBlock::GetArrayByID(
+                                $arItem["IBLOCK_ID"],
+                                "ELEMENT_EDIT"
+                        )
                 );
                 $this->AddDeleteAction(
-                    $arItem['ID'],
-                    $arItem['DELETE_LINK'],
-                    CIBlock::GetArrayByID(
-                        $arItem["IBLOCK_ID"],
-                        "ELEMENT_DELETE"
-                    ),
-                    array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
+                        $arItem['ID'],
+                        $arItem['DELETE_LINK'],
+                        CIBlock::GetArrayByID(
+                                $arItem["IBLOCK_ID"],
+                                "ELEMENT_DELETE"
+                        ),
+                        ["CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')]
                 );
                 ?>
-                <div class="d-flex mb-4 col-12 col-md-6 col-lg-3"
-                     id="<?=$this->GetEditAreaId($arItem['ID']);?>"
-                     data-date="<?=$arItem["ACTIVE_FROM"]?>">
-                    <div class="card">
+                <div class="card"
+                     id="<?= $this->GetEditAreaId($arItem['ID']); ?>"
+                     data-date="<?= $arItem["ACTIVE_FROM"] ?>">
 
-                        <button class="favor <?=in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : ""?>"
-                                data-item="<?=$arItem['ID']?>"></button>
+                    <button class="favor <?= in_array($arItem['ID'], $_SESSION['favorites']) ? "active" : "" ?>"
+                            data-item="<?= $arItem['ID'] ?>"></button>
 
-                        <div class="card-img-container">
-                            <a href="<?=$arItem["DETAIL_PAGE_URL"]?>">
-                                <img
-                                        class=""
-                                        src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
-                                        alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
-                                        title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>"
-                                />
-                            </a>
-                            <a class="btn btn-primary" href="<? echo $arItem["DETAIL_PAGE_URL"] ?>">Подробнее</a>
-                        </div>
+                    <div class="card-img-container">
+                        <a class="card-img-container__a" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+                            <img
+                                    class=""
+                                    src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                    alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                    title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                            />
+                        </a>
+                        <a class="btn btn-primary" href="<? echo $arItem["DETAIL_PAGE_URL"] ?>">Подробнее</a>
+                    </div>
 
 
-                        <div class="card-body d-flex flex-column">
-                            <? if($arParams["DISPLAY_NAME"] != "N" && $arItem["NAME"]): ?>
-                                <div class="card-title">
-                                    <? if(!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])): ?>
-                                        <a href="<? echo $arItem["DETAIL_PAGE_URL"] ?>"><? echo $arItem["NAME"] ?></a>
-                                    <? else: ?>
-                                        <? echo $arItem["NAME"] ?>
-                                    <? endif; ?>
-                                </div>
-                            <? endif; ?>
+                    <div class="card-body d-flex flex-column">
+                        <? if ($arParams["DISPLAY_NAME"] != "N" && $arItem["NAME"]): ?>
+                            <div class="card-title">
+                                <? if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])): ?>
+                                    <a href="<? echo $arItem["DETAIL_PAGE_URL"] ?>"><? echo $arItem["NAME"] ?></a>
+                                <? else: ?>
+                                    <? echo $arItem["NAME"] ?>
+                                <? endif; ?>
+                            </div>
+                        <? endif; ?>
 
-                            <? if($arParams["DISPLAY_PREVIEW_TEXT"] != "N" && $arItem["PREVIEW_TEXT"]): ?>
-                                <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
-                            <? endif; ?>
+                        <? if ($arParams["DISPLAY_PREVIEW_TEXT"] != "N" && $arItem["PREVIEW_TEXT"]): ?>
+                            <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
+                        <? endif; ?>
 
-                            <div class="date-published mt-auto"><?=$arItem["ACTIVE_FROM"] ?: $arItem["DATE_CREATE"]?></div>
-                        </div>
+                        <div class="date-published mt-auto"><?= $arItem["ACTIVE_FROM"] ?: $arItem["DATE_CREATE"] ?></div>
                     </div>
                 </div>
             <? endforeach; ?>

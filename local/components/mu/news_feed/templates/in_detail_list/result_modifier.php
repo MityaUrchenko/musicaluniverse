@@ -23,7 +23,7 @@ $iblocks = IblockTable::getList(
     [
         'filter' => ['ID' => array_keys($arResult['ITEMS_BY_IBLOCKS'])],
         'order' => [],
-        'select' => ['ID','NAME'],
+        'select' => ['ID','NAME', 'LIST_PAGE_URL'],
     ]
 );
 while($iblock = $iblocks->fetch()) {
