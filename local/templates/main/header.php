@@ -88,7 +88,7 @@ $countryFilter = [];
 
     <? if(explode("/", $curDir)[1] != "personal" && count(explode("/", $curDir)) > 3) { ?>
     <? } ?>
-    <link href="<?=SITE_TEMPLATE_PATH?>/assets/css/app.css" rel="stylesheet">
+    <link href="<?=SITE_TEMPLATE_PATH?>/assets/css/app.css?v6" rel="stylesheet">
 </head>
 <body class="d-flex flex-column">
 <?php
@@ -97,137 +97,140 @@ include(__DIR__ . '/svg.php');
 <?= $muCityDebugHtml ?? '' ?>
 <div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
 <div class="wrapper d-flex flex-column" id="bx_eshop_wrap">
-    <header class="mu-header">
+    <header class="mu-header" id="mu-header">
         <div class="container">
-            <div class="mu-header__wrap"><a class="mu-header__logo"
-                                            href="/"><img src="<?=SITE_TEMPLATE_PATH?>/assets/img/logo.png"></a>
+            <div class="mu-header__wrap">
+                <a class="mu-header__logo" href="/">
+                    <img src="<?=SITE_TEMPLATE_PATH?>/assets/img/logo.png" alt="">
+                </a>
+
                 <div class="mu-header__inner">
-                    <div class="mu-header__row">
+                    <div class="mu-header__row mu-header__row--top">
                         <a class="mu-header__phone" href="tel:8-123-456-78-99">8-123-456-78-99</a>
-                        <? $APPLICATION->IncludeComponent(
-                                "bitrix:search.title",
-                                "bootstrap_v4",
-                                array(
-                                        "NUM_CATEGORIES" => "1",
-                                        "TOP_COUNT" => "5",
-                                        "CHECK_DATES" => "Y",
-                                        "SHOW_OTHERS" => "N",
-                                        "PAGE" => SITE_DIR . "search/",
-                                        "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
-                                        "CATEGORY_0" => array(
-                                                0 => "no",
-                                        ),
-                                        "CATEGORY_0_iblock_catalog" => array(
-                                                0 => "all",
-                                        ),
-                                        "CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
-                                        "SHOW_INPUT" => "Y",
-                                        "INPUT_ID" => "title-search-input",
-                                        "CONTAINER_ID" => "title-search-container",
-                                        "PRICE_CODE" => array(),
-                                        "SHOW_PREVIEW" => "Y",
-                                        "PREVIEW_WIDTH" => "75",
-                                        "PREVIEW_HEIGHT" => "75",
-                                        "CONVERT_CURRENCY" => "Y",
-                                        "COMPONENT_TEMPLATE" => "bootstrap_v4",
-                                        "ORDER" => "rank",
-                                        "USE_LANGUAGE_GUESS" => "Y",
-                                        "TEMPLATE_THEME" => "blue",
-                                        "PRICE_VAT_INCLUDE" => "Y",
-                                        "PREVIEW_TRUNCATE_LEN" => "",
-                                        "CURRENCY_ID" => "RUB"
-                                ),
-                                false
-                        ); ?>
-                        <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
-                            <?
-                            $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-                            $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
-                            $uri->deleteParams(['city', 'country']);
-                            $uriAll = clone $uri;
-                            $uriAll->addParams(['city' => 'all']);
-                            $cityLabel = MuCity::getName() ?: 'Все города';
-                            ?>
-                            <div class="mu-select__toggle-wrap" data-type="toggle">
-                                <svg class="">
-                                    <use xlink:href="#location"></use>
-                                </svg>
-                                <div class="mu-select__toggle"
-                                     data-default-text="<?= htmlspecialcharsbx($cityLabel) ?>"><?= htmlspecialcharsbx($cityLabel) ?></div>
-                            </div>
-                            <div class="mu-select__drop">
-                                <a href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>" class="mu-select__item" data-type="item" data-id="city-all">
-                                    <span class="mu-select__item-text">Все города</span>
-                                </a>
-                                <?php foreach ($cities as $key => $cityName):
-                                    $uriCity = clone $uri;
-                                    $uriCity->addParams(['city' => $key]);
-                                    ?>
-                                    <a href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"
-                                       class="mu-select__item"
-                                       data-type="item"
-                                       data-id="city-<?= htmlspecialcharsbx($key) ?>">
-                                        <span class="mu-select__item-text"><?= htmlspecialcharsbx($cityName) ?></span>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
 
-                        <?if($USER->isAuthorized()){?>
-                            <div class="mu-header__personal js-header-personal">
-                                <span class="mu-header__personal-name"><?=$curUser["NAME"]?></span>
-                                <span class="mu-header__personal-status"><?=$curUser["ROLE"]?></span>
-                                <div class="mu-header__personal-avatar">
-                                    <?
-                                    $userPhoto = CFile::GetPath($curUser["PERSONAL_PHOTO"]);
-                                    if($curUser["PERSONAL_PHOTO"]) {
-                                        ?>
-                                        <img src="<?=$userPhoto?>">
-                                    <? } ?>
-                                </div>
-                                <div class="mu-header-menu js-header-menu">
-                                    <div class="mu-header-menu__personal js-header-menu-personal">
-                                        <span class="mu-header-menu__personal-name"><?=$curUser["NAME"]?></span>
-                                        <span class="mu-header-menu__personal-status"><?=$curUser["ROLE"]?></span>
-                                        <div class="mu-header__personal-avatar"><img src="<?=$userPhoto?>"></div>
-                                    </div>
-
-                                    <? $APPLICATION->IncludeComponent(
-                                            "bitrix:menu",
-                                            "user_menu",
-                                            array(
-                                                    "ROOT_MENU_TYPE" => "user_menu",
-                                                    "MAX_LEVEL" => "1",
-                                                    "CHILD_MENU_TYPE" => "",
-                                                    "USE_EXT" => "N",
-                                                    "DELAY" => "N",
-                                                    "ALLOW_MULTI_SELECT" => "N",
-                                                    "MENU_CACHE_TYPE" => "N",
-                                                    "MENU_CACHE_TIME" => "3600",
-                                                    "MENU_CACHE_USE_GROUPS" => "Y",
-                                                    "MENU_CACHE_GET_VARS" => array(
-                                                    ),
-                                                    "COMPONENT_TEMPLATE" => "user_menu",
-                                                    "MENU_THEME" => "site"
+                        <div class="mu-header__search-wrap">
+                            <? $APPLICATION->IncludeComponent(
+                                    "bitrix:search.title",
+                                    "bootstrap_v4",
+                                    array(
+                                            "NUM_CATEGORIES" => "1",
+                                            "TOP_COUNT" => "5",
+                                            "CHECK_DATES" => "Y",
+                                            "SHOW_OTHERS" => "N",
+                                            "PAGE" => SITE_DIR . "search/",
+                                            "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
+                                            "CATEGORY_0" => array(
+                                                    0 => "no",
                                             ),
-                                            false
-                                    ); ?>
+                                            "CATEGORY_0_iblock_catalog" => array(
+                                                    0 => "all",
+                                            ),
+                                            "CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
+                                            "SHOW_INPUT" => "Y",
+                                            "INPUT_ID" => "title-search-input",
+                                            "CONTAINER_ID" => "title-search-container",
+                                            "PRICE_CODE" => array(),
+                                            "SHOW_PREVIEW" => "Y",
+                                            "PREVIEW_WIDTH" => "75",
+                                            "PREVIEW_HEIGHT" => "75",
+                                            "CONVERT_CURRENCY" => "Y",
+                                            "COMPONENT_TEMPLATE" => "bootstrap_v4",
+                                            "ORDER" => "rank",
+                                            "USE_LANGUAGE_GUESS" => "Y",
+                                            "TEMPLATE_THEME" => "blue",
+                                            "PRICE_VAT_INCLUDE" => "Y",
+                                            "PREVIEW_TRUNCATE_LEN" => "",
+                                            "CURRENCY_ID" => "RUB"
+                                    ),
+                                    false
+                            ); ?>
+                        </div>
+
+                        <?php
+                        $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+                        $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
+                        $uri->deleteParams(['city', 'country']);
+                        $uriAll = clone $uri;
+                        $uriAll->addParams(['city' => 'all']);
+                        $cityLabel = MuCity::getName() ?: 'Все города';
+                        ?>
+
+                        <div class="mu-header__city mu-header__desktop-only">
+                            <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
+                                <div class="mu-select__toggle-wrap" data-type="toggle">
+                                    <svg class="">
+                                        <use xlink:href="#location"></use>
+                                    </svg>
+                                    <div class="mu-select__toggle"
+                                         data-default-text="<?= htmlspecialcharsbx($cityLabel) ?>"><?= htmlspecialcharsbx($cityLabel) ?></div>
+                                </div>
+                                <div class="mu-select__drop">
+                                    <a href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>" class="mu-select__item" data-type="item" data-id="city-all">
+                                        <span class="mu-select__item-text">Все города</span>
+                                    </a>
+                                    <?php foreach ($cities as $key => $cityName):
+                                        $uriCity = clone $uri;
+                                        $uriCity->addParams(['city' => $key]);
+                                        ?>
+                                        <a href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"
+                                           class="mu-select__item"
+                                           data-type="item"
+                                           data-id="city-<?= htmlspecialcharsbx($key) ?>">
+                                            <span class="mu-select__item-text"><?= htmlspecialcharsbx($cityName) ?></span>
+                                        </a>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
-                        <?}else{?>
-                            <button class="btn btn-primary js-login-btn">Войти</button>
-                        <?}?>
-                        <?/*
-                        <div class="mu-header__controls-item">
-                            <button class="mu-header__theme-toggle">
-                                <svg class="night">
-                                    <use xlink:href="#night"></use>
-                                </svg>
-                            </button>
                         </div>
-                        */?>
+
+                        <div class="mu-header__auth mu-header__desktop-only">
+                            <?if($USER->isAuthorized()){?>
+                                <div class="mu-header__personal js-header-personal">
+                                    <span class="mu-header__personal-name"><?=$curUser["NAME"]?></span>
+                                    <span class="mu-header__personal-status"><?=$curUser["ROLE"]?></span>
+                                    <div class="mu-header__personal-avatar">
+                                        <?
+                                        $userPhoto = CFile::GetPath($curUser["PERSONAL_PHOTO"]);
+                                        if($curUser["PERSONAL_PHOTO"]) {
+                                            ?>
+                                            <img src="<?=$userPhoto?>" alt="">
+                                        <? } ?>
+                                    </div>
+                                    <div class="mu-header-menu js-header-menu">
+                                        <div class="mu-header-menu__personal js-header-menu-personal">
+                                            <span class="mu-header-menu__personal-name"><?=$curUser["NAME"]?></span>
+                                            <span class="mu-header-menu__personal-status"><?=$curUser["ROLE"]?></span>
+                                            <div class="mu-header__personal-avatar"><img src="<?=$userPhoto?>" alt=""></div>
+                                        </div>
+
+                                        <? $APPLICATION->IncludeComponent(
+                                                "bitrix:menu",
+                                                "user_menu",
+                                                array(
+                                                        "ROOT_MENU_TYPE" => "user_menu",
+                                                        "MAX_LEVEL" => "1",
+                                                        "CHILD_MENU_TYPE" => "",
+                                                        "USE_EXT" => "N",
+                                                        "DELAY" => "N",
+                                                        "ALLOW_MULTI_SELECT" => "N",
+                                                        "MENU_CACHE_TYPE" => "N",
+                                                        "MENU_CACHE_TIME" => "3600",
+                                                        "MENU_CACHE_USE_GROUPS" => "Y",
+                                                        "MENU_CACHE_GET_VARS" => array(),
+                                                        "COMPONENT_TEMPLATE" => "user_menu",
+                                                        "MENU_THEME" => "site"
+                                                ),
+                                                false
+                                        ); ?>
+                                    </div>
+                                </div>
+                            <?}else{?>
+                                <button type="button" class="btn btn-primary js-login-btn w-100">Войти</button>
+                            <?}?>
+                        </div>
                     </div>
-                    <div class="mu-header__row">
+
+                    <div class="mu-header__row mu-header__row--nav mu-header__desktop-only">
                         <? $APPLICATION->IncludeComponent(
                                 "bitrix:menu",
                                 "main_menu",
@@ -259,195 +262,154 @@ include(__DIR__ . '/svg.php');
                                            id="role-1"
                                            name="role"
                                            data-text="Rus">
-                                    <span class="mu-select__item-text">Rus</span></label>
+                                    <span class="mu-select__item-text">Rus</span>
+                                </label>
                                 <label class="mu-select__item" data-type="item" data-id="role-2" for="role-2">
                                     <input class="mu-select__item-input js-select-input"
                                            type="radio"
                                            id="role-2"
                                            name="role"
                                            data-text="Eng">
-                                    <span class="mu-select__item-text">Eng</span></label>
+                                    <span class="mu-select__item-text">Eng</span>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <button type="button"
+                        class="mu-header__burger"
+                        id="mu-header-burger"
+                        aria-label="Меню"
+                        aria-expanded="false"
+                        aria-controls="mu-header-drawer">
+                    <span class="mu-header__burger-line"></span>
+                    <span class="mu-header__burger-line"></span>
+                    <span class="mu-header__burger-line"></span>
+                </button>
             </div>
         </div>
-    </header>
-    <header class="mu-header d-none">
-        <div class="container">
-            <!--region bx-header-->
-            <div class="d-flex align-items-stretch flex-column flex-lg-row position-relative">
-                <div class="d-flex align-items-center justify-content-lg-center justify-content-between">
-                    <a class="company-logo" href="<?=SITE_DIR?>">
-                        <? $APPLICATION->IncludeComponent(
-                                "bitrix:main.include",
-                                "",
-                                array(
-                                        "AREA_FILE_SHOW" => "file",
-                                        "PATH" => SITE_DIR . "include/company_logo.php"
-                                ),
-                                false
-                        ); ?>
-                    </a>
-                    <div class="d-lg-none">
-                        <a id="main-menu-btn" href="#">
-                            <img src="<?=SITE_TEMPLATE_PATH?>/images/triline.png" alt="">
-                        </a>
-                    </div>
+
+        <!-- Мобильное меню (≤1023px) -->
+        <div class="mu-header__drawer" id="mu-header-drawer" aria-hidden="true">
+            <div class="mu-header__drawer-inner">
+                <div class="mu-header__drawer-menu">
+                    <? $APPLICATION->IncludeComponent(
+                            "bitrix:menu",
+                            "main_menu",
+                            array(
+                                    "ALLOW_MULTI_SELECT" => "N",
+                                    "CHILD_MENU_TYPE" => "left",
+                                    "DELAY" => "N",
+                                    "MAX_LEVEL" => "2",
+                                    "MENU_CACHE_GET_VARS" => array(),
+                                    "MENU_CACHE_TIME" => "3600",
+                                    "MENU_CACHE_TYPE" => "N",
+                                    "MENU_CACHE_USE_GROUPS" => "N",
+                                    "ROOT_MENU_TYPE" => "top",
+                                    "USE_EXT" => "N",
+                                    "COMPONENT_TEMPLATE" => "main_menu",
+                                    "MENU_THEME" => "site"
+                            ),
+                            false
+                    ); ?>
                 </div>
-                <div class="d-none d-lg-flex pl-lg-5 mt-4 mb-3 w-100 align-items-stretch flex-column flex-row position-relative">
-                    <div class="pl-lg-3 w-100 align-items-start flex-column">
-                        <div class="d-flex w-100 align-items-center justify-content-lg-between flex-column flex-lg-row">
 
-                            <a href="tel: 8-123-456-78-99" class="header-phone mr-3 mb-3 mb-lg-0 d-lg-flex">
-                                8-123-456-78-99
-                                <? //$APPLICATION->IncludeComponent(
-                                //                                    "bitrix:main.include",
-                                //                                    "",
-                                //                                    array(
-                                //                                        "AREA_FILE_SHOW" => "file",
-                                //                                        "PATH" => SITE_DIR."include/phone.php"
-                                //                                    ),
-                                //                                    false
-                                //                                );?>
-                            </a>
-
-                            <div class="search-container mr-3">
-                                <? $APPLICATION->IncludeComponent(
-                                        "bitrix:search.title",
-                                        "main_search",
-                                        array(
-                                                "NUM_CATEGORIES" => "1",
-                                                "TOP_COUNT" => "5",
-                                                "CHECK_DATES" => "Y",
-                                                "SHOW_OTHERS" => "N",
-                                                "PAGE" => SITE_DIR . "search/",
-                                                "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
-                                                "CATEGORY_0" => array(
-                                                        0 => "no",
-                                                ),
-                                                "CATEGORY_0_iblock_catalog" => array(
-                                                        0 => "all",
-                                                ),
-                                                "CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
-                                                "SHOW_INPUT" => "Y",
-                                                "INPUT_ID" => "mobile-search-input",
-                                                "CONTAINER_ID" => "mobile-search-container",
-                                                "PRICE_CODE" => array(),
-                                                "SHOW_PREVIEW" => "Y",
-                                                "PREVIEW_WIDTH" => "75",
-                                                "PREVIEW_HEIGHT" => "75",
-                                                "CONVERT_CURRENCY" => "Y",
-                                                "COMPONENT_TEMPLATE" => "main_search",
-                                                "ORDER" => "rank",
-                                                "USE_LANGUAGE_GUESS" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "PRICE_VAT_INCLUDE" => "Y",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "CURRENCY_ID" => "RUB"
-                                        ),
-                                        false
-                                ); ?>
+                <div class="mu-header__drawer-footer">
+                    <div class="mu-header__city">
+                        <div class="mu-select js-mu-select js-select-single mu-select_single mu-select_round mu-select_header">
+                            <div class="mu-select__toggle-wrap" data-type="toggle">
+                                <svg class="">
+                                    <use xlink:href="#location"></use>
+                                </svg>
+                                <div class="mu-select__toggle"
+                                     data-default-text="<?= htmlspecialcharsbx($cityLabel) ?>"><?= htmlspecialcharsbx($cityLabel) ?></div>
                             </div>
-
-                            <div class="dropdown ml-lg-3 mb-3 mb-lg-0">
-                                <button class="btn btn-secondary dropdown-toggle"
-                                        type="button"
-                                        id="dropdownMenuButton"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <?= htmlspecialcharsbx(MuCity::getName() ?: 'Все города') ?>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <?php
-                                    $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
-                                    $uri = new \Bitrix\Main\Web\Uri($request->getRequestUri());
-                                    $uri->deleteParams(['city', 'country']);
-                                    $uriAll = clone $uri;
-                                    $uriAll->addParams(['city' => 'all']);
+                            <div class="mu-select__drop">
+                                <a href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>" class="mu-select__item" data-type="item" data-id="city-all-m">
+                                    <span class="mu-select__item-text">Все города</span>
+                                </a>
+                                <?php foreach ($cities as $key => $cityName):
+                                    $uriCity = clone $uri;
+                                    $uriCity->addParams(['city' => $key]);
                                     ?>
-                                    <a class="dropdown-item" href="<?= htmlspecialcharsbx($uriAll->getUri()) ?>">Все города</a>
-                                    <?php foreach ($cities as $key => $cityName):
-                                        $uriCity = clone $uri;
-                                        $uriCity->addParams(['city' => $key]);
-                                        ?>
-                                        <a class="dropdown-item" href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"><?= htmlspecialcharsbx($cityName) ?></a>
-                                    <?php endforeach; ?>
-                                </div>
+                                    <a href="<?= htmlspecialcharsbx($uriCity->getUri()) ?>"
+                                       class="mu-select__item"
+                                       data-type="item"
+                                       data-id="city-m-<?= htmlspecialcharsbx($key) ?>">
+                                        <span class="mu-select__item-text"><?= htmlspecialcharsbx($cityName) ?></span>
+                                    </a>
+                                <?php endforeach; ?>
                             </div>
+                        </div>
+                    </div>
 
-                            <a href="/login" class="mu-btn mu-btn--round mu-btn--login mu-btn--filled"><span>Войти</span></a>
-                        </div>
-                        <div class="w-100 mt-2 d-flex align-items-center">
-                            <div class="menu-container w-100">
-                                <? $APPLICATION->IncludeComponent(
-                                        "bitrix:menu",
-                                        "main_menu",
-                                        array(
-                                                "ROOT_MENU_TYPE" => "top",
-                                            // Тип меню для первого уровня
-                                                "MENU_CACHE_TYPE" => "A",
-                                            // Тип кеширования
-                                                "MENU_CACHE_TIME" => "36000000",
-                                            // Время кеширования (сек.)
-                                                "MENU_CACHE_USE_GROUPS" => "Y",
-                                            // Учитывать права доступа
-                                                "MENU_THEME" => "site",
-                                            // Тема меню
-                                                "CACHE_SELECTED_ITEMS" => "N",
-                                                "MENU_CACHE_GET_VARS" => "",
-                                            // Значимые переменные запроса
-                                                "MAX_LEVEL" => "3",
-                                            // Уровень вложенности меню
-                                                "USE_EXT" => "Y",
-                                            // Подключать файлы с именами вида .тип_меню.menu_ext.php
-                                                "DELAY" => "N",
-                                            // Откладывать выполнение шаблона меню
-                                                "ALLOW_MULTI_SELECT" => "N",
-                                            // Разрешить несколько активных пунктов одновременно
-                                                "COMPONENT_TEMPLATE" => "bootstrap_v4"
-                                        ),
-                                        false
-                                ); ?>
-                            </div>
-                            <div class="header-select mu-select js-mu-select js-select-single mu-select_single mu-select_round ml-3">
-                                <div class="mu-select__toggle-wrap">
-                                    <div class="mu-select__toggle" data-type="toggle" data-default-text="Rus">Rus</div>
-                                </div>
-                                <div class="mu-select__drop">
-                                    <label class="mu-select__item" data-type="item"
-                                           data-id="role-1" for="role-1">
-                                        <input
-                                                class="mu-select__item-input js-select-input" type="radio" id="role-1"
-                                                name="role" data-text="Rus">
-                                        <span
-                                                class="mu-select__item-text">Rus</span></label>
-                                    <label
-                                            class="mu-select__item"
-                                            data-type="item"
-                                            data-id="role-2"
-                                            for="role-2">
-                                        <input
-                                                class="mu-select__item-input js-select-input" type="radio" id="role-2"
-                                                name="role" data-text="Eng">
-                                        <span
-                                                class="mu-select__item-text">Eng</span></label>
-                                </div>
-                            </div>
-                            <!-- <a href="#" class="btn btn-secondary ml-5 ml-lg-auto header-btn d-none d-lg-block">Rus</a> -->
-                        </div>
+                    <div class="mu-header__auth">
+                        <?if($USER->isAuthorized()){?>
+                            <a href="/personal/" class="mu-header__personal-link">
+                                <span class="mu-header__personal-name"><?=htmlspecialcharsbx($curUser["NAME"])?></span>
+                                <span class="mu-header__personal-status"><?=htmlspecialcharsbx($curUser["ROLE"])?></span>
+                                <div class="mu-header__personal-avatar"><img src="<?=$userPhoto?>" alt=""></div>
+                            </a>
+                        <?}else{?>
+                            <button type="button" class="btn btn-primary js-login-btn w-100">Войти</button>
+                        <?}?>
                     </div>
                 </div>
             </div>
-            <!--endregion-->
         </div>
+
+        <div class="mu-header__overlay" id="mu-header-overlay" aria-hidden="true"></div>
     </header>
+
+    <script>
+        (function () {
+            var header = document.getElementById('mu-header');
+            var burger = document.getElementById('mu-header-burger');
+            var drawer = document.getElementById('mu-header-drawer');
+            var overlay = document.getElementById('mu-header-overlay');
+            if (!header || !burger || !drawer) return;
+
+            function openMenu() {
+                header.classList.add('is-menu-open');
+                burger.setAttribute('aria-expanded', 'true');
+                drawer.setAttribute('aria-hidden', 'false');
+                if (overlay) overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('mu-header-menu-open');
+            }
+
+            function closeMenu() {
+                header.classList.remove('is-menu-open');
+                burger.setAttribute('aria-expanded', 'false');
+                drawer.setAttribute('aria-hidden', 'true');
+                if (overlay) overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('mu-header-menu-open');
+            }
+
+            function toggleMenu() {
+                if (header.classList.contains('is-menu-open')) closeMenu();
+                else openMenu();
+            }
+
+            burger.addEventListener('click', function (e) {
+                e.preventDefault();
+                toggleMenu();
+            });
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 1023) closeMenu();
+            });
+        })();
+    </script>
 
     <div class="mu-content-page<?=$curDir == "/"?"main-page":""?>">
         <div class="container my-5">
 
-        <?if(count(explode("/",$curDir)) == 3){ ?>
+            <?if(count(explode("/",$curDir)) == 3){ ?>
             <h1 class="header"><? $APPLICATION->ShowTitle(false) ?></h1>
-        <? } ?>
+<? } ?>

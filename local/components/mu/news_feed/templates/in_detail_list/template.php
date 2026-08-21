@@ -15,12 +15,12 @@
 $this->setFrameMode(true);
 ?>
 
-<div class="mb-5">
+<div class="my-5">
     <? foreach ($arResult["ITEMS_BY_IBLOCKS"] as $iblockKey => $iblock) { ?>
         <div class="page__title">
             <a  href="<?= $arResult['IBLOCKS'][$iblockKey]['LIST_PAGE_URL'] ?>"><?= $arResult['IBLOCKS'][$iblockKey]['NAME'] ?></a>
         </div>
-        <div class="news-list view-grid mb-4">
+        <div class="news-list view-grid mb-5">
             <? foreach ($iblock as $arItem): ?>
                 <?
                 $this->AddEditAction(

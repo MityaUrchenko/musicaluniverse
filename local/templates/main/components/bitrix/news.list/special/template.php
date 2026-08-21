@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 <div class="mb-5">
-    <div class="news-list view-grid mb-4" id="items-container">
+    <div class="news-list view-grid mb-5" id="items-container">
         <? foreach ($arResult["ITEMS"] as $arItem): ?>
             <?
             $this->AddEditAction(

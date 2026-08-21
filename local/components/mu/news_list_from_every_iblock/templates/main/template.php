@@ -17,7 +17,7 @@ $this->setFrameMode(true);
     <? if ($arParams["DISPLAY_TOP_PAGER"]): ?>
         <?= $arResult["NAV_STRING"] ?><br/>
     <? endif; ?>
-    <div id="items-container" class="news-list view-grid mb-4">
+    <div id="items-container" class="news-list view-grid mb-5">
 
         <? foreach ($arResult["ITEMS"] as $key => $arItem): ?>
             <?

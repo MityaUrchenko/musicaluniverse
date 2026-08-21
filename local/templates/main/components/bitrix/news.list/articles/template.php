@@ -13,8 +13,8 @@
 $this->setFrameMode(true);
 $arLikedElements = unserialize($_COOKIE['likes']);
 ?>
-<div class="mb-5">
-    <div class="articles-list news-list view-grid mb-4" id="items-container">
+<div class="my-5">
+    <div class="articles-list news-list view-grid mb-5" id="items-container">
         <? if ($arParams["DISPLAY_TOP_PAGER"]): ?>
             <?= $arResult["NAV_STRING"] ?><br/>
         <? endif; ?>
